@@ -1,5 +1,5 @@
 from rdflib import Namespace, Literal
-from rdflib.namespace import DCMITYPE, DCTERMS, RDF, RDFS, XSD, SOSA, SSN, SDO
+from rdflib.namespace import DCMITYPE, DCTERMS, RDF, RDFS, XSD, SOSA, SSN, SDO, FOAF
 from pyKRAKEN.kraken import (
     DBO,
     QUDT,
@@ -90,6 +90,19 @@ data.g.add((sensor, SDO.documentation, docs))
 datasheet = SENSOR[sensor_id + "/link-to-doc-directory/datasheet.pdf"]
 data.g.add((sensor, SDO.subjectOf, datasheet))
 data.g.add((sensor, SDO.documentation, datasheet))
+
+# rdf doc references
+docttl = SENSOR[sensor_id + "/rdf.ttl"]
+data.g.add((docttl, RDF.type, FOAF.Document))
+data.g.add((docttl, FOAF.primaryTopic, sensor))
+
+docxml = SENSOR[sensor_id + "/rdf.xml"]
+data.g.add((docxml, RDF.type, FOAF.Document))
+data.g.add((docxml, FOAF.primaryTopic, sensor))
+
+docjson = SENSOR[sensor_id + "/rdf.json"]
+data.g.add((docjson, RDF.type, FOAF.Document))
+data.g.add((docjson, FOAF.primaryTopic, sensor))
 
 path = "C:/Users/NP/Documents/AIMS/datasheets-mockup/sensor/" + sensor_id + "/"
 print(data.g.serialize(destination=path + "rdf.json", format="json-ld", auto_compact=True))

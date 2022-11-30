@@ -1,5 +1,5 @@
 from rdflib import Namespace, Literal
-from rdflib.namespace import DCMITYPE, RDF, RDFS, XSD, SSN, SDO
+from rdflib.namespace import DCMITYPE, RDF, RDFS, XSD, SSN, SDO, FOAF
 from pyKRAKEN.kraken import (
     DBO,
     QUDT,
@@ -85,6 +85,19 @@ data.g.add((spec_heat_cap_const_v, QUDT.hasQuantityKind, QUANTITYKIND.SpecificHe
 data.g.add((spec_heat_cap_const_v, QUDT.unit, UNIT["J-PER-KiloGM-K"]))
 data.g.add((spec_heat_cap_const_v, QUDT.value, Literal("740", datatype=XSD.double)))
 # @ 1 bar abs, 303 K
+
+# rdf doc references
+docttl = SUBSTANCE[air_id + "/rdf.ttl"]
+data.g.add((docttl, RDF.type, FOAF.Document))
+data.g.add((docttl, FOAF.primaryTopic, air))
+
+docxml = SUBSTANCE[air_id + "/rdf.xml"]
+data.g.add((docxml, RDF.type, FOAF.Document))
+data.g.add((docxml, FOAF.primaryTopic, air))
+
+docjson = SUBSTANCE[air_id + "/rdf.json"]
+data.g.add((docjson, RDF.type, FOAF.Document))
+data.g.add((docjson, FOAF.primaryTopic, air))
 
 path = "C:/Users/NP/Documents/AIMS/datasheets-mockup/substance/" + air_id + "/"
 print(data.g.serialize(destination=path + "rdf.json", format="json-ld", auto_compact=True))

@@ -1,5 +1,5 @@
 from rdflib import Namespace, Literal
-from rdflib.namespace import DCAT, DCMITYPE, DCTERMS, RDF, RDFS, XSD, SSN, SDO
+from rdflib.namespace import DCAT, DCMITYPE, DCTERMS, RDF, RDFS, XSD, SSN, SDO, FOAF
 from pyKRAKEN.kraken import (
     DBO,
     QUDT,
@@ -103,6 +103,19 @@ data.g.add((airspring, SDO.documentation, docs))
 datasheet = COMPONENT[airspring_id + "/CAD/air_spring/HH-AR-0521-000_TB_ZB_LUFTFEDER_LH_RH_EA.pdf"]
 data.g.add((airspring, SDO.subjectOf, datasheet))
 data.g.add((airspring, SDO.documentation, datasheet))
+
+# rdf doc references
+docttl = COMPONENT[airspring_id + "/rdf.ttl"]
+data.g.add((docttl, RDF.type, FOAF.Document))
+data.g.add((docttl, FOAF.primaryTopic, airspring))
+
+docxml = COMPONENT[airspring_id + "/rdf.xml"]
+data.g.add((docxml, RDF.type, FOAF.Document))
+data.g.add((docxml, FOAF.primaryTopic, airspring))
+
+docjson = COMPONENT[airspring_id + "/rdf.json"]
+data.g.add((docjson, RDF.type, FOAF.Document))
+data.g.add((docjson, FOAF.primaryTopic, airspring))
 
 # documentation extended
 if False:
