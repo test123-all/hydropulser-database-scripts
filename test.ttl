@@ -1,0 +1,100 @@
+BASE <https://git.rwth-aachen.de/fst-tuda/projects/rdm/datasheets-mockup/-/blob/main/components/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dcmitype: <http://purl.org/dc/dcmitype/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX fst-components: <https://git.rwth-aachen.de/fst-tuda/projects/rdm/datasheets-mockup/-/blob/main/components/>
+PREFIX fst-substances: <https://git.rwth-aachen.de/fst-tuda/projects/rdm/datasheets-mockup/-/blob/main/substances/>
+PREFIX quantitykind: <http://qudt.org/vocab/quantitykind/>
+PREFIX qudt: <http://qudt.org/schema/qudt/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <https://schema.org/>
+PREFIX ssn: <http://www.w3.org/ns/ssn/>
+PREFIX unit: <http://qudt.org/vocab/unit/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+<1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/rdf.ttl> a foaf:Document;
+	foaf:primaryTopic <1ed6c2f8-282a-64b4-94d0-4ee51dfba10e>.
+
+<1ed6c2f8-282a-64b4-94d0-4ee51dfba10e>
+    a dcmitype:PhysicalObject ;
+    rdfs:label "air spring" ;
+    dbo:owner "FST" ;
+    dcterms:hasPart fst-substances:1ed6cc2c-da26-661f-92f3-02c4bb63c743 ;
+    dcterms:identifier
+        "1ed6c2f8-282a-64b4-94d0-4ee51dfba10e" ,
+        "Part-no.:TAB.026.134.R" ;
+    ssn:hasProperty
+        <1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/A_d> ,
+        <1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/A_w> ,
+        <1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/V0> ,
+        <1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/V1> ,
+        <1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/s> ;
+    schema:documentation
+        <1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/CAD> ,
+        <1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/CAD/air_spring/HH-AR-0521-000_TB_ZB_LUFTFEDER_LH_RH_EA.pdf> ;
+    schema:image <1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/IMG_20190809_113156_Bokeh.jpg> ;
+    schema:manufacturer "Vibracoustic" ;
+    schema:serialNumber "4K0-616-001-E" ;
+    schema:subjectOf
+        <1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/CAD> ,
+        <1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/CAD/air_spring/HH-AR-0521-000_TB_ZB_LUFTFEDER_LH_RH_EA.pdf> ,
+        <1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/IMG_20190809_113156_Bokeh.jpg> ;
+.
+
+<1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/A_d>
+    a
+        qudt:Quantity ,
+        ssn:Property ;
+    rdfs:label "displacement area" ;
+    qudt:hasQuantityKind quantitykind:Area ;
+    qudt:symbol "A_d" ;
+    qudt:unit unit:M2 ;
+    qudt:value -1.362e-02 ;
+    rdfs:comment "negative direction" ;
+.
+
+<1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/A_w>
+    a
+        qudt:Quantity ,
+        ssn:Property ;
+    rdfs:label "wall area" ;
+    qudt:hasQuantityKind quantitykind:Area ;
+    qudt:symbol "A_w" ;
+    qudt:unit unit:M2 ;
+    qudt:value 1.73e-01 ;
+.
+
+<1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/V0>
+    a
+        qudt:Quantity ,
+        ssn:Property ;
+    rdfs:label "volume design point" ;
+    qudt:hasQuantityKind quantitykind:Volume ;
+    qudt:symbol "V0" ;
+    qudt:unit unit:M3 ;
+    qudt:value 2.92e-03 ;
+.
+
+<1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/V1>
+    a
+        qudt:Quantity ,
+        ssn:Property ;
+    rdfs:label "volume design point" ;
+    qudt:hasQuantityKind quantitykind:Volume ;
+    qudt:symbol "V1" ;
+    qudt:unit unit:M3 ;
+    qudt:value 2.92e-03 ;
+.
+
+<1ed6c2f8-282a-64b4-94d0-4ee51dfba10e/s>
+    a
+        qudt:Quantity ,
+        ssn:Property ;
+    rdfs:label "specific surface area" ;
+    qudt:hasQuantityKind quantitykind:InverseLength ;
+    qudt:symbol "s" ;
+    qudt:unit unit:NUM-PER-M ;
+    qudt:value 5.924658e+01 ;
+.
+

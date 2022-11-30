@@ -1,0 +1,28 @@
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix kraken: <https://aims-projekt.de/ap/fst/kraken/> .
+
+kraken:PhysicalObject
+    dcterms:created "2022-11-23"^^xsd:date ;
+	dcterms:creator "Nils Preuß" ;
+	dcterms:description "some physical object or substance in the real world"@en ;
+	dcterms:rights "https://spdx.org/licenses/CC0-1.0.html" ;
+	dcterms:subject "https://github.com/tibonto/dfgfo/4"@en ;
+	dcterms:title "physical object"@en ;
+	a sh:NodeShape ;
+	sh:closed false ;
+	sh:property [
+		sh:name "material"@en ;
+		sh:order 5 ;
+		sh:path schema:material ;
+		sh:nodeKind sh:IRIOrLiteral ;
+	] ;
+	sh:targetClass dcmitype:PhysicalObject ;
+	sh:node kraken:Thing ;
+	owl:imports kraken:Thing .
