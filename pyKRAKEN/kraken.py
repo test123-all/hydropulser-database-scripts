@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import List, Union
 
 from rdflib import Graph, URIRef, Literal, Namespace
-from rdflib.namespace import DCAT, DCMITYPE, DCTERMS, RDF, RDFS, SOSA, SSN, SDO
+from rdflib.namespace import DCAT, DCMITYPE, DCTERMS, RDF, RDFS, SOSA, SSN, SDO, FOAF
 from uuid6 import uuid6
 
 H5PATH_RDF_METADATA = "/rdf-metadata"  # could be an input instead, necessary if multiple graphs allowed
@@ -47,6 +47,7 @@ class Kraken(object):
         g.bind("quantitykind", QUANTITYKIND)
         g.bind("unit", UNIT)
         g.bind("ssn-system", SSN_SYSTEM)
+        g.bind("foaf", FOAF)
 
         self.g = g  # is this allowed? apparently
         self.filepath = filepath
