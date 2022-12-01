@@ -1,3 +1,5 @@
+import os
+from pyshacl import validate
 from rdflib import Graph
 from rdflib.namespace import RDF, SH
 
@@ -22,3 +24,19 @@ else:
 
 for o in g[shape: SH.property]:
     print(o)
+
+
+# VALIDATION
+
+with os.scandir("shapes") as it:
+    for entry in it:
+        if entry.name.endswith(".ttl") and entry.is_file():
+
+            print(entry.path)
+            r = validate(entry.path,
+                         data_graph_format="ttl",
+                         inference="rdfs",
+                         debug=False)
+            conforms, results_graph, results_text = r
+
+            print(results_text)
