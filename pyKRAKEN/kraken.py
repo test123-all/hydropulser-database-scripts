@@ -75,7 +75,11 @@ class Thing(object):
 
     @property
     def iri(self):
-        return self.iri
+        return self._iri
+
+    @iri.setter
+    def iri(self, iri):
+        self._iri = iri
 
     def isHostedBy(self, iri: URIRef) -> Thing:
         self.g.add((self.iri, SOSA.isHostedBy, iri))
@@ -196,7 +200,9 @@ class Result(Thing):
         self.title = label
         self.creator = creator  # move to ObservationCollection = DatasetCollection
         self.unit = unit
-        self.h5path = h5path + uuidstr
+        self.h5path = h5path  # we assume data is already at name = h5path
+        if data is not None:  # if data is provided we assert name = uuid
+            self.h5path += uuidstr
         self.data = data
 
         d = URIRef(accessurl + "#" + H5PATH_RDF_METADATA + self.h5path)
