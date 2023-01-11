@@ -1,12 +1,14 @@
-from rdflib import Namespace, Literal
-from rdflib.namespace import DCMITYPE, DCTERMS, RDF, RDFS, XSD, SOSA, SSN, SDO, FOAF
+from rdflib import Namespace
+from rdflib.namespace import RDF, SDO, FOAF
 from pyKRAKEN.kraken import (
-    DBO,
-    QUDT,
     UNIT,
     QUANTITYKIND,
     SSN_SYSTEM,
-    Kraken
+    Kraken,
+    Sensor,
+    SensorCapability,
+    PropertyValue,
+    Quantity
 )
 
 
@@ -27,82 +29,53 @@ data.g.bind("fst-sensor", SENSOR)
 sensor_id = "1ed6c963-669f-62b7-8af6-3727686f020d"  # str(uuid6())
 git_sha = ""
 
-# the component = the air spring
-sensor = SENSOR[sensor_id]
-data.g.add((sensor, RDF.type, DCMITYPE.PhysicalObject))
-data.g.add((sensor, RDF.type, SOSA.Sensor))
-data.g.add((sensor, RDFS.label, Literal("PAA-33X/10bar")))
-data.g.add((sensor, RDFS.comment, Literal("Drucksensor")))
-data.g.add((sensor, DCTERMS.identifier, Literal(sensor_id)))
-data.g.add((sensor, DCTERMS.identifier, Literal("fst-inv:D117")))
-data.g.add((sensor, DBO.owner, Literal("FST")))
-data.g.add((sensor, SDO.manufacturer, Literal("Keller")))
-data.g.add((sensor, SDO.serialNumber, Literal("1011240")))
-data.g.add((sensor, SDO.location, Literal("Sirup Mischanlage")))
+# the sensor
+sensor = Sensor(data, hasSensorCapability=SENSOR[sensor_id + "/SensorCapability"],
+                iri=SENSOR[sensor_id], identifier=sensor_id, label="PAA-33X/10bar",
+                comment="Drucksensor", owner="FST", manufacturer="Keller", serialNumber="1011240",
+                location="Sirup Mischanlage")
+sensor.identifier = "fst-inv:D117"
 
 # properties
-sys_capa = SENSOR[sensor_id + "/SensorCapability"]
-data.g.add((sensor, SSN_SYSTEM.hasSystemCapability, sys_capa))
-data.g.add((sys_capa, RDF.type, SSN.Property))
-data.g.add((sys_capa, RDF.type, SSN_SYSTEM.SystemCapability))
-data.g.add((sys_capa, RDFS.label, Literal("sensor capabilities")))
-data.g.add((sys_capa, RDFS.comment, Literal("sensor capabilities not regarding any conditions at this time")))
+sys_capa = SensorCapability(data, iri=SENSOR[sensor_id + "/SensorCapability"], label="sensor capabilities",
+                            comment="sensor capabilities not regarding any conditions at this time")
 
-meas_range = SENSOR[sensor_id + "/MeasurementRange"]
-data.g.add((sys_capa, SSN_SYSTEM.hasSystemProperty, meas_range))
-data.g.add((meas_range, RDF.type, SSN.Property))
-data.g.add((meas_range, RDF.type, SSN_SYSTEM.MeasurementRange))
-data.g.add((meas_range, RDF.type, QUDT.Quantity))
-data.g.add((meas_range, RDFS.label, Literal("measurement range")))
-data.g.add((meas_range, RDFS.comment, Literal("absolute pressure")))
-data.g.add((meas_range, QUDT.hasQuantityKind, QUANTITYKIND.Pressure))
-data.g.add((meas_range, QUDT.unit, UNIT.BAR))
-data.g.add((meas_range, SDO.minValue, Literal("0", datatype=XSD.integer)))
-data.g.add((meas_range, SDO.maxValue, Literal("10", datatype=XSD.integer)))
+meas_range = Quantity(data, isPropertyOf=sys_capa.iri, hasQuantityKind=QUANTITYKIND.Pressure,
+                      minValue=0, maxValue=10, unit=UNIT.BAR,
+                      iri=SENSOR[sensor_id + "/MeasurementRange"], identifier=None, label="measurement range",
+                      comment="absolute pressure", rdftype=SSN_SYSTEM.MeasurementRange)
 
-sensitivity = SENSOR[sensor_id + "/Sensitivity"]
-data.g.add((sys_capa, SSN_SYSTEM.hasSystemProperty, sensitivity))
-data.g.add((sensitivity, RDF.type, SSN.Property))
-data.g.add((sensitivity, RDF.type, SSN_SYSTEM.Sensitivity))
-data.g.add((sensitivity, RDF.type, SDO.PropertyValue))
-data.g.add((sensitivity, RDFS.label, Literal("sensitivity")))
-data.g.add((sensitivity, SDO.name, Literal("gain")))
-data.g.add((sensitivity, SDO.value, Literal("1", datatype=XSD.integer)))
+sensitivity = PropertyValue(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Sensitivity"],
+                            label="sensitivity", rdftype=SSN_SYSTEM.Sensitivity, name="gain", value=1)
 
-bias = SENSOR[sensor_id + "/Bias"]
-data.g.add((sys_capa, SSN_SYSTEM.hasSystemProperty, bias))
-data.g.add((bias, RDF.type, SSN.Property))
-data.g.add((bias, RDF.type, SSN_SYSTEM.SystemProperty))
-data.g.add((bias, RDF.type, SDO.PropertyValue))
-data.g.add((bias, RDFS.label, Literal("bias")))
-data.g.add((bias, SDO.name, Literal("offset")))
-data.g.add((bias, SDO.value, Literal("0", datatype=XSD.integer)))
+bias = PropertyValue(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Bias"],
+                     label="bias", rdftype=SSN_SYSTEM.SystemProperty, name="offset", value=0)
 
 # documentation
 img = SENSOR[sensor_id + "/link-to-image.jpg"]
-data.g.add((sensor, SDO.subjectOf, img))
-data.g.add((sensor, SDO.image, img))
+data.g.add((sensor.iri, SDO.subjectOf, img))
+data.g.add((sensor.iri, SDO.image, img))
 
 docs = SENSOR[sensor_id + "/link-to-doc-directory"]
-data.g.add((sensor, SDO.subjectOf, docs))
-data.g.add((sensor, SDO.documentation, docs))
+data.g.add((sensor.iri, SDO.subjectOf, docs))
+data.g.add((sensor.iri, SDO.documentation, docs))
 
 datasheet = SENSOR[sensor_id + "/link-to-doc-directory/datasheet.pdf"]
-data.g.add((sensor, SDO.subjectOf, datasheet))
-data.g.add((sensor, SDO.documentation, datasheet))
+data.g.add((sensor.iri, SDO.subjectOf, datasheet))
+data.g.add((sensor.iri, SDO.documentation, datasheet))
 
 # rdf doc references
 docttl = SENSOR[sensor_id + "/rdf.ttl"]
 data.g.add((docttl, RDF.type, FOAF.Document))
-data.g.add((docttl, FOAF.primaryTopic, sensor))
+data.g.add((docttl, FOAF.primaryTopic, sensor.iri))
 
 docxml = SENSOR[sensor_id + "/rdf.xml"]
 data.g.add((docxml, RDF.type, FOAF.Document))
-data.g.add((docxml, FOAF.primaryTopic, sensor))
+data.g.add((docxml, FOAF.primaryTopic, sensor.iri))
 
 docjson = SENSOR[sensor_id + "/rdf.json"]
 data.g.add((docjson, RDF.type, FOAF.Document))
-data.g.add((docjson, FOAF.primaryTopic, sensor))
+data.g.add((docjson, FOAF.primaryTopic, sensor.iri))
 
 path = "C:/Users/NP/Documents/AIMS/datasheets-mockup/sensor/" + sensor_id + "/"
 print(data.g.serialize(destination=path + "rdf.json", format="json-ld", auto_compact=True))

@@ -36,7 +36,7 @@ kraken:Quantity
 	], [
 		sh:name "value"@en ;
 		sh:order 9 ;
-		sh:path qudt:value ;
+		sh:path schema:value ;
 		sh:nodeKind sh:IRIOrLiteral ;
 	] ;
 	owl:imports kraken:Property ;

@@ -1,0 +1,223 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dcmitype: <http://purl.org/dc/dcmitype/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX fst: <https://git.rwth-aachen.de/fst-tuda/.../>
+PREFIX quantitykind: <http://qudt.org/vocab/quantitykind/>
+PREFIX qudt: <http://qudt.org/schema/qudt/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <https://schema.org/>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX ssn: <http://www.w3.org/ns/ssn/>
+
+fst:RPI_069
+    a dcmitype:PhysicalObject ;
+    rdfs:label "Raspberry Pi 4 Model B 2Gb" ;
+    dbo:owner "FST" ;
+    dcterms:identifier "RPI_069" ;
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001> ;
+    schema:manufacturer "Raspberry Pi Foundation" ;
+    schema:serialNumber "None" ;
+.
+
+fst:TEMP_003
+    a
+        dcmitype:PhysicalObject ,
+        sosa:Sensor ;
+    rdfs:label "Keyestudio DS18B20 1m Waterproof Tube with Connect Module" ;
+    dbo:owner "FST" ;
+    dcterms:identifier "TEMP_003" ;
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001> ;
+    sosa:observes <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathCold/Temp> ;
+    schema:location "water bath" ;
+    schema:manufacturer "Keyestudio" ;
+    schema:serialNumber "3c01f09540b7" ;
+.
+
+fst:TEMP_005
+    a
+        dcmitype:PhysicalObject ,
+        sosa:Sensor ;
+    rdfs:label "Keyestudio DS18B20 1m Waterproof Tube with Connect Module" ;
+    dbo:owner "FST" ;
+    dcterms:identifier "TEMP_005" ;
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001> ;
+    sosa:observes <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/AmbientAir/Temp> ;
+    schema:location "water bath" ;
+    schema:manufacturer "Keyestudio" ;
+    schema:serialNumber "0120188db2af" ;
+.
+
+fst:TEMP_006
+    a
+        dcmitype:PhysicalObject ,
+        sosa:Sensor ;
+    rdfs:label "Keyestudio DS18B20 1m Waterproof Tube with Connect Module" ;
+    dbo:owner "FST" ;
+    dcterms:identifier "TEMP_006" ;
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001> ;
+    sosa:observes <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathCold/Temp> ;
+    schema:location "water bath" ;
+    schema:manufacturer "Keyestudio" ;
+    schema:serialNumber "3c01f0963e25" ;
+.
+
+fst:TEMP_009
+    a
+        dcmitype:PhysicalObject ,
+        sosa:Sensor ;
+    rdfs:label "Keyestudio DS18B20 1m Waterproof Tube with Connect Module" ;
+    dbo:owner "FST" ;
+    dcterms:identifier "TEMP_009" ;
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001> ;
+    sosa:observes <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathCold/Temp> ;
+    schema:location "water bath" ;
+    schema:manufacturer "Keyestudio" ;
+    schema:serialNumber "3c01f09538d1" ;
+.
+
+fst:TEMP_010
+    a
+        dcmitype:PhysicalObject ,
+        sosa:Sensor ;
+    rdfs:label "Keyestudio DS18B20 1m Waterproof Tube with Connect Module" ;
+    dbo:owner "FST" ;
+    dcterms:identifier "TEMP_010" ;
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001> ;
+    sosa:observes <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathHot/Temp> ;
+    schema:location "water bath" ;
+    schema:manufacturer "Keyestudio" ;
+    schema:serialNumber "3ca9f649c484" ;
+.
+
+<https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/AmbientAir>
+    a
+        dcmitype:PhysicalObject ,
+        sosa:FeatureOfInterest ;
+    rdfs:label "ambient air around the calorimetry experiment" ;
+    dbo:owner "FST" ;
+    dcterms:identifier "FRAME_001/AmbientAir" ;
+    ssn:hasProperty <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/AmbientAir/Temp> ;
+    schema:manufacturer "None" ;
+    schema:serialNumber "None" ;
+.
+
+<https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/Heater/current>
+    a
+        qudt:Quantity ,
+        sosa:ObservableProperty ;
+    rdfs:label "current of immersion heater" ;
+    qudt:hasQuantityKind quantitykind:ElectricCurrent ;
+    ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../FRAME_001/Heater> ;
+.
+
+<https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/Heater/voltage>
+    a
+        qudt:Quantity ,
+        sosa:ObservableProperty ;
+    rdfs:label "voltage of immersion heater" ;
+    qudt:hasQuantityKind quantitykind:Voltage ;
+    ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../FRAME_001/Heater> ;
+.
+
+<https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/SPECIMEN_001>
+    a dcmitype:PhysicalObject ;
+    rdfs:label "material specimen calorimetry experiment" ;
+    dbo:owner "FST" ;
+    dcterms:identifier "SPECIMEN_001" ;
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathHot> ;
+    schema:manufacturer "FST" ;
+    schema:serialNumber "None" ;
+.
+
+<https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/AmbientAir/Temp>
+    a
+        qudt:Quantity ,
+        sosa:ObservableProperty ;
+    rdfs:label "temperature of ambient air around the calorimetry experiment" ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/AmbientAir> ;
+.
+
+<https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathCold>
+    a
+        dcmitype:PhysicalObject ,
+        sosa:FeatureOfInterest ;
+    rdfs:label "Cold water bath for calorimetry experiment" ;
+    dbo:owner "FST" ;
+    dcterms:identifier "FRAME_001/WaterBathCold" ;
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001> ;
+    ssn:hasProperty <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathCold/Temp> ;
+    schema:manufacturer "unknown" ;
+    schema:serialNumber "None" ;
+.
+
+<https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathHot/Temp>
+    a
+        qudt:Quantity ,
+        sosa:ObservableProperty ;
+    rdfs:label "temperature of hot water bath" ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathHot> ;
+.
+
+<https://git.rwth-aachen.de/fst-tuda/.../FRAME_001/Heater>
+    a
+        dcmitype:PhysicalObject ,
+        sosa:FeatureOfInterest ;
+    rdfs:label "immersion heater for energy input into hot water bath" ;
+    dbo:owner "FST" ;
+    dcterms:identifier "FRAME_001/Heater" ;
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathHot> ;
+    ssn:hasProperty
+        <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/Heater/current> ,
+        <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/Heater/voltage> ;
+    schema:manufacturer "unknown" ;
+    schema:serialNumber "None" ;
+.
+
+<https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathCold/Temp>
+    a
+        qudt:Quantity ,
+        sosa:ObservableProperty ;
+    rdfs:label "temperature of cold water bath" ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathCold> ;
+.
+
+<https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathHot>
+    a
+        dcmitype:PhysicalObject ,
+        sosa:FeatureOfInterest ,
+        sosa:Platform ;
+    rdfs:label "Hot water bath for calorimetry experiment" ;
+    dbo:owner "FST" ;
+    dcterms:identifier "FRAME_001/WaterBathHot" ;
+    sosa:hosts
+        <https://git.rwth-aachen.de/fst-tuda/.../FRAME_001/Heater> ,
+        <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/SPECIMEN_001> ;
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001> ;
+    ssn:hasProperty <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathHot/Temp> ;
+    schema:manufacturer "unknown" ;
+    schema:serialNumber "None" ;
+.
+
+<https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001>
+    a
+        dcmitype:PhysicalObject ,
+        sosa:Platform ;
+    rdfs:label "item frame calorimetry experiment" ;
+    dbo:owner "FST" ;
+    dcterms:identifier "FRAME_001" ;
+    sosa:hosts
+        fst:RPI_069 ,
+        fst:TEMP_003 ,
+        fst:TEMP_005 ,
+        fst:TEMP_006 ,
+        fst:TEMP_009 ,
+        fst:TEMP_010 ,
+        <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathCold> ,
+        <https://git.rwth-aachen.de/fst-tuda/.../TutorialDigitalization/Calorimetry/FRAME_001/WaterBathHot> ;
+    schema:manufacturer "FST" ;
+    schema:serialNumber "None" ;
+.
+

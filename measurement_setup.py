@@ -1,5 +1,5 @@
 from rdflib import Namespace
-from modules.kraken import (
+from pyKRAKEN.kraken import (
     FST,
     QUANTITYKIND,
     Kraken,
@@ -14,56 +14,71 @@ EXP = Namespace(FST["TutorialDigitalization/Calorimetry/"])
 # build metadata graph for experiment setup
 data = Kraken()
 
-frame = PhysicalObject(data, EXP["FRAME_001"], "item frame calorimetry experiment", "FRAME_001", "FST", "FST")
+frame = PhysicalObject(data, iri=EXP["FRAME_001"], identifier="FRAME_001", label="item frame calorimetry experiment",
+                       owner="FST", manufacturer="FST")
 
-rpi = PhysicalObject(data, FST["RPI_069"], "Raspberry Pi 4 Model B 2Gb", "RPI_069",
-                     "FST", "Raspberry Pi Foundation").isHostedBy(frame.iri)
+rpi = PhysicalObject(data, iri=FST["RPI_069"], identifier="RPI_069", label="Raspberry Pi 4 Model B 2Gb",
+                     owner="FST", manufacturer="Raspberry Pi Foundation", isHostedBy=frame.iri)
 
-wbc = PhysicalObject(data, EXP["FRAME_001/WaterBathCold"], "Cold water bath for calorimetry experiment",
-                     "FRAME_001/WaterBathCold", "FST", "unknown").isHostedBy(frame.iri)
+wbc = PhysicalObject(data, iri=EXP["FRAME_001/WaterBathCold"], identifier="FRAME_001/WaterBathCold",
+                     label="Cold water bath for calorimetry experiment",
+                     owner="FST", manufacturer="unknown", isHostedBy=frame.iri)
 
-wbh = PhysicalObject(data, EXP["FRAME_001/WaterBathHot"], "Hot water bath for calorimetry experiment",
-                     "FRAME_001/WaterBathHot", "FST", "unknown").isHostedBy(frame.iri)
+wbh = PhysicalObject(data, iri=EXP["FRAME_001/WaterBathHot"], identifier="FRAME_001/WaterBathHot",
+                     label="Hot water bath for calorimetry experiment",
+                     owner="FST", manufacturer="unknown", isHostedBy=frame.iri)
 
-htr = PhysicalObject(data, FST["FRAME_001/Heater"], "immersion heater for energy input into hot water bath",
-                     "FRAME_001/Heater", "FST", "unknown").isHostedBy(wbh.iri)
+htr = PhysicalObject(data, iri=FST["FRAME_001/Heater"], identifier="FRAME_001/Heater",
+                     label="immersion heater for energy input into hot water bath",
+                     owner="FST", manufacturer="unknown", isHostedBy=wbh.iri)
 
-aa = PhysicalObject(data, EXP["FRAME_001/AmbientAir"], "ambient air around the calorimetry experiment",
-                    "FRAME_001/AmbientAir", "FST", None)
+aa = PhysicalObject(data, iri=EXP["FRAME_001/AmbientAir"], identifier="FRAME_001/AmbientAir",
+                    label="ambient air around the calorimetry experiment", owner="FST")
 
-specimen = PhysicalObject(data, EXP["SPECIMEN_001"], "material specimen calorimetry experiment",
-                          "SPECIMEN_001", "FST", "FST").isHostedBy(wbh.iri)  # weight, heatcapacity
+specimen = PhysicalObject(data, iri=EXP["SPECIMEN_001"], identifier="SPECIMEN_001",
+                          label="material specimen calorimetry experiment",
+                          owner="FST", manufacturer="FST", isHostedBy=wbh.iri)  # weight, heatcapacity
 
-temp_wbc = ObservableProperty(data, EXP["FRAME_001/WaterBathCold/Temp"],
-                              "temperature of cold water bath", QUANTITYKIND.Temperature, wbc.iri)
+temp_wbc = ObservableProperty(data, iri=EXP["FRAME_001/WaterBathCold/Temp"], label="temperature of cold water bath",
+                              hasQuantityKind=QUANTITYKIND.Temperature, isPropertyOf=wbc.iri)
 
-temp_wbh = ObservableProperty(data, EXP["FRAME_001/WaterBathHot/Temp"],
-                              "temperature of hot water bath", QUANTITYKIND.Temperature, wbh.iri)
+temp_wbh = ObservableProperty(data, iri=EXP["FRAME_001/WaterBathHot/Temp"], label="temperature of hot water bath",
+                              hasQuantityKind=QUANTITYKIND.Temperature, isPropertyOf=wbh.iri)
 
-temp_aa = ObservableProperty(data, EXP["FRAME_001/AmbientAir/Temp"],
-                             "temperature of ambient air around the calorimetry experiment",
-                             QUANTITYKIND.Temperature, aa.iri)
+temp_aa = ObservableProperty(data, iri=EXP["FRAME_001/AmbientAir/Temp"],
+                             label="temperature of ambient air around the calorimetry experiment",
+                             hasQuantityKind=QUANTITYKIND.Temperature, isPropertyOf=aa.iri)
 
-volt_htr = ObservableProperty(data, EXP["FRAME_001/Heater/voltage"],
-                              "voltage of immersion heater", QUANTITYKIND.Voltage, htr.iri)
+volt_htr = ObservableProperty(data, iri=EXP["FRAME_001/Heater/voltage"], label="voltage of immersion heater",
+                              hasQuantityKind=QUANTITYKIND.Voltage, isPropertyOf=htr.iri)
 
-curr_htr = ObservableProperty(data, EXP["FRAME_001/Heater/current"],
-                              "current of immersion heater", QUANTITYKIND.ElectricCurrent, htr.iri)
+curr_htr = ObservableProperty(data, iri=EXP["FRAME_001/Heater/current"], label="current of immersion heater",
+                              hasQuantityKind=QUANTITYKIND.ElectricCurrent, isPropertyOf=htr.iri)
 
-s1 = Sensor(data, FST["TEMP_003"], "Keyestudio DS18B20 1m Waterproof Tube with Connect Module", "TEMP_003",
-            "3c01f09540b7", "FST", "Keyestudio", "water bath").observes(temp_wbc.iri).isHostedBy(frame.iri)
+s1 = Sensor(data, iri=FST["TEMP_003"], identifier="TEMP_003",
+            label="Keyestudio DS18B20 1m Waterproof Tube with Connect Module",
+            owner="FST", manufacturer="Keyestudio", serialNumber="3c01f09540b7",
+            location="water bath", isHostedBy=frame.iri).observes(temp_wbc.iri)
 
-s2 = Sensor(data, FST["TEMP_006"], "Keyestudio DS18B20 1m Waterproof Tube with Connect Module", "TEMP_006",
-            "3c01f0963e25", "FST", "Keyestudio", "water bath").observes(temp_wbc.iri).isHostedBy(frame.iri)
+s2 = Sensor(data, iri=FST["TEMP_006"], identifier="TEMP_006",
+            label="Keyestudio DS18B20 1m Waterproof Tube with Connect Module",
+            owner="FST", manufacturer="Keyestudio", serialNumber="3c01f0963e25",
+            location="water bath", isHostedBy=frame.iri).observes(temp_wbc.iri)
 
-s3 = Sensor(data, FST["TEMP_009"], "Keyestudio DS18B20 1m Waterproof Tube with Connect Module", "TEMP_009",
-            "3c01f09538d1", "FST", "Keyestudio", "water bath").observes(temp_wbc.iri).isHostedBy(frame.iri)
+s3 = Sensor(data, iri=FST["TEMP_009"], identifier="TEMP_009",
+            label="Keyestudio DS18B20 1m Waterproof Tube with Connect Module",
+            owner="FST", manufacturer="Keyestudio", serialNumber="3c01f09538d1",
+            location="water bath", isHostedBy=frame.iri).observes(temp_wbc.iri)
 
-swbh = Sensor(data, FST["TEMP_010"], "Keyestudio DS18B20 1m Waterproof Tube with Connect Module", "TEMP_010",
-              "3ca9f649c484", "FST", "Keyestudio", "water bath").observes(temp_wbh.iri).isHostedBy(frame.iri)
+swbh = Sensor(data, iri=FST["TEMP_010"], identifier="TEMP_010",
+              label="Keyestudio DS18B20 1m Waterproof Tube with Connect Module",
+              owner="FST", manufacturer="Keyestudio", serialNumber="3ca9f649c484",
+              location="water bath", isHostedBy=frame.iri).observes(temp_wbh.iri)
 
-saa = Sensor(data, FST["TEMP_005"], "Keyestudio DS18B20 1m Waterproof Tube with Connect Module", "TEMP_005",
-             "0120188db2af", "FST", "Keyestudio", "water bath").observes(temp_aa.iri).isHostedBy(frame.iri)
+saa = Sensor(data, iri=FST["TEMP_005"], identifier="TEMP_005",
+             label="Keyestudio DS18B20 1m Waterproof Tube with Connect Module",
+             owner="FST", manufacturer="Keyestudio", serialNumber="0120188db2af",
+             location="water bath", isHostedBy=frame.iri).observes(temp_aa.iri)
 
 # export metadata graph for experiment setup to ttl for later use
-data.g.serialize(destination="./usecase_setup_rdf.ttl", format="longturtle")
+data.g.serialize(destination="./calorimetry_setup_rdf.ttl", format="longturtle")
