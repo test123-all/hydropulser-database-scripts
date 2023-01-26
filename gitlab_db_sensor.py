@@ -1,5 +1,5 @@
 from rdflib import Namespace
-from rdflib.namespace import RDF, SDO, FOAF
+from rdflib.namespace import RDF, FOAF
 from pyKRAKEN.kraken import (
     UNIT,
     QUANTITYKIND,
@@ -53,21 +53,21 @@ bias = PropertyValue(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/B
 
 # documentation
 img = SENSOR[sensor_id + "/link-to-image.jpg"]
-data.g.add((sensor.iri, SDO.subjectOf, img))
-data.g.add((sensor.iri, SDO.image, img))
+sensor.subjectOf = img
+sensor.image = img
 
 docs = SENSOR[sensor_id + "/link-to-doc-directory"]
-data.g.add((sensor.iri, SDO.subjectOf, docs))
-data.g.add((sensor.iri, SDO.documentation, docs))
+sensor.subjectOf = docs
+sensor.documentation = docs
 
 datasheet = SENSOR[sensor_id + "/link-to-doc-directory/datasheet.pdf"]
-data.g.add((sensor.iri, SDO.subjectOf, datasheet))
-data.g.add((sensor.iri, SDO.documentation, datasheet))
+sensor.subjectOf = datasheet
+sensor.documentation = datasheet
 
 # rdf doc references
 docttl = SENSOR[sensor_id + "/rdf.ttl"]
-data.g.add((docttl, RDF.type, FOAF.Document))
-data.g.add((docttl, FOAF.primaryTopic, sensor.iri))
+data.g.add((docttl, RDF.type, FOAF.Document))  # creativeWork
+data.g.add((docttl, FOAF.primaryTopic, sensor.iri))  # about
 
 docxml = SENSOR[sensor_id + "/rdf.xml"]
 data.g.add((docxml, RDF.type, FOAF.Document))
@@ -77,7 +77,7 @@ docjson = SENSOR[sensor_id + "/rdf.json"]
 data.g.add((docjson, RDF.type, FOAF.Document))
 data.g.add((docjson, FOAF.primaryTopic, sensor.iri))
 
-path = "C:/Users/NP/Documents/AIMS/datasheets-mockup/sensor/" + sensor_id + "/"
+path = "C:/Users/Preuss/Documents/Git/AIMS/datasheets-mockup/sensor/" + sensor_id + "/"
 print(data.g.serialize(destination=path + "rdf.json", format="json-ld", auto_compact=True))
 print(data.g.serialize(destination=path + "rdf.ttl", base=SENSOR, format="longturtle"))
 print(data.g.serialize(destination=path + "rdf.xml", base=SENSOR, format="xml"))

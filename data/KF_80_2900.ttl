@@ -4,32 +4,35 @@
 @prefix dcmitype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ns1: <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall/> .
+@prefix ns2: <https://schema.org/> .
 @prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema: <https://schema.org/> .
+@prefix schema: <http://schema.org/> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix uuid: <urn:uuid:> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-uuid:1ed7197a-04ba-6e2a-94f5-e83450b03331 a sosa:ObservationCollection ;
+uuid:1ed934cc-83c8-606d-a527-1ce2690e1970 a sosa:ObservationCollection ;
     rdfs:label "/run_01" ;
     dcterms:created "2018-06-12T14:23:20"^^xsd:dateTime ;
     dcterms:creator "nstoermer" ;
     dcterms:description "kennlinie" ;
-    sosa:hasMember uuid:1ed7197a-04e4-6659-8bb1-39dd95b403fd,
-        uuid:1ed7197a-04e4-665a-88e8-14b893639db5,
-        uuid:1ed7197a-04e4-665b-88da-a58e779488e5,
-        uuid:1ed7197a-04e4-665c-93aa-fc5b50a3aef2,
-        uuid:1ed7197a-04e4-665d-a05e-67e71d4a049b,
-        uuid:1ed7197a-04e4-665e-b112-cc64258f575f,
-        uuid:1ed7197a-04e6-6d6c-aa59-a2a4898fa640,
-        uuid:1ed7197a-04e6-6d6d-808a-45ca291b22a2,
-        uuid:1ed7197a-04e6-6d6e-9ae8-48769faccd4c,
-        uuid:1ed7197a-04e6-6d6f-8456-c76d329d5e26 ;
-    schema:accountablePerson "cschaenzle" .
+    dcterms:identifier "1ed934cc-83c8-606d-a527-1ce2690e1970" ;
+    sosa:hasMember uuid:1ed934cc-8522-6812-bc73-68d2ebcae96d,
+        uuid:1ed934cc-8524-6f21-97e3-ca6e630be34b,
+        uuid:1ed934cc-852c-643b-aac3-38966d17edda,
+        uuid:1ed934cc-852e-6b4c-a738-ee99f409a0e6,
+        uuid:1ed934cc-852e-6b4d-98e2-fbcb9029b731,
+        uuid:1ed934cc-8553-6a89-be2b-984222d2c0eb,
+        uuid:1ed934cc-8556-6190-9b7f-fe2b2f4bbbc0,
+        uuid:1ed934cc-8556-6191-807c-cba4f437ae03,
+        uuid:1ed934cc-855d-66b1-ba1f-3a65424253e8,
+        uuid:1ed934cc-855f-6dba-99e7-b5d3d0c758a9 ;
+    ns2:accountablePerson "cschaenzle" .
 
 <#/rdf-metadata/run_01/pipelines/measured/pressure_1/scaled/data/10100> a dcat:Distribution ;
     dcat:accessURL <#/run_01/pipelines/measured/pressure_1/scaled/data/10100> .
@@ -337,1919 +340,2138 @@ uuid:1ed7197a-04ba-6e2a-94f5-e83450b03331 a sosa:ObservationCollection ;
         "torque sensor" ;
     dbo:owner "FST" ;
     dcterms:identifier "4503A50L00B1C00" ;
+    schema:location "['small test rig for displacement pumps']" ;
+    schema:manufacturer "Kistler Instrumente GmbH" ;
+    schema:serialNumber "098927" ;
     sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
     sosa:observes <rotational_speed>,
         <torque> ;
-    schema:location "small test rig for displacement pumps" ;
-    schema:manufacturer "Kistler Instrumente GmbH" ;
-    schema:serialNumber "098927" .
+    ssn-system:hasSystemCapability <098927/Capability> .
 
 <1A00LHR1KIQ> a dcmitype:PhysicalObject,
         sosa:Sensor ;
     rdfs:label "temperature sensor" ;
     dbo:owner "FST" ;
     dcterms:identifier "TR33-T-P4" ;
+    schema:location "['small test rig for displacement pumps']" ;
+    schema:manufacturer "WIKA Alexander Wiegand SE & Co. KG" ;
+    schema:serialNumber "1A00LHR1KIQ" ;
     sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
     sosa:observes <temperature_2> ;
-    schema:location "small test rig for displacement pumps" ;
-    schema:manufacturer "WIKA Alexander Wiegand SE & Co. KG" ;
-    schema:serialNumber "1A00LHR1KIQ" .
+    ssn-system:hasSystemCapability <1A00LHR1KIQ/Capability> .
 
 <1A00LHR3YJ6> a dcmitype:PhysicalObject,
         sosa:Sensor ;
     rdfs:label "temperature sensor" ;
     dbo:owner "FST" ;
     dcterms:identifier "WIKA TR33-T-P4" ;
+    schema:location "['small test rig for displacement pumps']" ;
+    schema:manufacturer "WIKA Alexander Wiegand SE & Co. KG" ;
+    schema:serialNumber "1A00LHR3YJ6" ;
     sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
     sosa:observes <temperature_1> ;
-    schema:location "small test rig for displacement pumps" ;
-    schema:manufacturer "WIKA Alexander Wiegand SE & Co. KG" ;
-    schema:serialNumber "1A00LHR3YJ6" .
+    ssn-system:hasSystemCapability <1A00LHR3YJ6/Capability> .
 
 <2.17.101929865.2> a dcmitype:PhysicalObject,
         sosa:Sensor ;
     rdfs:label "pressure sensor" ;
     dbo:owner "FST" ;
     dcterms:identifier "PBMN 25B26AA24406211000" ;
+    schema:location "['small test rig for displacement pumps']" ;
+    schema:manufacturer "Baumer GmbH" ;
+    schema:serialNumber "2.17.101929865.2" ;
     sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
     sosa:observes <pressure_2> ;
-    schema:location "small test rig for displacement pumps" ;
-    schema:manufacturer "Baumer GmbH" ;
-    schema:serialNumber "2.17.101929865.2" .
+    ssn-system:hasSystemCapability <2.17.101929865.2/Capability> .
 
 <2.17.101929876.1> a dcmitype:PhysicalObject,
         sosa:Sensor ;
     rdfs:label "pressure sensor" ;
     dbo:owner "FST" ;
     dcterms:identifier "PBMN 25B18AA24406211000" ;
+    schema:location "['small test rig for displacement pumps']" ;
+    schema:manufacturer "Baumer GmbH" ;
+    schema:serialNumber "2.17.101929876.1" ;
     sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
     sosa:observes <pressure_1> ;
-    schema:location "small test rig for displacement pumps" ;
-    schema:manufacturer "Baumer GmbH" ;
-    schema:serialNumber "2.17.101929876.1" .
+    ssn-system:hasSystemCapability <2.17.101929876.1/Capability> .
 
 <26%2F8465%2015> a dcmitype:PhysicalObject,
         sosa:Sensor ;
     rdfs:label "pressure sensor" ;
     dbo:owner "FST" ;
     dcterms:identifier "PAA 23/78465 15" ;
+    schema:location "['small test rig for displacement pumps']" ;
+    schema:manufacturer " KELLER AG für Druckmesstechnik" ;
+    schema:serialNumber "26/8465 15" ;
     sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
     sosa:observes <pressure_3> ;
-    schema:location "small test rig for displacement pumps" ;
-    schema:manufacturer " KELLER AG f�r Druckmesstechnik" ;
-    schema:serialNumber "26/8465 15" .
+    ssn-system:hasSystemCapability <26%2F8465%2015/Capability> .
 
 <4017NS51189> a dcmitype:PhysicalObject,
         sosa:Sensor ;
     rdfs:label "position sensor" ;
     dbo:owner "FST" ;
     dcterms:identifier " KVTF-L6-AJA-B12-DN25/20-D15-B02-PN40" ;
+    schema:location "['small test rig for displacement pumps']" ;
+    schema:manufacturer "AUMA Riester GmbH & Co. KG" ;
+    schema:serialNumber "4017NS51189" ;
     sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
     sosa:observes <valve_position> ;
-    schema:location "small test rig for displacement pumps" ;
-    schema:manufacturer "AUMA Riester GmbH & Co. KG" ;
-    schema:serialNumber "4017NS51189" .
+    ssn-system:hasSystemCapability <4017NS51189/Capability> .
 
 <BallValve/ElectricDrive> a dcmitype:PhysicalObject,
         sosa:Actuator ;
     rdfs:label "electric drive for the ball valve" ;
     dbo:owner "FST" ;
     dcterms:identifier "SGC 05.1 + EA0S056-B-0.08" ;
+    schema:manufacturer "AUMA Riester GmbH & Co. KG" ;
+    schema:serialNumber "SGC 05.1 + EA0S056-B-0.08" ;
     rdfs:comment "electric drive for the ball valve" ;
     sosa:actsOnProperty <valve_position> ;
-    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    schema:manufacturer "AUMA Riester GmbH & Co. KG" ;
-    schema:serialNumber "SGC 05.1 + EA0S056-B-0.08" .
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <ElectricMotor/InverterDrive> a dcmitype:PhysicalObject,
         sosa:Actuator ;
     rdfs:label "inverter drive" ;
     dbo:owner "FST" ;
     dcterms:identifier "SINAMICS G120 + CU230P-2" ;
+    schema:manufacturer "Siemens AG" ;
+    schema:serialNumber "SINAMICS G120 + CU230P-2" ;
     rdfs:comment "inverter drive" ;
     sosa:actsOnProperty <rotational_speed> ;
-    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    schema:manufacturer "Siemens AG" ;
-    schema:serialNumber "SINAMICS G120 + CU230P-2" .
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <HeatExchanger> a dcmitype:PhysicalObject,
         sosa:Actuator ;
     rdfs:label "heat exchanger" ;
     dbo:owner "FST" ;
     dcterms:identifier "HEX S615-30" ;
+    schema:manufacturer "HYDAC INTERNATIONAL GmbH" ;
+    schema:serialNumber "HEX S615-30" ;
     rdfs:comment "heat exchanger" ;
     sosa:actsOnProperty <temperature_tank> ;
-    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    schema:manufacturer "HYDAC INTERNATIONAL GmbH" ;
-    schema:serialNumber "HEX S615-30" .
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <KF_80> a dcmitype:PhysicalObject ;
     rdfs:label "KF_80" ;
     dbo:owner "FST" ;
     dcterms:identifier "KF_80" ;
-    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    schema:manufacturer "Kracht" .
+    schema:manufacturer "Kracht" ;
+    schema:serialNumber "None" ;
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <NeedleValve> a dcmitype:PhysicalObject,
         sosa:Actuator ;
     rdfs:label "needle valve" ;
     dbo:owner "FST" ;
     dcterms:identifier "DV-20 " ;
+    schema:manufacturer "HYDAC INTERNATIONAL GmbH" ;
+    schema:serialNumber "DV-20 " ;
     rdfs:comment "needle valve" ;
     sosa:actsOnProperty <NeedleValve/FlowCoefficient> ;
-    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    schema:manufacturer "HYDAC INTERNATIONAL GmbH" ;
-    schema:serialNumber "DV-20 " .
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <Nr.4> a dcmitype:PhysicalObject,
         sosa:Sensor ;
     rdfs:label "temperature sensor" ;
     dbo:owner "FST" ;
     dcterms:identifier "ESW7G1/2-AA-400" ;
+    schema:location "['small test rig for displacement pumps']" ;
+    schema:manufacturer "Temperatur Messelemente Hettstedt GmbH" ;
+    schema:serialNumber "Nr.4" ;
     sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
     sosa:observes <temperature_tank> ;
-    schema:location "small test rig for displacement pumps" ;
-    schema:manufacturer "Temperatur Messelemente Hettstedt GmbH" ;
-    schema:serialNumber "Nr.4" .
+    ssn-system:hasSystemCapability <Nr.4/Capability> .
 
 <OilFilter> a dcmitype:PhysicalObject,
         sosa:Actuator ;
     rdfs:label "oil filter" ;
     dbo:owner "FST" ;
     dcterms:identifier "LF 330 I F A 1.0" ;
+    schema:manufacturer "HYDAC INTERNATIONAL GmbH" ;
+    schema:serialNumber "LF 330 I F A 1.0" ;
     rdfs:comment "oil filter" ;
     sosa:actsOnProperty <ParticleNumberDensity> ;
-    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    schema:manufacturer "HYDAC INTERNATIONAL GmbH" ;
-    schema:serialNumber "LF 330 I F A 1.0" .
+    sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
-uuid:1ed7197a-04e4-6659-8bb1-39dd95b403fd a sosa:ObservationCollection ;
+uuid:1ed934cc-8522-6812-bc73-68d2ebcae96d a sosa:ObservationCollection ;
     rdfs:label "10100" ;
     dcterms:created "2018-06-12T14:25:50"^^xsd:dateTime ;
     dcterms:creator "nstoermer" ;
     dcterms:description "operating point" ;
-    sosa:hasMember uuid:1ed7197a-04e9-647f-9921-78b10e39e567,
-        uuid:1ed7197a-04e9-6481-8af8-b1bd953570be,
-        uuid:1ed7197a-04e9-6483-bd0b-3e8c0f6c2190,
-        uuid:1ed7197a-04eb-6b93-a2e6-019c7f9a5e63,
-        uuid:1ed7197a-04eb-6b95-bd1c-fbf2b53deffa,
-        uuid:1ed7197a-04eb-6b97-9022-2cd4f1bc2ccb,
-        uuid:1ed7197a-04ee-62a3-8e56-de97e7f3f8bb,
-        uuid:1ed7197a-04ee-62a5-a2d7-26132d5b4263,
-        uuid:1ed7197a-04ee-62a7-b93f-5cc6e45f585f,
-        uuid:1ed7197a-04ee-62a9-84e0-38956fcc224e ;
-    schema:accountablePerson "cschaenzle" .
+    dcterms:identifier "1ed934cc-8522-6812-bc73-68d2ebcae96d" ;
+    sosa:hasMember uuid:1ed934cc-8564-6bcd-ac52-b0cdacb1559f,
+        uuid:1ed934cc-856c-60ed-82f0-52bc81780bd2,
+        uuid:1ed934cc-8570-6f05-a234-f5539f7c03c2,
+        uuid:1ed934cc-8573-6612-a95d-7878af7533d4,
+        uuid:1ed934cc-8575-6d23-8ae5-df9461fc9ae0,
+        uuid:1ed934cc-857a-6b2b-bb28-996bb5b22665,
+        uuid:1ed934cc-857f-6938-a837-6bc59f95c247,
+        uuid:1ed934cc-8582-6041-996e-3a1acba4cddf,
+        uuid:1ed934cc-8584-674c-90ea-f2b85f958147,
+        uuid:1ed934cc-858e-6373-b023-0a4cac8151ad ;
+    ns2:accountablePerson "cschaenzle" .
 
-uuid:1ed7197a-04e4-665a-88e8-14b893639db5 a sosa:ObservationCollection ;
+uuid:1ed934cc-8524-6f21-97e3-ca6e630be34b a sosa:ObservationCollection ;
     rdfs:label "11250" ;
     dcterms:created "2018-06-12T14:27:01"^^xsd:dateTime ;
     dcterms:creator "nstoermer" ;
     dcterms:description "operating point" ;
-    sosa:hasMember uuid:1ed7197a-04f0-69b6-b07a-f43882638528,
-        uuid:1ed7197a-04f0-69b8-994d-98eda87da42e,
-        uuid:1ed7197a-04f0-69ba-adb9-b7247eb9396f,
-        uuid:1ed7197a-04f3-60ca-bc27-6f68cd1764d8,
-        uuid:1ed7197a-04f3-60cc-b94c-592ffad39499,
-        uuid:1ed7197a-04f3-60ce-ae5b-35aac5729e40,
-        uuid:1ed7197a-04f3-60d0-a8f6-05b63ada59ab,
-        uuid:1ed7197a-04f5-67d7-9b2a-e202d255000e,
-        uuid:1ed7197a-04f5-67d9-9850-463bb5d9c820,
-        uuid:1ed7197a-04f5-67db-9c4e-e37eef2ed7ed ;
-    schema:accountablePerson "cschaenzle" .
+    dcterms:identifier "1ed934cc-8524-6f21-97e3-ca6e630be34b" ;
+    sosa:hasMember uuid:1ed934cc-8590-6a79-af29-a70d424c5c0f,
+        uuid:1ed934cc-8597-6f9b-8b22-862d4a038fd5,
+        uuid:1ed934cc-859c-6db5-9aab-3073d0611b12,
+        uuid:1ed934cc-859f-64ba-9b18-d2e0ac6e74fd,
+        uuid:1ed934cc-85a1-6bc6-ba29-09e78f3dfc13,
+        uuid:1ed934cc-85a6-69dd-83c4-755c855f2142,
+        uuid:1ed934cc-85a9-60e1-9d0a-fce3cce999a0,
+        uuid:1ed934cc-85ab-67ec-a9db-679e2f64b6b3,
+        uuid:1ed934cc-85b5-641d-9160-96370109fc26,
+        uuid:1ed934cc-85b7-6b24-931a-37d23b54ac36 ;
+    ns2:accountablePerson "cschaenzle" .
 
-uuid:1ed7197a-04e4-665b-88da-a58e779488e5 a sosa:ObservationCollection ;
+uuid:1ed934cc-852c-643b-aac3-38966d17edda a sosa:ObservationCollection ;
     rdfs:label "14000" ;
     dcterms:created "2018-06-12T14:28:10"^^xsd:dateTime ;
     dcterms:creator "nstoermer" ;
     dcterms:description "operating point" ;
-    sosa:hasMember uuid:1ed7197a-04f7-6ee6-af24-f57dd0b5ae5b,
-        uuid:1ed7197a-04f7-6ee8-84c5-5d6e58c7ca86,
-        uuid:1ed7197a-04f7-6eea-be00-a7b0a5a6bb47,
-        uuid:1ed7197a-04f7-6eec-b3a2-ddf064c0ee68,
-        uuid:1ed7197a-04fa-6601-9751-6af8554a728c,
-        uuid:1ed7197a-04fa-6603-a8fa-f28f9fd1faa9,
-        uuid:1ed7197a-04fa-6605-93f0-55eaf441d8cb,
-        uuid:1ed7197a-04fc-6d11-ba5f-cc6c70737643,
-        uuid:1ed7197a-04fc-6d13-a3de-d188396ec95b,
-        uuid:1ed7197a-04fc-6d15-8cf5-e33064536608 ;
-    schema:accountablePerson "cschaenzle" .
+    dcterms:identifier "1ed934cc-852c-643b-aac3-38966d17edda" ;
+    sosa:hasMember uuid:1ed934cc-85c8-6c7a-9b29-e80bd7917423,
+        uuid:1ed934cc-85cd-6a84-afa6-4cdd194ff602,
+        uuid:1ed934cc-85d0-6195-b1f6-c421ec8e73f7,
+        uuid:1ed934cc-85d2-689f-9074-0b4a720112a4,
+        uuid:1ed934cc-85d4-6faa-8225-5de7951d4993,
+        uuid:1ed934cc-85d7-66b9-8f20-2924d87c56bf,
+        uuid:1ed934cc-85d9-6dbd-8135-6e7c762c25af,
+        uuid:1ed934cc-85dc-64c3-a2e9-8fff9acdaa62,
+        uuid:1ed934cc-85dc-64c5-a036-23bca1f23677,
+        uuid:1ed934cc-85de-6bd2-b337-46f5bd01a72a ;
+    ns2:accountablePerson "cschaenzle" .
 
-uuid:1ed7197a-04e4-665c-93aa-fc5b50a3aef2 a sosa:ObservationCollection ;
+uuid:1ed934cc-852e-6b4c-a738-ee99f409a0e6 a sosa:ObservationCollection ;
     rdfs:label "16000" ;
     dcterms:created "2018-06-12T14:31:19"^^xsd:dateTime ;
     dcterms:creator "nstoermer" ;
     dcterms:description "operating point" ;
-    sosa:hasMember uuid:1ed7197a-04fc-6d17-a939-87c437f2833d,
-        uuid:1ed7197a-04ff-6428-85b6-26b8c149b44a,
-        uuid:1ed7197a-04ff-642a-a5bc-967e21cc3c3b,
-        uuid:1ed7197a-04ff-642c-af39-98544b16d1ac,
-        uuid:1ed7197a-0501-6b34-a897-9020d9233275,
-        uuid:1ed7197a-0501-6b36-8c3f-15fff7117889,
-        uuid:1ed7197a-0501-6b38-acab-1600824331d9,
-        uuid:1ed7197a-0504-6248-b77c-965664d2c8b1,
-        uuid:1ed7197a-0504-624a-82b3-4658f393a896,
-        uuid:1ed7197a-0504-624c-9df9-a72bf34d17be ;
-    schema:accountablePerson "cschaenzle" .
+    dcterms:identifier "1ed934cc-852e-6b4c-a738-ee99f409a0e6" ;
+    sosa:hasMember uuid:1ed934cc-85e1-62d9-a5f8-9ce1642dfbe2,
+        uuid:1ed934cc-85e3-69e7-85a1-1f6f154ac717,
+        uuid:1ed934cc-85e6-60e8-bb82-d85457670cca,
+        uuid:1ed934cc-85ea-6efd-a1c4-227969ae9c82,
+        uuid:1ed934cc-85f2-641a-a279-9478d564d115,
+        uuid:1ed934cc-85f7-6239-93dc-e445adc378b5,
+        uuid:1ed934cc-85f9-694b-9e4b-9b4ca97b1225,
+        uuid:1ed934cc-85f9-694d-876c-08b4039af59b,
+        uuid:1ed934cc-85fe-6756-ad6f-adb7be4a48e3,
+        uuid:1ed934cc-8600-6e5b-8841-a2bb15079195 ;
+    ns2:accountablePerson "cschaenzle" .
 
-uuid:1ed7197a-04e4-665d-a05e-67e71d4a049b a sosa:ObservationCollection ;
+uuid:1ed934cc-852e-6b4d-98e2-fbcb9029b731 a sosa:ObservationCollection ;
     rdfs:label "18000" ;
     dcterms:created "2018-06-12T14:35:39"^^xsd:dateTime ;
     dcterms:creator "nstoermer" ;
     dcterms:description "operating point" ;
-    sosa:hasMember uuid:1ed7197a-0504-624e-a16d-56fcebb0625b,
-        uuid:1ed7197a-0506-695a-80df-bdb2f22caad2,
-        uuid:1ed7197a-0506-695c-bd8a-5c37fa05fc95,
-        uuid:1ed7197a-0506-695e-9b6d-bc4d5d76439b,
-        uuid:1ed7197a-0509-606b-b458-2329daf8930b,
-        uuid:1ed7197a-0509-606d-af67-309592de2f7b,
-        uuid:1ed7197a-0509-606f-82e7-92918d380b01,
-        uuid:1ed7197a-0509-6071-b584-aecf36dc844b,
-        uuid:1ed7197a-050b-677f-abc1-736a0a939139,
-        uuid:1ed7197a-050b-6781-ae67-6e4190b56bab ;
-    schema:accountablePerson "cschaenzle" .
+    dcterms:identifier "1ed934cc-852e-6b4d-98e2-fbcb9029b731" ;
+    sosa:hasMember uuid:1ed934cc-8603-6565-a61b-81568644f7e4,
+        uuid:1ed934cc-8608-638a-a08e-178add3f27bb,
+        uuid:1ed934cc-860a-6a81-a24d-95f93fdb1f18,
+        uuid:1ed934cc-860f-689a-9f7e-bc200ab3b26d,
+        uuid:1ed934cc-8611-6f97-8902-2faa53eea7ee,
+        uuid:1ed934cc-8616-6db5-aa34-574c9de98ed1,
+        uuid:1ed934cc-861b-6bbd-89c4-537234ca7481,
+        uuid:1ed934cc-861b-6bbf-8e99-d6b280787f24,
+        uuid:1ed934cc-861e-62e5-a901-9b6c44d50d1d,
+        uuid:1ed934cc-8620-69ed-a850-878fd87c8101 ;
+    ns2:accountablePerson "cschaenzle" .
 
-uuid:1ed7197a-04e4-665e-b112-cc64258f575f a sosa:ObservationCollection ;
+uuid:1ed934cc-8553-6a89-be2b-984222d2c0eb a sosa:ObservationCollection ;
     rdfs:label "20000" ;
     dcterms:created "2018-06-12T14:39:34"^^xsd:dateTime ;
     dcterms:creator "nstoermer" ;
     dcterms:description "operating point" ;
-    sosa:hasMember uuid:1ed7197a-050b-6783-b7c6-4b03d2dea7e3,
-        uuid:1ed7197a-050d-6e90-9c04-cc00c696c830,
-        uuid:1ed7197a-050d-6e92-9722-a8059f32ebee,
-        uuid:1ed7197a-050d-6e94-ad59-6689630f5d7e,
-        uuid:1ed7197a-050d-6e96-8b4b-6bdf58dfa80b,
-        uuid:1ed7197a-0510-65a2-a3f6-18c115cba9e9,
-        uuid:1ed7197a-0510-65a4-8c1a-f6a2c61fb128,
-        uuid:1ed7197a-0510-65a6-8b4f-fdbf81b6cd5a,
-        uuid:1ed7197a-0512-6cb4-a60f-853579ca8034,
-        uuid:1ed7197a-0512-6cb6-a386-11ba7d76b5d2 ;
-    schema:accountablePerson "cschaenzle" .
+    dcterms:identifier "1ed934cc-8553-6a89-be2b-984222d2c0eb" ;
+    sosa:hasMember uuid:1ed934cc-8623-60fd-bc85-844bd2eb6bd2,
+        uuid:1ed934cc-862a-664f-83bd-345925167189,
+        uuid:1ed934cc-862c-6d33-b869-9d674ccbb763,
+        uuid:1ed934cc-8634-6236-9ab6-ee1908b51790,
+        uuid:1ed934cc-863d-6e81-b974-6cd9e50018cb,
+        uuid:1ed934cc-8642-6c74-ae9a-215980ec87a6,
+        uuid:1ed934cc-8647-6a85-a112-c7cc210e3c76,
+        uuid:1ed934cc-864a-6184-b9a2-439408735a86,
+        uuid:1ed934cc-864c-688c-9b02-c7d6bc396ae0,
+        uuid:1ed934cc-864e-6f9e-a450-535b4ce3cce8 ;
+    ns2:accountablePerson "cschaenzle" .
 
-uuid:1ed7197a-04e6-6d6c-aa59-a2a4898fa640 a sosa:ObservationCollection ;
+uuid:1ed934cc-8556-6190-9b7f-fe2b2f4bbbc0 a sosa:ObservationCollection ;
     rdfs:label "22000" ;
     dcterms:created "2018-06-12T14:42:40"^^xsd:dateTime ;
     dcterms:creator "nstoermer" ;
     dcterms:description "operating point" ;
-    sosa:hasMember uuid:1ed7197a-0512-6cb8-9316-0015a845e687,
-        uuid:1ed7197a-0512-6cba-be24-2ad535869314,
-        uuid:1ed7197a-0515-63c7-9fb3-5abbe6ebf909,
-        uuid:1ed7197a-0515-63c9-a140-ff7e0a6eec0e,
-        uuid:1ed7197a-0515-63cb-bc6a-2b68dd3d487c,
-        uuid:1ed7197a-0517-6ad9-b5a5-d1f05e417032,
-        uuid:1ed7197a-0517-6adb-9d11-589aab16b077,
-        uuid:1ed7197a-0517-6add-bf70-4e292671043f,
-        uuid:1ed7197a-0517-6adf-b5e4-4ddbaf739211,
-        uuid:1ed7197a-051a-61ec-97ff-9dd8a6fd78fe ;
-    schema:accountablePerson "cschaenzle" .
+    dcterms:identifier "1ed934cc-8556-6190-9b7f-fe2b2f4bbbc0" ;
+    sosa:hasMember uuid:1ed934cc-8651-66a6-ad13-d9540a18e487,
+        uuid:1ed934cc-8653-6dad-99dd-6ca45c336fa6,
+        uuid:1ed934cc-8656-64b2-b1cd-4475b2a4ff91,
+        uuid:1ed934cc-8656-64b4-a4cc-1035ba921cec,
+        uuid:1ed934cc-8658-6bbe-a72b-0b2a4e932063,
+        uuid:1ed934cc-865b-62c9-a996-873fb5fe9e38,
+        uuid:1ed934cc-865d-69ce-aaa6-d087a085216b,
+        uuid:1ed934cc-8667-6608-8ac7-2013f5441c2c,
+        uuid:1ed934cc-8669-6d19-9fb0-76500d3657ce,
+        uuid:1ed934cc-866c-641a-bb89-e9543d7ed704 ;
+    ns2:accountablePerson "cschaenzle" .
 
-uuid:1ed7197a-04e6-6d6d-808a-45ca291b22a2 a sosa:ObservationCollection ;
+uuid:1ed934cc-8556-6191-807c-cba4f437ae03 a sosa:ObservationCollection ;
     rdfs:label "5000" ;
     dcterms:created "2018-06-12T14:23:19"^^xsd:dateTime ;
     dcterms:creator "nstoermer" ;
     dcterms:description "operating point" ;
-    sosa:hasMember uuid:1ed7197a-051a-61ee-8484-f82f3012f7cf,
-        uuid:1ed7197a-051a-61f0-a734-2e937f3e92b6,
-        uuid:1ed7197a-051c-68fb-84d5-787772e31be5,
-        uuid:1ed7197a-051c-68fd-ab0f-49bd1dfd249e,
-        uuid:1ed7197a-051c-68ff-807e-cb604b15eedb,
-        uuid:1ed7197a-051c-6901-9bc9-1b8f9078ee56,
-        uuid:1ed7197a-051f-6012-a2e6-d5f61f00d13d,
-        uuid:1ed7197a-051f-6014-9528-58397303c92f,
-        uuid:1ed7197a-051f-6016-a0a8-cd2f4efd348e,
-        uuid:1ed7197a-0521-6720-9a5d-15583442a39a ;
-    schema:accountablePerson "cschaenzle" .
+    dcterms:identifier "1ed934cc-8556-6191-807c-cba4f437ae03" ;
+    sosa:hasMember uuid:1ed934cc-866e-6b1b-97e3-099f17144f32,
+        uuid:1ed934cc-8671-6224-91b9-cedde1b20447,
+        uuid:1ed934cc-8673-692e-9dab-2e684d04856c,
+        uuid:1ed934cc-8673-6930-b6fb-219bc1f0e64a,
+        uuid:1ed934cc-8676-6034-9b45-9e2835fcea44,
+        uuid:1ed934cc-8678-6743-b1d3-76e1311959c8,
+        uuid:1ed934cc-8678-6745-92ca-2977886eb097,
+        uuid:1ed934cc-867a-6e49-8fcf-8c46e474f038,
+        uuid:1ed934cc-867d-6556-ae8a-55caafcca1fc,
+        uuid:1ed934cc-867f-6c5b-babf-38af4a951259 ;
+    ns2:accountablePerson "cschaenzle" .
 
-uuid:1ed7197a-04e6-6d6e-9ae8-48769faccd4c a sosa:ObservationCollection ;
+uuid:1ed934cc-855d-66b1-ba1f-3a65424253e8 a sosa:ObservationCollection ;
     rdfs:label "5500" ;
     dcterms:created "2018-06-12T14:23:48"^^xsd:dateTime ;
     dcterms:creator "nstoermer" ;
     dcterms:description "operating point" ;
-    sosa:hasMember uuid:1ed7197a-0521-6722-b772-3c91fb4461f3,
-        uuid:1ed7197a-0521-6724-9e02-b51f8fbf9002,
-        uuid:1ed7197a-0521-6726-b2e6-43a88c2bb0ae,
-        uuid:1ed7197a-0523-6e35-81be-24ff56abcb2a,
-        uuid:1ed7197a-0523-6e37-ab8d-57f0d2b564f9,
-        uuid:1ed7197a-0523-6e39-bab9-025544176ff3,
-        uuid:1ed7197a-0526-6546-9767-69360eccd054,
-        uuid:1ed7197a-0526-6548-aaaa-18cd71e09170,
-        uuid:1ed7197a-0526-654a-a312-eb11056666c2,
-        uuid:1ed7197a-0526-654c-9e2d-2ec12d5fbe16 ;
-    schema:accountablePerson "cschaenzle" .
+    dcterms:identifier "1ed934cc-855d-66b1-ba1f-3a65424253e8" ;
+    sosa:hasMember uuid:1ed934cc-867f-6c5d-b6ad-064e20d2af76,
+        uuid:1ed934cc-8682-6367-9a25-7d1b6dae1996,
+        uuid:1ed934cc-8684-6a71-b551-d3ceaee78f6f,
+        uuid:1ed934cc-8684-6a73-9f01-3b74c57e3203,
+        uuid:1ed934cc-868e-66ae-93c5-affd2f7c8b03,
+        uuid:1ed934cc-8693-64c2-ab45-ff674afbdf73,
+        uuid:1ed934cc-8693-64c4-b96e-1eb298e0c8fd,
+        uuid:1ed934cc-8695-6bc1-9b1f-fdd0d99ec92a,
+        uuid:1ed934cc-8698-62cb-b805-c76b1af5fd10,
+        uuid:1ed934cc-8698-62cd-99bd-2d20340f36c0 ;
+    ns2:accountablePerson "cschaenzle" .
 
-uuid:1ed7197a-04e6-6d6f-8456-c76d329d5e26 a sosa:ObservationCollection ;
+uuid:1ed934cc-855f-6dba-99e7-b5d3d0c758a9 a sosa:ObservationCollection ;
     rdfs:label "8000" ;
     dcterms:created "2018-06-12T14:24:51"^^xsd:dateTime ;
     dcterms:creator "nstoermer" ;
     dcterms:description "operating point" ;
-    sosa:hasMember uuid:1ed7197a-0528-6c5f-b882-57853f38fe26,
-        uuid:1ed7197a-0528-6c61-9181-563d7dbb86e5,
-        uuid:1ed7197a-0528-6c63-b6a4-de48bb0eba00,
-        uuid:1ed7197a-052b-636b-9358-faed7ce061fa,
-        uuid:1ed7197a-052b-636d-96b2-bf3b138925dc,
-        uuid:1ed7197a-052b-636f-a642-2ab8c24e8109,
-        uuid:1ed7197a-052b-6371-9a6f-698407bcf91e,
-        uuid:1ed7197a-052d-6a7d-8211-b356f570dfae,
-        uuid:1ed7197a-052d-6a7f-843e-e7788f151792,
-        uuid:1ed7197a-052d-6a81-a1c4-32469d4f1bfc ;
-    schema:accountablePerson "cschaenzle" .
+    dcterms:identifier "1ed934cc-855f-6dba-99e7-b5d3d0c758a9" ;
+    sosa:hasMember uuid:1ed934cc-869a-69d1-85b0-1975b6faa6d1,
+        uuid:1ed934cc-869d-60de-9e5e-ccef8ef5ac92,
+        uuid:1ed934cc-869f-67e1-8daa-40710df00cf7,
+        uuid:1ed934cc-869f-67e3-9ea0-cfd67538eb7a,
+        uuid:1ed934cc-86a1-6eea-89f2-c625659c644d,
+        uuid:1ed934cc-86a4-65f8-b9e6-7b07980cfee7,
+        uuid:1ed934cc-86a4-65fa-ba12-6955ca564054,
+        uuid:1ed934cc-86a6-6cff-b6c5-cd2035179bd3,
+        uuid:1ed934cc-86a9-640f-84c2-498db16b4987,
+        uuid:1ed934cc-86a9-6411-8150-ad661f32a9c0 ;
+    ns2:accountablePerson "cschaenzle" .
 
-uuid:1ed7197a-04e9-647e-90c2-1d95f6054368 a qudt:QuantityValue,
+uuid:1ed934cc-8562-64c5-9d68-5f8d672ff40b a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04e9-647e-90c2-1d95f6054368" ;
+    rdfs:label "Result-1ed934cc-8562-64c5-9d68-5f8d672ff40b" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8562-64c5-9d68-5f8d672ff40b" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_1/scaled/data/10100> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04e9-647f-9921-78b10e39e567 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04e9-647f-9921-78b10e39e567" ;
+uuid:1ed934cc-8564-6bcd-ac52-b0cdacb1559f a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8564-6bcd-ac52-b0cdacb1559f" ;
+    dcterms:identifier "1ed934cc-8564-6bcd-ac52-b0cdacb1559f" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04e9-647e-90c2-1d95f6054368 ;
+    sosa:hasResult uuid:1ed934cc-8562-64c5-9d68-5f8d672ff40b ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04e9-6480-8e40-bf9cb477ad5f a qudt:QuantityValue,
+uuid:1ed934cc-856c-60ec-970f-fc2381c336eb a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04e9-6480-8e40-bf9cb477ad5f" ;
+    rdfs:label "Result-1ed934cc-856c-60ec-970f-fc2381c336eb" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-856c-60ec-970f-fc2381c336eb" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_2/scaled/data/10100> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04e9-6481-8af8-b1bd953570be a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04e9-6481-8af8-b1bd953570be" ;
+uuid:1ed934cc-856c-60ed-82f0-52bc81780bd2 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-856c-60ed-82f0-52bc81780bd2" ;
+    dcterms:identifier "1ed934cc-856c-60ed-82f0-52bc81780bd2" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04e9-6480-8e40-bf9cb477ad5f ;
+    sosa:hasResult uuid:1ed934cc-856c-60ec-970f-fc2381c336eb ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04e9-6482-97c0-986ede9c0a2d a qudt:QuantityValue,
+uuid:1ed934cc-856e-67f8-bd19-8055bc72d9b1 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04e9-6482-97c0-986ede9c0a2d" ;
+    rdfs:label "Result-1ed934cc-856e-67f8-bd19-8055bc72d9b1" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-856e-67f8-bd19-8055bc72d9b1" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_3/scaled/data/10100> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04e9-6483-bd0b-3e8c0f6c2190 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04e9-6483-bd0b-3e8c0f6c2190" ;
+uuid:1ed934cc-8570-6f05-a234-f5539f7c03c2 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8570-6f05-a234-f5539f7c03c2" ;
+    dcterms:identifier "1ed934cc-8570-6f05-a234-f5539f7c03c2" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04e9-6482-97c0-986ede9c0a2d ;
+    sosa:hasResult uuid:1ed934cc-856e-67f8-bd19-8055bc72d9b1 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04eb-6b92-a938-023e440b8424 a qudt:QuantityValue,
+uuid:1ed934cc-8573-6611-aae8-465b0497af55 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04eb-6b92-a938-023e440b8424" ;
+    rdfs:label "Result-1ed934cc-8573-6611-aae8-465b0497af55" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8573-6611-aae8-465b0497af55" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/rotational_speed/scaled/data/10100> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04eb-6b93-a2e6-019c7f9a5e63 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04eb-6b93-a2e6-019c7f9a5e63" ;
+uuid:1ed934cc-8573-6612-a95d-7878af7533d4 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8573-6612-a95d-7878af7533d4" ;
+    dcterms:identifier "1ed934cc-8573-6612-a95d-7878af7533d4" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04eb-6b92-a938-023e440b8424 ;
+    sosa:hasResult uuid:1ed934cc-8573-6611-aae8-465b0497af55 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04eb-6b94-b8a3-dd10824692da a qudt:QuantityValue,
+uuid:1ed934cc-8575-6d22-8ad0-09fd401e5083 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04eb-6b94-b8a3-dd10824692da" ;
+    rdfs:label "Result-1ed934cc-8575-6d22-8ad0-09fd401e5083" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8575-6d22-8ad0-09fd401e5083" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_1/scaled/data/10100> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04eb-6b95-bd1c-fbf2b53deffa a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04eb-6b95-bd1c-fbf2b53deffa" ;
+uuid:1ed934cc-8575-6d23-8ae5-df9461fc9ae0 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8575-6d23-8ae5-df9461fc9ae0" ;
+    dcterms:identifier "1ed934cc-8575-6d23-8ae5-df9461fc9ae0" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04eb-6b94-b8a3-dd10824692da ;
+    sosa:hasResult uuid:1ed934cc-8575-6d22-8ad0-09fd401e5083 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04eb-6b96-8bcc-03aee71b3941 a qudt:QuantityValue,
+uuid:1ed934cc-8578-6420-907d-65efc9104580 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04eb-6b96-8bcc-03aee71b3941" ;
+    rdfs:label "Result-1ed934cc-8578-6420-907d-65efc9104580" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8578-6420-907d-65efc9104580" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_2/scaled/data/10100> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04eb-6b97-9022-2cd4f1bc2ccb a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04eb-6b97-9022-2cd4f1bc2ccb" ;
+uuid:1ed934cc-857a-6b2b-bb28-996bb5b22665 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-857a-6b2b-bb28-996bb5b22665" ;
+    dcterms:identifier "1ed934cc-857a-6b2b-bb28-996bb5b22665" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04eb-6b96-8bcc-03aee71b3941 ;
+    sosa:hasResult uuid:1ed934cc-8578-6420-907d-65efc9104580 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04eb-6b98-844d-7e8a0e4f939d a qudt:QuantityValue,
+uuid:1ed934cc-857a-6b2c-b547-4d13d188e561 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04eb-6b98-844d-7e8a0e4f939d" ;
+    rdfs:label "Result-1ed934cc-857a-6b2c-b547-4d13d188e561" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-857a-6b2c-b547-4d13d188e561" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_tank/scaled/data/10100> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04ee-62a3-8e56-de97e7f3f8bb a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04ee-62a3-8e56-de97e7f3f8bb" ;
+uuid:1ed934cc-857f-6938-a837-6bc59f95c247 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-857f-6938-a837-6bc59f95c247" ;
+    dcterms:identifier "1ed934cc-857f-6938-a837-6bc59f95c247" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04eb-6b98-844d-7e8a0e4f939d ;
+    sosa:hasResult uuid:1ed934cc-857a-6b2c-b547-4d13d188e561 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04ee-62a4-b0cd-11b1f6043f9c a qudt:QuantityValue,
+uuid:1ed934cc-857f-6939-9487-c8d871f1ccea a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04ee-62a4-b0cd-11b1f6043f9c" ;
+    rdfs:label "Result-1ed934cc-857f-6939-9487-c8d871f1ccea" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-857f-6939-9487-c8d871f1ccea" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/torque/scaled/data/10100> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04ee-62a5-a2d7-26132d5b4263 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04ee-62a5-a2d7-26132d5b4263" ;
+uuid:1ed934cc-8582-6041-996e-3a1acba4cddf a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8582-6041-996e-3a1acba4cddf" ;
+    dcterms:identifier "1ed934cc-8582-6041-996e-3a1acba4cddf" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04ee-62a4-b0cd-11b1f6043f9c ;
+    sosa:hasResult uuid:1ed934cc-857f-6939-9487-c8d871f1ccea ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04ee-62a6-a40e-a8317f6269ee a qudt:QuantityValue,
+uuid:1ed934cc-8582-6042-a889-d241b6b0d52b a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04ee-62a6-a40e-a8317f6269ee" ;
+    rdfs:label "Result-1ed934cc-8582-6042-a889-d241b6b0d52b" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8582-6042-a889-d241b6b0d52b" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/valve_position/scaled/data/10100> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04ee-62a7-b93f-5cc6e45f585f a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04ee-62a7-b93f-5cc6e45f585f" ;
+uuid:1ed934cc-8584-674c-90ea-f2b85f958147 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8584-674c-90ea-f2b85f958147" ;
+    dcterms:identifier "1ed934cc-8584-674c-90ea-f2b85f958147" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04ee-62a6-a40e-a8317f6269ee ;
+    sosa:hasResult uuid:1ed934cc-8582-6042-a889-d241b6b0d52b ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04ee-62a8-b0f4-d3700e236328 a qudt:QuantityValue,
+uuid:1ed934cc-858b-6c6e-a910-113ff98cfc70 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04ee-62a8-b0f4-d3700e236328" ;
+    rdfs:label "Result-1ed934cc-858b-6c6e-a910-113ff98cfc70" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-858b-6c6e-a910-113ff98cfc70" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/volume_flow/scaled/data/10100> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04ee-62a9-84e0-38956fcc224e a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04ee-62a9-84e0-38956fcc224e" ;
+uuid:1ed934cc-858e-6373-b023-0a4cac8151ad a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-858e-6373-b023-0a4cac8151ad" ;
+    dcterms:identifier "1ed934cc-858e-6373-b023-0a4cac8151ad" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04ee-62a8-b0f4-d3700e236328 ;
+    sosa:hasResult uuid:1ed934cc-858b-6c6e-a910-113ff98cfc70 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04f0-69b5-b2e6-81f1cc6192e3 a qudt:QuantityValue,
+uuid:1ed934cc-858e-6374-9619-2774c66e06f5 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04f0-69b5-b2e6-81f1cc6192e3" ;
+    rdfs:label "Result-1ed934cc-858e-6374-9619-2774c66e06f5" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-858e-6374-9619-2774c66e06f5" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_1/scaled/data/11250> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04f0-69b6-b07a-f43882638528 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04f0-69b6-b07a-f43882638528" ;
+uuid:1ed934cc-8590-6a79-af29-a70d424c5c0f a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8590-6a79-af29-a70d424c5c0f" ;
+    dcterms:identifier "1ed934cc-8590-6a79-af29-a70d424c5c0f" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04f0-69b5-b2e6-81f1cc6192e3 ;
+    sosa:hasResult uuid:1ed934cc-858e-6374-9619-2774c66e06f5 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04f0-69b7-bded-9d2d5be47c93 a qudt:QuantityValue,
+uuid:1ed934cc-8595-6896-8fa9-be17105ca3d6 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04f0-69b7-bded-9d2d5be47c93" ;
+    rdfs:label "Result-1ed934cc-8595-6896-8fa9-be17105ca3d6" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8595-6896-8fa9-be17105ca3d6" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_2/scaled/data/11250> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04f0-69b8-994d-98eda87da42e a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04f0-69b8-994d-98eda87da42e" ;
+uuid:1ed934cc-8597-6f9b-8b22-862d4a038fd5 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8597-6f9b-8b22-862d4a038fd5" ;
+    dcterms:identifier "1ed934cc-8597-6f9b-8b22-862d4a038fd5" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04f0-69b7-bded-9d2d5be47c93 ;
+    sosa:hasResult uuid:1ed934cc-8595-6896-8fa9-be17105ca3d6 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04f0-69b9-86bf-bd307e383ba3 a qudt:QuantityValue,
+uuid:1ed934cc-859a-66a4-b0e9-50bffa4aef24 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04f0-69b9-86bf-bd307e383ba3" ;
+    rdfs:label "Result-1ed934cc-859a-66a4-b0e9-50bffa4aef24" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-859a-66a4-b0e9-50bffa4aef24" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_3/scaled/data/11250> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04f0-69ba-adb9-b7247eb9396f a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04f0-69ba-adb9-b7247eb9396f" ;
+uuid:1ed934cc-859c-6db5-9aab-3073d0611b12 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-859c-6db5-9aab-3073d0611b12" ;
+    dcterms:identifier "1ed934cc-859c-6db5-9aab-3073d0611b12" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04f0-69b9-86bf-bd307e383ba3 ;
+    sosa:hasResult uuid:1ed934cc-859a-66a4-b0e9-50bffa4aef24 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04f0-69bb-8cf0-e9fae7d19bb8 a qudt:QuantityValue,
+uuid:1ed934cc-859c-6db6-8534-8f8ab6237e4c a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04f0-69bb-8cf0-e9fae7d19bb8" ;
+    rdfs:label "Result-1ed934cc-859c-6db6-8534-8f8ab6237e4c" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-859c-6db6-8534-8f8ab6237e4c" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/rotational_speed/scaled/data/11250> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04f3-60ca-bc27-6f68cd1764d8 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04f3-60ca-bc27-6f68cd1764d8" ;
+uuid:1ed934cc-859f-64ba-9b18-d2e0ac6e74fd a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-859f-64ba-9b18-d2e0ac6e74fd" ;
+    dcterms:identifier "1ed934cc-859f-64ba-9b18-d2e0ac6e74fd" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04f0-69bb-8cf0-e9fae7d19bb8 ;
+    sosa:hasResult uuid:1ed934cc-859c-6db6-8534-8f8ab6237e4c ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04f3-60cb-a341-dec4b43bd29a a qudt:QuantityValue,
+uuid:1ed934cc-85a1-6bc5-80fb-101622853025 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04f3-60cb-a341-dec4b43bd29a" ;
+    rdfs:label "Result-1ed934cc-85a1-6bc5-80fb-101622853025" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85a1-6bc5-80fb-101622853025" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_1/scaled/data/11250> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04f3-60cc-b94c-592ffad39499 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04f3-60cc-b94c-592ffad39499" ;
+uuid:1ed934cc-85a1-6bc6-ba29-09e78f3dfc13 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85a1-6bc6-ba29-09e78f3dfc13" ;
+    dcterms:identifier "1ed934cc-85a1-6bc6-ba29-09e78f3dfc13" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04f3-60cb-a341-dec4b43bd29a ;
+    sosa:hasResult uuid:1ed934cc-85a1-6bc5-80fb-101622853025 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04f3-60cd-aaef-0aa7475890b4 a qudt:QuantityValue,
+uuid:1ed934cc-85a6-69dc-ba27-4111a48fab10 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04f3-60cd-aaef-0aa7475890b4" ;
+    rdfs:label "Result-1ed934cc-85a6-69dc-ba27-4111a48fab10" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85a6-69dc-ba27-4111a48fab10" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_2/scaled/data/11250> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04f3-60ce-ae5b-35aac5729e40 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04f3-60ce-ae5b-35aac5729e40" ;
+uuid:1ed934cc-85a6-69dd-83c4-755c855f2142 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85a6-69dd-83c4-755c855f2142" ;
+    dcterms:identifier "1ed934cc-85a6-69dd-83c4-755c855f2142" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04f3-60cd-aaef-0aa7475890b4 ;
+    sosa:hasResult uuid:1ed934cc-85a6-69dc-ba27-4111a48fab10 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04f3-60cf-a665-8a0387ebfc4b a qudt:QuantityValue,
+uuid:1ed934cc-85a9-60e0-a4d8-75778bf143f7 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04f3-60cf-a665-8a0387ebfc4b" ;
+    rdfs:label "Result-1ed934cc-85a9-60e0-a4d8-75778bf143f7" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85a9-60e0-a4d8-75778bf143f7" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_tank/scaled/data/11250> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04f3-60d0-a8f6-05b63ada59ab a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04f3-60d0-a8f6-05b63ada59ab" ;
+uuid:1ed934cc-85a9-60e1-9d0a-fce3cce999a0 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85a9-60e1-9d0a-fce3cce999a0" ;
+    dcterms:identifier "1ed934cc-85a9-60e1-9d0a-fce3cce999a0" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04f3-60cf-a665-8a0387ebfc4b ;
+    sosa:hasResult uuid:1ed934cc-85a9-60e0-a4d8-75778bf143f7 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04f5-67d6-ae6a-9f4ff3e42624 a qudt:QuantityValue,
+uuid:1ed934cc-85ab-67eb-b9c8-0087ce29aa86 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04f5-67d6-ae6a-9f4ff3e42624" ;
+    rdfs:label "Result-1ed934cc-85ab-67eb-b9c8-0087ce29aa86" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85ab-67eb-b9c8-0087ce29aa86" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/torque/scaled/data/11250> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04f5-67d7-9b2a-e202d255000e a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04f5-67d7-9b2a-e202d255000e" ;
+uuid:1ed934cc-85ab-67ec-a9db-679e2f64b6b3 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85ab-67ec-a9db-679e2f64b6b3" ;
+    dcterms:identifier "1ed934cc-85ab-67ec-a9db-679e2f64b6b3" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04f5-67d6-ae6a-9f4ff3e42624 ;
+    sosa:hasResult uuid:1ed934cc-85ab-67eb-b9c8-0087ce29aa86 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04f5-67d8-929a-afb75ebe0b8e a qudt:QuantityValue,
+uuid:1ed934cc-85ad-6ef6-826f-395281a8da02 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04f5-67d8-929a-afb75ebe0b8e" ;
+    rdfs:label "Result-1ed934cc-85ad-6ef6-826f-395281a8da02" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85ad-6ef6-826f-395281a8da02" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/valve_position/scaled/data/11250> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04f5-67d9-9850-463bb5d9c820 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04f5-67d9-9850-463bb5d9c820" ;
+uuid:1ed934cc-85b5-641d-9160-96370109fc26 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85b5-641d-9160-96370109fc26" ;
+    dcterms:identifier "1ed934cc-85b5-641d-9160-96370109fc26" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04f5-67d8-929a-afb75ebe0b8e ;
+    sosa:hasResult uuid:1ed934cc-85ad-6ef6-826f-395281a8da02 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04f5-67da-a287-a68fb420da57 a qudt:QuantityValue,
+uuid:1ed934cc-85b7-6b23-b3dd-21bba9da4431 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04f5-67da-a287-a68fb420da57" ;
+    rdfs:label "Result-1ed934cc-85b7-6b23-b3dd-21bba9da4431" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85b7-6b23-b3dd-21bba9da4431" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/volume_flow/scaled/data/11250> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04f5-67db-9c4e-e37eef2ed7ed a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04f5-67db-9c4e-e37eef2ed7ed" ;
+uuid:1ed934cc-85b7-6b24-931a-37d23b54ac36 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85b7-6b24-931a-37d23b54ac36" ;
+    dcterms:identifier "1ed934cc-85b7-6b24-931a-37d23b54ac36" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04f5-67da-a287-a68fb420da57 ;
+    sosa:hasResult uuid:1ed934cc-85b7-6b23-b3dd-21bba9da4431 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04f5-67dc-a2f4-9c54988abfa5 a qudt:QuantityValue,
+uuid:1ed934cc-85c6-6568-b72d-69a98259af9f a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04f5-67dc-a2f4-9c54988abfa5" ;
+    rdfs:label "Result-1ed934cc-85c6-6568-b72d-69a98259af9f" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85c6-6568-b72d-69a98259af9f" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_1/scaled/data/14000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04f7-6ee6-af24-f57dd0b5ae5b a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04f7-6ee6-af24-f57dd0b5ae5b" ;
+uuid:1ed934cc-85c8-6c7a-9b29-e80bd7917423 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85c8-6c7a-9b29-e80bd7917423" ;
+    dcterms:identifier "1ed934cc-85c8-6c7a-9b29-e80bd7917423" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04f5-67dc-a2f4-9c54988abfa5 ;
+    sosa:hasResult uuid:1ed934cc-85c6-6568-b72d-69a98259af9f ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04f7-6ee7-852d-0400cc4c4d2c a qudt:QuantityValue,
+uuid:1ed934cc-85cd-6a83-a4d5-5e25e967d33e a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04f7-6ee7-852d-0400cc4c4d2c" ;
+    rdfs:label "Result-1ed934cc-85cd-6a83-a4d5-5e25e967d33e" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85cd-6a83-a4d5-5e25e967d33e" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_2/scaled/data/14000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04f7-6ee8-84c5-5d6e58c7ca86 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04f7-6ee8-84c5-5d6e58c7ca86" ;
+uuid:1ed934cc-85cd-6a84-afa6-4cdd194ff602 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85cd-6a84-afa6-4cdd194ff602" ;
+    dcterms:identifier "1ed934cc-85cd-6a84-afa6-4cdd194ff602" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04f7-6ee7-852d-0400cc4c4d2c ;
+    sosa:hasResult uuid:1ed934cc-85cd-6a83-a4d5-5e25e967d33e ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04f7-6ee9-a818-5e9a6f4504b7 a qudt:QuantityValue,
+uuid:1ed934cc-85d0-6194-9e37-c3b4b1524f7d a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04f7-6ee9-a818-5e9a6f4504b7" ;
+    rdfs:label "Result-1ed934cc-85d0-6194-9e37-c3b4b1524f7d" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85d0-6194-9e37-c3b4b1524f7d" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_3/scaled/data/14000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04f7-6eea-be00-a7b0a5a6bb47 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04f7-6eea-be00-a7b0a5a6bb47" ;
+uuid:1ed934cc-85d0-6195-b1f6-c421ec8e73f7 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85d0-6195-b1f6-c421ec8e73f7" ;
+    dcterms:identifier "1ed934cc-85d0-6195-b1f6-c421ec8e73f7" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04f7-6ee9-a818-5e9a6f4504b7 ;
+    sosa:hasResult uuid:1ed934cc-85d0-6194-9e37-c3b4b1524f7d ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04f7-6eeb-afa7-1d3682b94681 a qudt:QuantityValue,
+uuid:1ed934cc-85d2-689e-9f88-e520b27379ff a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04f7-6eeb-afa7-1d3682b94681" ;
+    rdfs:label "Result-1ed934cc-85d2-689e-9f88-e520b27379ff" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85d2-689e-9f88-e520b27379ff" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/rotational_speed/scaled/data/14000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04f7-6eec-b3a2-ddf064c0ee68 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04f7-6eec-b3a2-ddf064c0ee68" ;
+uuid:1ed934cc-85d2-689f-9074-0b4a720112a4 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85d2-689f-9074-0b4a720112a4" ;
+    dcterms:identifier "1ed934cc-85d2-689f-9074-0b4a720112a4" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04f7-6eeb-afa7-1d3682b94681 ;
+    sosa:hasResult uuid:1ed934cc-85d2-689e-9f88-e520b27379ff ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04fa-6600-be13-e53e47636a87 a qudt:QuantityValue,
+uuid:1ed934cc-85d4-6fa9-9ebc-e383afd4d186 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04fa-6600-be13-e53e47636a87" ;
+    rdfs:label "Result-1ed934cc-85d4-6fa9-9ebc-e383afd4d186" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85d4-6fa9-9ebc-e383afd4d186" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_1/scaled/data/14000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04fa-6601-9751-6af8554a728c a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04fa-6601-9751-6af8554a728c" ;
+uuid:1ed934cc-85d4-6faa-8225-5de7951d4993 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85d4-6faa-8225-5de7951d4993" ;
+    dcterms:identifier "1ed934cc-85d4-6faa-8225-5de7951d4993" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04fa-6600-be13-e53e47636a87 ;
+    sosa:hasResult uuid:1ed934cc-85d4-6fa9-9ebc-e383afd4d186 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04fa-6602-8152-81aac1c4e7e1 a qudt:QuantityValue,
+uuid:1ed934cc-85d7-66b8-b30c-99cf5915893b a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04fa-6602-8152-81aac1c4e7e1" ;
+    rdfs:label "Result-1ed934cc-85d7-66b8-b30c-99cf5915893b" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85d7-66b8-b30c-99cf5915893b" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_2/scaled/data/14000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04fa-6603-a8fa-f28f9fd1faa9 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04fa-6603-a8fa-f28f9fd1faa9" ;
+uuid:1ed934cc-85d7-66b9-8f20-2924d87c56bf a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85d7-66b9-8f20-2924d87c56bf" ;
+    dcterms:identifier "1ed934cc-85d7-66b9-8f20-2924d87c56bf" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04fa-6602-8152-81aac1c4e7e1 ;
+    sosa:hasResult uuid:1ed934cc-85d7-66b8-b30c-99cf5915893b ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04fa-6604-bf2d-91aac9d9daf6 a qudt:QuantityValue,
+uuid:1ed934cc-85d7-66ba-8182-928337cfacd3 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04fa-6604-bf2d-91aac9d9daf6" ;
+    rdfs:label "Result-1ed934cc-85d7-66ba-8182-928337cfacd3" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85d7-66ba-8182-928337cfacd3" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_tank/scaled/data/14000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04fa-6605-93f0-55eaf441d8cb a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04fa-6605-93f0-55eaf441d8cb" ;
+uuid:1ed934cc-85d9-6dbd-8135-6e7c762c25af a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85d9-6dbd-8135-6e7c762c25af" ;
+    dcterms:identifier "1ed934cc-85d9-6dbd-8135-6e7c762c25af" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04fa-6604-bf2d-91aac9d9daf6 ;
+    sosa:hasResult uuid:1ed934cc-85d7-66ba-8182-928337cfacd3 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04fc-6d10-afd5-bd35f855542a a qudt:QuantityValue,
+uuid:1ed934cc-85d9-6dbe-81c6-be8f87ad0b88 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04fc-6d10-afd5-bd35f855542a" ;
+    rdfs:label "Result-1ed934cc-85d9-6dbe-81c6-be8f87ad0b88" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85d9-6dbe-81c6-be8f87ad0b88" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/torque/scaled/data/14000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04fc-6d11-ba5f-cc6c70737643 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04fc-6d11-ba5f-cc6c70737643" ;
+uuid:1ed934cc-85dc-64c3-a2e9-8fff9acdaa62 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85dc-64c3-a2e9-8fff9acdaa62" ;
+    dcterms:identifier "1ed934cc-85dc-64c3-a2e9-8fff9acdaa62" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04fc-6d10-afd5-bd35f855542a ;
+    sosa:hasResult uuid:1ed934cc-85d9-6dbe-81c6-be8f87ad0b88 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04fc-6d12-b4b6-0c6225531897 a qudt:QuantityValue,
+uuid:1ed934cc-85dc-64c4-8fbc-818041b116d6 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04fc-6d12-b4b6-0c6225531897" ;
+    rdfs:label "Result-1ed934cc-85dc-64c4-8fbc-818041b116d6" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85dc-64c4-8fbc-818041b116d6" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/valve_position/scaled/data/14000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04fc-6d13-a3de-d188396ec95b a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04fc-6d13-a3de-d188396ec95b" ;
+uuid:1ed934cc-85dc-64c5-a036-23bca1f23677 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85dc-64c5-a036-23bca1f23677" ;
+    dcterms:identifier "1ed934cc-85dc-64c5-a036-23bca1f23677" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04fc-6d12-b4b6-0c6225531897 ;
+    sosa:hasResult uuid:1ed934cc-85dc-64c4-8fbc-818041b116d6 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04fc-6d14-bb9c-c8ac92391cd6 a qudt:QuantityValue,
+uuid:1ed934cc-85de-6bd1-959b-e33ce4663ae1 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04fc-6d14-bb9c-c8ac92391cd6" ;
+    rdfs:label "Result-1ed934cc-85de-6bd1-959b-e33ce4663ae1" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85de-6bd1-959b-e33ce4663ae1" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/volume_flow/scaled/data/14000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04fc-6d15-8cf5-e33064536608 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04fc-6d15-8cf5-e33064536608" ;
+uuid:1ed934cc-85de-6bd2-b337-46f5bd01a72a a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85de-6bd2-b337-46f5bd01a72a" ;
+    dcterms:identifier "1ed934cc-85de-6bd2-b337-46f5bd01a72a" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04fc-6d14-bb9c-c8ac92391cd6 ;
+    sosa:hasResult uuid:1ed934cc-85de-6bd1-959b-e33ce4663ae1 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04fc-6d16-a3b7-95308450b1de a qudt:QuantityValue,
+uuid:1ed934cc-85e1-62d8-8748-614c6831a2c9 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04fc-6d16-a3b7-95308450b1de" ;
+    rdfs:label "Result-1ed934cc-85e1-62d8-8748-614c6831a2c9" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85e1-62d8-8748-614c6831a2c9" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_1/scaled/data/16000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04fc-6d17-a939-87c437f2833d a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04fc-6d17-a939-87c437f2833d" ;
+uuid:1ed934cc-85e1-62d9-a5f8-9ce1642dfbe2 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85e1-62d9-a5f8-9ce1642dfbe2" ;
+    dcterms:identifier "1ed934cc-85e1-62d9-a5f8-9ce1642dfbe2" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04fc-6d16-a3b7-95308450b1de ;
+    sosa:hasResult uuid:1ed934cc-85e1-62d8-8748-614c6831a2c9 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04ff-6427-8d09-52a61c2296c4 a qudt:QuantityValue,
+uuid:1ed934cc-85e1-62da-a8d8-36df9baa8197 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04ff-6427-8d09-52a61c2296c4" ;
+    rdfs:label "Result-1ed934cc-85e1-62da-a8d8-36df9baa8197" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85e1-62da-a8d8-36df9baa8197" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_2/scaled/data/16000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04ff-6428-85b6-26b8c149b44a a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04ff-6428-85b6-26b8c149b44a" ;
+uuid:1ed934cc-85e3-69e7-85a1-1f6f154ac717 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85e3-69e7-85a1-1f6f154ac717" ;
+    dcterms:identifier "1ed934cc-85e3-69e7-85a1-1f6f154ac717" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04ff-6427-8d09-52a61c2296c4 ;
+    sosa:hasResult uuid:1ed934cc-85e1-62da-a8d8-36df9baa8197 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04ff-6429-8cce-def5760976be a qudt:QuantityValue,
+uuid:1ed934cc-85e3-69e8-9900-f3925ed0c5f3 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04ff-6429-8cce-def5760976be" ;
+    rdfs:label "Result-1ed934cc-85e3-69e8-9900-f3925ed0c5f3" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85e3-69e8-9900-f3925ed0c5f3" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_3/scaled/data/16000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04ff-642a-a5bc-967e21cc3c3b a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04ff-642a-a5bc-967e21cc3c3b" ;
+uuid:1ed934cc-85e6-60e8-bb82-d85457670cca a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85e6-60e8-bb82-d85457670cca" ;
+    dcterms:identifier "1ed934cc-85e6-60e8-bb82-d85457670cca" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04ff-6429-8cce-def5760976be ;
+    sosa:hasResult uuid:1ed934cc-85e3-69e8-9900-f3925ed0c5f3 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-04ff-642b-b539-4e8e8c577cb3 a qudt:QuantityValue,
+uuid:1ed934cc-85e8-67ee-9223-dfb402552d71 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-04ff-642b-b539-4e8e8c577cb3" ;
+    rdfs:label "Result-1ed934cc-85e8-67ee-9223-dfb402552d71" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85e8-67ee-9223-dfb402552d71" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/rotational_speed/scaled/data/16000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-04ff-642c-af39-98544b16d1ac a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-04ff-642c-af39-98544b16d1ac" ;
+uuid:1ed934cc-85ea-6efd-a1c4-227969ae9c82 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85ea-6efd-a1c4-227969ae9c82" ;
+    dcterms:identifier "1ed934cc-85ea-6efd-a1c4-227969ae9c82" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-04ff-642b-b539-4e8e8c577cb3 ;
+    sosa:hasResult uuid:1ed934cc-85e8-67ee-9223-dfb402552d71 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0501-6b33-ae94-3649475f0317 a qudt:QuantityValue,
+uuid:1ed934cc-85ed-6613-b09a-eb0e2a4ad238 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0501-6b33-ae94-3649475f0317" ;
+    rdfs:label "Result-1ed934cc-85ed-6613-b09a-eb0e2a4ad238" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85ed-6613-b09a-eb0e2a4ad238" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_1/scaled/data/16000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0501-6b34-a897-9020d9233275 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0501-6b34-a897-9020d9233275" ;
+uuid:1ed934cc-85f2-641a-a279-9478d564d115 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85f2-641a-a279-9478d564d115" ;
+    dcterms:identifier "1ed934cc-85f2-641a-a279-9478d564d115" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0501-6b33-ae94-3649475f0317 ;
+    sosa:hasResult uuid:1ed934cc-85ed-6613-b09a-eb0e2a4ad238 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0501-6b35-9cee-2b48eb08c4c8 a qudt:QuantityValue,
+uuid:1ed934cc-85f4-6b22-9d03-09b837e1a74f a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0501-6b35-9cee-2b48eb08c4c8" ;
+    rdfs:label "Result-1ed934cc-85f4-6b22-9d03-09b837e1a74f" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85f4-6b22-9d03-09b837e1a74f" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_2/scaled/data/16000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0501-6b36-8c3f-15fff7117889 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0501-6b36-8c3f-15fff7117889" ;
+uuid:1ed934cc-85f7-6239-93dc-e445adc378b5 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85f7-6239-93dc-e445adc378b5" ;
+    dcterms:identifier "1ed934cc-85f7-6239-93dc-e445adc378b5" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0501-6b35-9cee-2b48eb08c4c8 ;
+    sosa:hasResult uuid:1ed934cc-85f4-6b22-9d03-09b837e1a74f ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0501-6b37-818e-4d3580593d9c a qudt:QuantityValue,
+uuid:1ed934cc-85f7-623a-bbd1-c419e71300cf a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0501-6b37-818e-4d3580593d9c" ;
+    rdfs:label "Result-1ed934cc-85f7-623a-bbd1-c419e71300cf" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85f7-623a-bbd1-c419e71300cf" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_tank/scaled/data/16000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0501-6b38-acab-1600824331d9 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0501-6b38-acab-1600824331d9" ;
+uuid:1ed934cc-85f9-694b-9e4b-9b4ca97b1225 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85f9-694b-9e4b-9b4ca97b1225" ;
+    dcterms:identifier "1ed934cc-85f9-694b-9e4b-9b4ca97b1225" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0501-6b37-818e-4d3580593d9c ;
+    sosa:hasResult uuid:1ed934cc-85f7-623a-bbd1-c419e71300cf ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0501-6b39-8e0a-c44b4fa5de6f a qudt:QuantityValue,
+uuid:1ed934cc-85f9-694c-9fcd-83a4e388e84f a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0501-6b39-8e0a-c44b4fa5de6f" ;
+    rdfs:label "Result-1ed934cc-85f9-694c-9fcd-83a4e388e84f" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85f9-694c-9fcd-83a4e388e84f" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/torque/scaled/data/16000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0504-6248-b77c-965664d2c8b1 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0504-6248-b77c-965664d2c8b1" ;
+uuid:1ed934cc-85f9-694d-876c-08b4039af59b a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85f9-694d-876c-08b4039af59b" ;
+    dcterms:identifier "1ed934cc-85f9-694d-876c-08b4039af59b" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0501-6b39-8e0a-c44b4fa5de6f ;
+    sosa:hasResult uuid:1ed934cc-85f9-694c-9fcd-83a4e388e84f ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0504-6249-9f7a-b952eecbe64b a qudt:QuantityValue,
+uuid:1ed934cc-85fc-6046-a006-a606736a0475 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0504-6249-9f7a-b952eecbe64b" ;
+    rdfs:label "Result-1ed934cc-85fc-6046-a006-a606736a0475" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-85fc-6046-a006-a606736a0475" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/valve_position/scaled/data/16000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0504-624a-82b3-4658f393a896 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0504-624a-82b3-4658f393a896" ;
+uuid:1ed934cc-85fe-6756-ad6f-adb7be4a48e3 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-85fe-6756-ad6f-adb7be4a48e3" ;
+    dcterms:identifier "1ed934cc-85fe-6756-ad6f-adb7be4a48e3" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0504-6249-9f7a-b952eecbe64b ;
+    sosa:hasResult uuid:1ed934cc-85fc-6046-a006-a606736a0475 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0504-624b-833f-ea84ece1de85 a qudt:QuantityValue,
+uuid:1ed934cc-8600-6e5a-ad50-7bd6b5c46448 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0504-624b-833f-ea84ece1de85" ;
+    rdfs:label "Result-1ed934cc-8600-6e5a-ad50-7bd6b5c46448" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8600-6e5a-ad50-7bd6b5c46448" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/volume_flow/scaled/data/16000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0504-624c-9df9-a72bf34d17be a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0504-624c-9df9-a72bf34d17be" ;
+uuid:1ed934cc-8600-6e5b-8841-a2bb15079195 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8600-6e5b-8841-a2bb15079195" ;
+    dcterms:identifier "1ed934cc-8600-6e5b-8841-a2bb15079195" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0504-624b-833f-ea84ece1de85 ;
+    sosa:hasResult uuid:1ed934cc-8600-6e5a-ad50-7bd6b5c46448 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0504-624d-80b5-02a5804b8af5 a qudt:QuantityValue,
+uuid:1ed934cc-8603-6564-a2de-961c5e9c327c a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0504-624d-80b5-02a5804b8af5" ;
+    rdfs:label "Result-1ed934cc-8603-6564-a2de-961c5e9c327c" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8603-6564-a2de-961c5e9c327c" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_1/scaled/data/18000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0504-624e-a16d-56fcebb0625b a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0504-624e-a16d-56fcebb0625b" ;
+uuid:1ed934cc-8603-6565-a61b-81568644f7e4 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8603-6565-a61b-81568644f7e4" ;
+    dcterms:identifier "1ed934cc-8603-6565-a61b-81568644f7e4" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0504-624d-80b5-02a5804b8af5 ;
+    sosa:hasResult uuid:1ed934cc-8603-6564-a2de-961c5e9c327c ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0506-6959-acc6-870c00302f8e a qudt:QuantityValue,
+uuid:1ed934cc-8605-6c72-a71b-45b35f00e50f a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0506-6959-acc6-870c00302f8e" ;
+    rdfs:label "Result-1ed934cc-8605-6c72-a71b-45b35f00e50f" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8605-6c72-a71b-45b35f00e50f" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_2/scaled/data/18000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0506-695a-80df-bdb2f22caad2 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0506-695a-80df-bdb2f22caad2" ;
+uuid:1ed934cc-8608-638a-a08e-178add3f27bb a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8608-638a-a08e-178add3f27bb" ;
+    dcterms:identifier "1ed934cc-8608-638a-a08e-178add3f27bb" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0506-6959-acc6-870c00302f8e ;
+    sosa:hasResult uuid:1ed934cc-8605-6c72-a71b-45b35f00e50f ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0506-695b-a238-2c2cda1edaba a qudt:QuantityValue,
+uuid:1ed934cc-8608-638b-a321-402d6ada15c0 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0506-695b-a238-2c2cda1edaba" ;
+    rdfs:label "Result-1ed934cc-8608-638b-a321-402d6ada15c0" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8608-638b-a321-402d6ada15c0" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_3/scaled/data/18000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0506-695c-bd8a-5c37fa05fc95 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0506-695c-bd8a-5c37fa05fc95" ;
+uuid:1ed934cc-860a-6a81-a24d-95f93fdb1f18 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-860a-6a81-a24d-95f93fdb1f18" ;
+    dcterms:identifier "1ed934cc-860a-6a81-a24d-95f93fdb1f18" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0506-695b-a238-2c2cda1edaba ;
+    sosa:hasResult uuid:1ed934cc-8608-638b-a321-402d6ada15c0 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0506-695d-bfd1-8e2ffce96c4a a qudt:QuantityValue,
+uuid:1ed934cc-860d-618c-b234-4a5953afecfc a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0506-695d-bfd1-8e2ffce96c4a" ;
+    rdfs:label "Result-1ed934cc-860d-618c-b234-4a5953afecfc" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-860d-618c-b234-4a5953afecfc" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/rotational_speed/scaled/data/18000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0506-695e-9b6d-bc4d5d76439b a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0506-695e-9b6d-bc4d5d76439b" ;
+uuid:1ed934cc-860f-689a-9f7e-bc200ab3b26d a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-860f-689a-9f7e-bc200ab3b26d" ;
+    dcterms:identifier "1ed934cc-860f-689a-9f7e-bc200ab3b26d" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0506-695d-bfd1-8e2ffce96c4a ;
+    sosa:hasResult uuid:1ed934cc-860d-618c-b234-4a5953afecfc ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0506-695f-a4b7-885e87c57b0b a qudt:QuantityValue,
+uuid:1ed934cc-8611-6f96-967d-b442ac9ef217 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0506-695f-a4b7-885e87c57b0b" ;
+    rdfs:label "Result-1ed934cc-8611-6f96-967d-b442ac9ef217" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8611-6f96-967d-b442ac9ef217" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_1/scaled/data/18000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0509-606b-b458-2329daf8930b a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0509-606b-b458-2329daf8930b" ;
+uuid:1ed934cc-8611-6f97-8902-2faa53eea7ee a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8611-6f97-8902-2faa53eea7ee" ;
+    dcterms:identifier "1ed934cc-8611-6f97-8902-2faa53eea7ee" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0506-695f-a4b7-885e87c57b0b ;
+    sosa:hasResult uuid:1ed934cc-8611-6f96-967d-b442ac9ef217 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0509-606c-ad5f-38e4f554a4be a qudt:QuantityValue,
+uuid:1ed934cc-8616-6db4-bd21-d0f83337b4c4 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0509-606c-ad5f-38e4f554a4be" ;
+    rdfs:label "Result-1ed934cc-8616-6db4-bd21-d0f83337b4c4" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8616-6db4-bd21-d0f83337b4c4" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_2/scaled/data/18000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0509-606d-af67-309592de2f7b a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0509-606d-af67-309592de2f7b" ;
+uuid:1ed934cc-8616-6db5-aa34-574c9de98ed1 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8616-6db5-aa34-574c9de98ed1" ;
+    dcterms:identifier "1ed934cc-8616-6db5-aa34-574c9de98ed1" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0509-606c-ad5f-38e4f554a4be ;
+    sosa:hasResult uuid:1ed934cc-8616-6db4-bd21-d0f83337b4c4 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0509-606e-8f50-6aebf4a169b4 a qudt:QuantityValue,
+uuid:1ed934cc-8619-64b4-a170-98349e784209 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0509-606e-8f50-6aebf4a169b4" ;
+    rdfs:label "Result-1ed934cc-8619-64b4-a170-98349e784209" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8619-64b4-a170-98349e784209" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_tank/scaled/data/18000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0509-606f-82e7-92918d380b01 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0509-606f-82e7-92918d380b01" ;
+uuid:1ed934cc-861b-6bbd-89c4-537234ca7481 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-861b-6bbd-89c4-537234ca7481" ;
+    dcterms:identifier "1ed934cc-861b-6bbd-89c4-537234ca7481" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0509-606e-8f50-6aebf4a169b4 ;
+    sosa:hasResult uuid:1ed934cc-8619-64b4-a170-98349e784209 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0509-6070-8a1f-d61848492c9d a qudt:QuantityValue,
+uuid:1ed934cc-861b-6bbe-bf05-ffebfc91d39e a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0509-6070-8a1f-d61848492c9d" ;
+    rdfs:label "Result-1ed934cc-861b-6bbe-bf05-ffebfc91d39e" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-861b-6bbe-bf05-ffebfc91d39e" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/torque/scaled/data/18000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0509-6071-b584-aecf36dc844b a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0509-6071-b584-aecf36dc844b" ;
+uuid:1ed934cc-861b-6bbf-8e99-d6b280787f24 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-861b-6bbf-8e99-d6b280787f24" ;
+    dcterms:identifier "1ed934cc-861b-6bbf-8e99-d6b280787f24" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0509-6070-8a1f-d61848492c9d ;
+    sosa:hasResult uuid:1ed934cc-861b-6bbe-bf05-ffebfc91d39e ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-050b-677e-978a-41d2e65abd62 a qudt:QuantityValue,
+uuid:1ed934cc-861e-62e4-8a62-49220597483d a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-050b-677e-978a-41d2e65abd62" ;
+    rdfs:label "Result-1ed934cc-861e-62e4-8a62-49220597483d" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-861e-62e4-8a62-49220597483d" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/valve_position/scaled/data/18000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-050b-677f-abc1-736a0a939139 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-050b-677f-abc1-736a0a939139" ;
+uuid:1ed934cc-861e-62e5-a901-9b6c44d50d1d a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-861e-62e5-a901-9b6c44d50d1d" ;
+    dcterms:identifier "1ed934cc-861e-62e5-a901-9b6c44d50d1d" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-050b-677e-978a-41d2e65abd62 ;
+    sosa:hasResult uuid:1ed934cc-861e-62e4-8a62-49220597483d ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-050b-6780-aa34-90df6ced07ba a qudt:QuantityValue,
+uuid:1ed934cc-8620-69ec-b29f-83052b3c6e25 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-050b-6780-aa34-90df6ced07ba" ;
+    rdfs:label "Result-1ed934cc-8620-69ec-b29f-83052b3c6e25" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8620-69ec-b29f-83052b3c6e25" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/volume_flow/scaled/data/18000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-050b-6781-ae67-6e4190b56bab a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-050b-6781-ae67-6e4190b56bab" ;
+uuid:1ed934cc-8620-69ed-a850-878fd87c8101 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8620-69ed-a850-878fd87c8101" ;
+    dcterms:identifier "1ed934cc-8620-69ed-a850-878fd87c8101" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-050b-6780-aa34-90df6ced07ba ;
+    sosa:hasResult uuid:1ed934cc-8620-69ec-b29f-83052b3c6e25 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-050b-6782-b3c0-b7fc08f242be a qudt:QuantityValue,
+uuid:1ed934cc-8620-69ee-b692-bf464cb0921a a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-050b-6782-b3c0-b7fc08f242be" ;
+    rdfs:label "Result-1ed934cc-8620-69ee-b692-bf464cb0921a" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8620-69ee-b692-bf464cb0921a" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_1/scaled/data/20000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-050b-6783-b7c6-4b03d2dea7e3 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-050b-6783-b7c6-4b03d2dea7e3" ;
+uuid:1ed934cc-8623-60fd-bc85-844bd2eb6bd2 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8623-60fd-bc85-844bd2eb6bd2" ;
+    dcterms:identifier "1ed934cc-8623-60fd-bc85-844bd2eb6bd2" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-050b-6782-b3c0-b7fc08f242be ;
+    sosa:hasResult uuid:1ed934cc-8620-69ee-b692-bf464cb0921a ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-050b-6784-a922-6a2b1aa056eb a qudt:QuantityValue,
+uuid:1ed934cc-8625-67f5-87e0-1ca0739d8826 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-050b-6784-a922-6a2b1aa056eb" ;
+    rdfs:label "Result-1ed934cc-8625-67f5-87e0-1ca0739d8826" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8625-67f5-87e0-1ca0739d8826" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_2/scaled/data/20000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-050d-6e90-9c04-cc00c696c830 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-050d-6e90-9c04-cc00c696c830" ;
+uuid:1ed934cc-862a-664f-83bd-345925167189 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-862a-664f-83bd-345925167189" ;
+    dcterms:identifier "1ed934cc-862a-664f-83bd-345925167189" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-050b-6784-a922-6a2b1aa056eb ;
+    sosa:hasResult uuid:1ed934cc-8625-67f5-87e0-1ca0739d8826 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-050d-6e91-8f01-00cb25618bcc a qudt:QuantityValue,
+uuid:1ed934cc-862c-6d32-a543-ac5d1bc72c61 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-050d-6e91-8f01-00cb25618bcc" ;
+    rdfs:label "Result-1ed934cc-862c-6d32-a543-ac5d1bc72c61" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-862c-6d32-a543-ac5d1bc72c61" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_3/scaled/data/20000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-050d-6e92-9722-a8059f32ebee a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-050d-6e92-9722-a8059f32ebee" ;
+uuid:1ed934cc-862c-6d33-b869-9d674ccbb763 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-862c-6d33-b869-9d674ccbb763" ;
+    dcterms:identifier "1ed934cc-862c-6d33-b869-9d674ccbb763" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-050d-6e91-8f01-00cb25618bcc ;
+    sosa:hasResult uuid:1ed934cc-862c-6d32-a543-ac5d1bc72c61 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-050d-6e93-b3ae-918634b75521 a qudt:QuantityValue,
+uuid:1ed934cc-8631-6b4a-bf1b-eabfcff430d8 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-050d-6e93-b3ae-918634b75521" ;
+    rdfs:label "Result-1ed934cc-8631-6b4a-bf1b-eabfcff430d8" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8631-6b4a-bf1b-eabfcff430d8" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/rotational_speed/scaled/data/20000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-050d-6e94-ad59-6689630f5d7e a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-050d-6e94-ad59-6689630f5d7e" ;
+uuid:1ed934cc-8634-6236-9ab6-ee1908b51790 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8634-6236-9ab6-ee1908b51790" ;
+    dcterms:identifier "1ed934cc-8634-6236-9ab6-ee1908b51790" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-050d-6e93-b3ae-918634b75521 ;
+    sosa:hasResult uuid:1ed934cc-8631-6b4a-bf1b-eabfcff430d8 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-050d-6e95-a9b8-8ba9ca9c0e41 a qudt:QuantityValue,
+uuid:1ed934cc-8634-6237-8cb4-035d373c6bd4 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-050d-6e95-a9b8-8ba9ca9c0e41" ;
+    rdfs:label "Result-1ed934cc-8634-6237-8cb4-035d373c6bd4" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8634-6237-8cb4-035d373c6bd4" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_1/scaled/data/20000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-050d-6e96-8b4b-6bdf58dfa80b a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-050d-6e96-8b4b-6bdf58dfa80b" ;
+uuid:1ed934cc-863d-6e81-b974-6cd9e50018cb a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-863d-6e81-b974-6cd9e50018cb" ;
+    dcterms:identifier "1ed934cc-863d-6e81-b974-6cd9e50018cb" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-050d-6e95-a9b8-8ba9ca9c0e41 ;
+    sosa:hasResult uuid:1ed934cc-8634-6237-8cb4-035d373c6bd4 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0510-65a1-aad4-a6da9e490e28 a qudt:QuantityValue,
+uuid:1ed934cc-8640-6575-8783-bd4a5f1e58ec a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0510-65a1-aad4-a6da9e490e28" ;
+    rdfs:label "Result-1ed934cc-8640-6575-8783-bd4a5f1e58ec" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8640-6575-8783-bd4a5f1e58ec" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_2/scaled/data/20000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0510-65a2-a3f6-18c115cba9e9 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0510-65a2-a3f6-18c115cba9e9" ;
+uuid:1ed934cc-8642-6c74-ae9a-215980ec87a6 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8642-6c74-ae9a-215980ec87a6" ;
+    dcterms:identifier "1ed934cc-8642-6c74-ae9a-215980ec87a6" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0510-65a1-aad4-a6da9e490e28 ;
+    sosa:hasResult uuid:1ed934cc-8640-6575-8783-bd4a5f1e58ec ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0510-65a3-a51c-c464efa90ed2 a qudt:QuantityValue,
+uuid:1ed934cc-8645-638a-84dd-ed80ad5dfe50 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0510-65a3-a51c-c464efa90ed2" ;
+    rdfs:label "Result-1ed934cc-8645-638a-84dd-ed80ad5dfe50" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8645-638a-84dd-ed80ad5dfe50" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_tank/scaled/data/20000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0510-65a4-8c1a-f6a2c61fb128 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0510-65a4-8c1a-f6a2c61fb128" ;
+uuid:1ed934cc-8647-6a85-a112-c7cc210e3c76 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8647-6a85-a112-c7cc210e3c76" ;
+    dcterms:identifier "1ed934cc-8647-6a85-a112-c7cc210e3c76" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0510-65a3-a51c-c464efa90ed2 ;
+    sosa:hasResult uuid:1ed934cc-8645-638a-84dd-ed80ad5dfe50 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0510-65a5-8da2-223cd7f652b9 a qudt:QuantityValue,
+uuid:1ed934cc-8647-6a86-a743-0a3f8342112b a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0510-65a5-8da2-223cd7f652b9" ;
+    rdfs:label "Result-1ed934cc-8647-6a86-a743-0a3f8342112b" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8647-6a86-a743-0a3f8342112b" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/torque/scaled/data/20000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0510-65a6-8b4f-fdbf81b6cd5a a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0510-65a6-8b4f-fdbf81b6cd5a" ;
+uuid:1ed934cc-864a-6184-b9a2-439408735a86 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-864a-6184-b9a2-439408735a86" ;
+    dcterms:identifier "1ed934cc-864a-6184-b9a2-439408735a86" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0510-65a5-8da2-223cd7f652b9 ;
+    sosa:hasResult uuid:1ed934cc-8647-6a86-a743-0a3f8342112b ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0510-65a7-a5cd-ccb9397480c9 a qudt:QuantityValue,
+uuid:1ed934cc-864a-6185-8c5f-f97fe5d2ecdb a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0510-65a7-a5cd-ccb9397480c9" ;
+    rdfs:label "Result-1ed934cc-864a-6185-8c5f-f97fe5d2ecdb" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-864a-6185-8c5f-f97fe5d2ecdb" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/valve_position/scaled/data/20000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0512-6cb4-a60f-853579ca8034 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0512-6cb4-a60f-853579ca8034" ;
+uuid:1ed934cc-864c-688c-9b02-c7d6bc396ae0 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-864c-688c-9b02-c7d6bc396ae0" ;
+    dcterms:identifier "1ed934cc-864c-688c-9b02-c7d6bc396ae0" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0510-65a7-a5cd-ccb9397480c9 ;
+    sosa:hasResult uuid:1ed934cc-864a-6185-8c5f-f97fe5d2ecdb ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0512-6cb5-a349-0db41138b123 a qudt:QuantityValue,
+uuid:1ed934cc-864c-688d-b631-852f7508d23c a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0512-6cb5-a349-0db41138b123" ;
+    rdfs:label "Result-1ed934cc-864c-688d-b631-852f7508d23c" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-864c-688d-b631-852f7508d23c" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/volume_flow/scaled/data/20000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0512-6cb6-a386-11ba7d76b5d2 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0512-6cb6-a386-11ba7d76b5d2" ;
+uuid:1ed934cc-864e-6f9e-a450-535b4ce3cce8 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-864e-6f9e-a450-535b4ce3cce8" ;
+    dcterms:identifier "1ed934cc-864e-6f9e-a450-535b4ce3cce8" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0512-6cb5-a349-0db41138b123 ;
+    sosa:hasResult uuid:1ed934cc-864c-688d-b631-852f7508d23c ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0512-6cb7-b19b-95387fde4f8c a qudt:QuantityValue,
+uuid:1ed934cc-8651-66a5-b4c7-4352bfd07b87 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0512-6cb7-b19b-95387fde4f8c" ;
+    rdfs:label "Result-1ed934cc-8651-66a5-b4c7-4352bfd07b87" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8651-66a5-b4c7-4352bfd07b87" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_1/scaled/data/22000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0512-6cb8-9316-0015a845e687 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0512-6cb8-9316-0015a845e687" ;
+uuid:1ed934cc-8651-66a6-ad13-d9540a18e487 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8651-66a6-ad13-d9540a18e487" ;
+    dcterms:identifier "1ed934cc-8651-66a6-ad13-d9540a18e487" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0512-6cb7-b19b-95387fde4f8c ;
+    sosa:hasResult uuid:1ed934cc-8651-66a5-b4c7-4352bfd07b87 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0512-6cb9-a649-5a5e9eebf8c6 a qudt:QuantityValue,
+uuid:1ed934cc-8653-6dac-b264-e0d2a7747f2a a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0512-6cb9-a649-5a5e9eebf8c6" ;
+    rdfs:label "Result-1ed934cc-8653-6dac-b264-e0d2a7747f2a" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8653-6dac-b264-e0d2a7747f2a" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_2/scaled/data/22000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0512-6cba-be24-2ad535869314 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0512-6cba-be24-2ad535869314" ;
+uuid:1ed934cc-8653-6dad-99dd-6ca45c336fa6 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8653-6dad-99dd-6ca45c336fa6" ;
+    dcterms:identifier "1ed934cc-8653-6dad-99dd-6ca45c336fa6" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0512-6cb9-a649-5a5e9eebf8c6 ;
+    sosa:hasResult uuid:1ed934cc-8653-6dac-b264-e0d2a7747f2a ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0515-63c6-a744-4daf6740bd1a a qudt:QuantityValue,
+uuid:1ed934cc-8653-6dae-8a23-27300a392565 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0515-63c6-a744-4daf6740bd1a" ;
+    rdfs:label "Result-1ed934cc-8653-6dae-8a23-27300a392565" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8653-6dae-8a23-27300a392565" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_3/scaled/data/22000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0515-63c7-9fb3-5abbe6ebf909 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0515-63c7-9fb3-5abbe6ebf909" ;
+uuid:1ed934cc-8656-64b2-b1cd-4475b2a4ff91 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8656-64b2-b1cd-4475b2a4ff91" ;
+    dcterms:identifier "1ed934cc-8656-64b2-b1cd-4475b2a4ff91" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0515-63c6-a744-4daf6740bd1a ;
+    sosa:hasResult uuid:1ed934cc-8653-6dae-8a23-27300a392565 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0515-63c8-aa54-b6ac24387433 a qudt:QuantityValue,
+uuid:1ed934cc-8656-64b3-9e6d-6fc4537560a1 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0515-63c8-aa54-b6ac24387433" ;
+    rdfs:label "Result-1ed934cc-8656-64b3-9e6d-6fc4537560a1" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8656-64b3-9e6d-6fc4537560a1" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/rotational_speed/scaled/data/22000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0515-63c9-a140-ff7e0a6eec0e a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0515-63c9-a140-ff7e0a6eec0e" ;
+uuid:1ed934cc-8656-64b4-a4cc-1035ba921cec a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8656-64b4-a4cc-1035ba921cec" ;
+    dcterms:identifier "1ed934cc-8656-64b4-a4cc-1035ba921cec" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0515-63c8-aa54-b6ac24387433 ;
+    sosa:hasResult uuid:1ed934cc-8656-64b3-9e6d-6fc4537560a1 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0515-63ca-9c1b-fa8df48935b8 a qudt:QuantityValue,
+uuid:1ed934cc-8658-6bbd-834c-869270fcfd40 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0515-63ca-9c1b-fa8df48935b8" ;
+    rdfs:label "Result-1ed934cc-8658-6bbd-834c-869270fcfd40" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8658-6bbd-834c-869270fcfd40" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_1/scaled/data/22000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0515-63cb-bc6a-2b68dd3d487c a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0515-63cb-bc6a-2b68dd3d487c" ;
+uuid:1ed934cc-8658-6bbe-a72b-0b2a4e932063 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8658-6bbe-a72b-0b2a4e932063" ;
+    dcterms:identifier "1ed934cc-8658-6bbe-a72b-0b2a4e932063" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0515-63ca-9c1b-fa8df48935b8 ;
+    sosa:hasResult uuid:1ed934cc-8658-6bbd-834c-869270fcfd40 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0515-63cc-9fb2-27fa7ade6954 a qudt:QuantityValue,
+uuid:1ed934cc-8658-6bbf-b3cc-26eef8a8b4a4 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0515-63cc-9fb2-27fa7ade6954" ;
+    rdfs:label "Result-1ed934cc-8658-6bbf-b3cc-26eef8a8b4a4" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8658-6bbf-b3cc-26eef8a8b4a4" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_2/scaled/data/22000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0517-6ad9-b5a5-d1f05e417032 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0517-6ad9-b5a5-d1f05e417032" ;
+uuid:1ed934cc-865b-62c9-a996-873fb5fe9e38 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-865b-62c9-a996-873fb5fe9e38" ;
+    dcterms:identifier "1ed934cc-865b-62c9-a996-873fb5fe9e38" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0515-63cc-9fb2-27fa7ade6954 ;
+    sosa:hasResult uuid:1ed934cc-8658-6bbf-b3cc-26eef8a8b4a4 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0517-6ada-b7a9-f85158a1e774 a qudt:QuantityValue,
+uuid:1ed934cc-865b-62ca-b8cd-907bb6d30c1c a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0517-6ada-b7a9-f85158a1e774" ;
+    rdfs:label "Result-1ed934cc-865b-62ca-b8cd-907bb6d30c1c" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-865b-62ca-b8cd-907bb6d30c1c" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_tank/scaled/data/22000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0517-6adb-9d11-589aab16b077 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0517-6adb-9d11-589aab16b077" ;
+uuid:1ed934cc-865d-69ce-aaa6-d087a085216b a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-865d-69ce-aaa6-d087a085216b" ;
+    dcterms:identifier "1ed934cc-865d-69ce-aaa6-d087a085216b" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0517-6ada-b7a9-f85158a1e774 ;
+    sosa:hasResult uuid:1ed934cc-865b-62ca-b8cd-907bb6d30c1c ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0517-6adc-a2e3-a0e9d61bd951 a qudt:QuantityValue,
+uuid:1ed934cc-865d-69cf-af5f-a5972a68956f a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0517-6adc-a2e3-a0e9d61bd951" ;
+    rdfs:label "Result-1ed934cc-865d-69cf-af5f-a5972a68956f" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-865d-69cf-af5f-a5972a68956f" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/torque/scaled/data/22000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0517-6add-bf70-4e292671043f a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0517-6add-bf70-4e292671043f" ;
+uuid:1ed934cc-8667-6608-8ac7-2013f5441c2c a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8667-6608-8ac7-2013f5441c2c" ;
+    dcterms:identifier "1ed934cc-8667-6608-8ac7-2013f5441c2c" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0517-6adc-a2e3-a0e9d61bd951 ;
+    sosa:hasResult uuid:1ed934cc-865d-69cf-af5f-a5972a68956f ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0517-6ade-a675-d8bcdf465b96 a qudt:QuantityValue,
+uuid:1ed934cc-8669-6d18-8d79-d33420cb3265 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0517-6ade-a675-d8bcdf465b96" ;
+    rdfs:label "Result-1ed934cc-8669-6d18-8d79-d33420cb3265" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8669-6d18-8d79-d33420cb3265" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/valve_position/scaled/data/22000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0517-6adf-b5e4-4ddbaf739211 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0517-6adf-b5e4-4ddbaf739211" ;
+uuid:1ed934cc-8669-6d19-9fb0-76500d3657ce a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8669-6d19-9fb0-76500d3657ce" ;
+    dcterms:identifier "1ed934cc-8669-6d19-9fb0-76500d3657ce" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0517-6ade-a675-d8bcdf465b96 ;
+    sosa:hasResult uuid:1ed934cc-8669-6d18-8d79-d33420cb3265 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-051a-61eb-b6dc-4192f3835003 a qudt:QuantityValue,
+uuid:1ed934cc-866c-6419-af84-21ca4f96ba9a a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-051a-61eb-b6dc-4192f3835003" ;
+    rdfs:label "Result-1ed934cc-866c-6419-af84-21ca4f96ba9a" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-866c-6419-af84-21ca4f96ba9a" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/volume_flow/scaled/data/22000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-051a-61ec-97ff-9dd8a6fd78fe a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-051a-61ec-97ff-9dd8a6fd78fe" ;
+uuid:1ed934cc-866c-641a-bb89-e9543d7ed704 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-866c-641a-bb89-e9543d7ed704" ;
+    dcterms:identifier "1ed934cc-866c-641a-bb89-e9543d7ed704" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-051a-61eb-b6dc-4192f3835003 ;
+    sosa:hasResult uuid:1ed934cc-866c-6419-af84-21ca4f96ba9a ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-051a-61ed-8e10-8d639443ac67 a qudt:QuantityValue,
+uuid:1ed934cc-866e-6b1a-b7c2-57d526777f1c a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-051a-61ed-8e10-8d639443ac67" ;
+    rdfs:label "Result-1ed934cc-866e-6b1a-b7c2-57d526777f1c" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-866e-6b1a-b7c2-57d526777f1c" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_1/scaled/data/5000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-051a-61ee-8484-f82f3012f7cf a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-051a-61ee-8484-f82f3012f7cf" ;
+uuid:1ed934cc-866e-6b1b-97e3-099f17144f32 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-866e-6b1b-97e3-099f17144f32" ;
+    dcterms:identifier "1ed934cc-866e-6b1b-97e3-099f17144f32" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-051a-61ed-8e10-8d639443ac67 ;
+    sosa:hasResult uuid:1ed934cc-866e-6b1a-b7c2-57d526777f1c ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-051a-61ef-b71e-297ec60b306f a qudt:QuantityValue,
+uuid:1ed934cc-866e-6b1c-a097-c9ebe120728b a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-051a-61ef-b71e-297ec60b306f" ;
+    rdfs:label "Result-1ed934cc-866e-6b1c-a097-c9ebe120728b" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-866e-6b1c-a097-c9ebe120728b" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_2/scaled/data/5000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-051a-61f0-a734-2e937f3e92b6 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-051a-61f0-a734-2e937f3e92b6" ;
+uuid:1ed934cc-8671-6224-91b9-cedde1b20447 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8671-6224-91b9-cedde1b20447" ;
+    dcterms:identifier "1ed934cc-8671-6224-91b9-cedde1b20447" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-051a-61ef-b71e-297ec60b306f ;
+    sosa:hasResult uuid:1ed934cc-866e-6b1c-a097-c9ebe120728b ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-051a-61f1-9b7d-437b154513fd a qudt:QuantityValue,
+uuid:1ed934cc-8671-6225-baae-000a9248eab1 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-051a-61f1-9b7d-437b154513fd" ;
+    rdfs:label "Result-1ed934cc-8671-6225-baae-000a9248eab1" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8671-6225-baae-000a9248eab1" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_3/scaled/data/5000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-051c-68fb-84d5-787772e31be5 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-051c-68fb-84d5-787772e31be5" ;
+uuid:1ed934cc-8673-692e-9dab-2e684d04856c a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8673-692e-9dab-2e684d04856c" ;
+    dcterms:identifier "1ed934cc-8673-692e-9dab-2e684d04856c" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-051a-61f1-9b7d-437b154513fd ;
+    sosa:hasResult uuid:1ed934cc-8671-6225-baae-000a9248eab1 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-051c-68fc-9772-49846e49c65c a qudt:QuantityValue,
+uuid:1ed934cc-8673-692f-acfa-0a2342119e3f a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-051c-68fc-9772-49846e49c65c" ;
+    rdfs:label "Result-1ed934cc-8673-692f-acfa-0a2342119e3f" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8673-692f-acfa-0a2342119e3f" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/rotational_speed/scaled/data/5000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-051c-68fd-ab0f-49bd1dfd249e a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-051c-68fd-ab0f-49bd1dfd249e" ;
+uuid:1ed934cc-8673-6930-b6fb-219bc1f0e64a a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8673-6930-b6fb-219bc1f0e64a" ;
+    dcterms:identifier "1ed934cc-8673-6930-b6fb-219bc1f0e64a" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-051c-68fc-9772-49846e49c65c ;
+    sosa:hasResult uuid:1ed934cc-8673-692f-acfa-0a2342119e3f ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-051c-68fe-a2a2-e39a6561ebc4 a qudt:QuantityValue,
+uuid:1ed934cc-8676-6033-a64d-188f7e386374 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-051c-68fe-a2a2-e39a6561ebc4" ;
+    rdfs:label "Result-1ed934cc-8676-6033-a64d-188f7e386374" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8676-6033-a64d-188f7e386374" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_1/scaled/data/5000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-051c-68ff-807e-cb604b15eedb a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-051c-68ff-807e-cb604b15eedb" ;
+uuid:1ed934cc-8676-6034-9b45-9e2835fcea44 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8676-6034-9b45-9e2835fcea44" ;
+    dcterms:identifier "1ed934cc-8676-6034-9b45-9e2835fcea44" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-051c-68fe-a2a2-e39a6561ebc4 ;
+    sosa:hasResult uuid:1ed934cc-8676-6033-a64d-188f7e386374 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-051c-6900-b57f-43060b938eda a qudt:QuantityValue,
+uuid:1ed934cc-8676-6035-a3d2-5d6624f75dab a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-051c-6900-b57f-43060b938eda" ;
+    rdfs:label "Result-1ed934cc-8676-6035-a3d2-5d6624f75dab" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8676-6035-a3d2-5d6624f75dab" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_2/scaled/data/5000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-051c-6901-9bc9-1b8f9078ee56 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-051c-6901-9bc9-1b8f9078ee56" ;
+uuid:1ed934cc-8678-6743-b1d3-76e1311959c8 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8678-6743-b1d3-76e1311959c8" ;
+    dcterms:identifier "1ed934cc-8678-6743-b1d3-76e1311959c8" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-051c-6900-b57f-43060b938eda ;
+    sosa:hasResult uuid:1ed934cc-8676-6035-a3d2-5d6624f75dab ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-051f-6011-8a6a-fb5cb6f7476c a qudt:QuantityValue,
+uuid:1ed934cc-8678-6744-b5b2-360d8c1e1d89 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-051f-6011-8a6a-fb5cb6f7476c" ;
+    rdfs:label "Result-1ed934cc-8678-6744-b5b2-360d8c1e1d89" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8678-6744-b5b2-360d8c1e1d89" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_tank/scaled/data/5000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-051f-6012-a2e6-d5f61f00d13d a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-051f-6012-a2e6-d5f61f00d13d" ;
+uuid:1ed934cc-8678-6745-92ca-2977886eb097 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8678-6745-92ca-2977886eb097" ;
+    dcterms:identifier "1ed934cc-8678-6745-92ca-2977886eb097" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-051f-6011-8a6a-fb5cb6f7476c ;
+    sosa:hasResult uuid:1ed934cc-8678-6744-b5b2-360d8c1e1d89 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-051f-6013-ad0f-836074a2d318 a qudt:QuantityValue,
+uuid:1ed934cc-867a-6e48-ac21-f8f70d5977fe a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-051f-6013-ad0f-836074a2d318" ;
+    rdfs:label "Result-1ed934cc-867a-6e48-ac21-f8f70d5977fe" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-867a-6e48-ac21-f8f70d5977fe" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/torque/scaled/data/5000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-051f-6014-9528-58397303c92f a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-051f-6014-9528-58397303c92f" ;
+uuid:1ed934cc-867a-6e49-8fcf-8c46e474f038 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-867a-6e49-8fcf-8c46e474f038" ;
+    dcterms:identifier "1ed934cc-867a-6e49-8fcf-8c46e474f038" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-051f-6013-ad0f-836074a2d318 ;
+    sosa:hasResult uuid:1ed934cc-867a-6e48-ac21-f8f70d5977fe ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-051f-6015-ad21-cd21b92b832b a qudt:QuantityValue,
+uuid:1ed934cc-867d-6555-b37b-afa436071832 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-051f-6015-ad21-cd21b92b832b" ;
+    rdfs:label "Result-1ed934cc-867d-6555-b37b-afa436071832" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-867d-6555-b37b-afa436071832" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/valve_position/scaled/data/5000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-051f-6016-a0a8-cd2f4efd348e a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-051f-6016-a0a8-cd2f4efd348e" ;
+uuid:1ed934cc-867d-6556-ae8a-55caafcca1fc a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-867d-6556-ae8a-55caafcca1fc" ;
+    dcterms:identifier "1ed934cc-867d-6556-ae8a-55caafcca1fc" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-051f-6015-ad21-cd21b92b832b ;
+    sosa:hasResult uuid:1ed934cc-867d-6555-b37b-afa436071832 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-051f-6017-88f1-ac1d71da609e a qudt:QuantityValue,
+uuid:1ed934cc-867d-6557-8a4c-e6fe4ced85a3 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-051f-6017-88f1-ac1d71da609e" ;
+    rdfs:label "Result-1ed934cc-867d-6557-8a4c-e6fe4ced85a3" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-867d-6557-8a4c-e6fe4ced85a3" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/volume_flow/scaled/data/5000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0521-6720-9a5d-15583442a39a a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0521-6720-9a5d-15583442a39a" ;
+uuid:1ed934cc-867f-6c5b-babf-38af4a951259 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-867f-6c5b-babf-38af4a951259" ;
+    dcterms:identifier "1ed934cc-867f-6c5b-babf-38af4a951259" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-051f-6017-88f1-ac1d71da609e ;
+    sosa:hasResult uuid:1ed934cc-867d-6557-8a4c-e6fe4ced85a3 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0521-6721-98ed-c6be1dd99995 a qudt:QuantityValue,
+uuid:1ed934cc-867f-6c5c-9ecc-4e7738aa1228 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0521-6721-98ed-c6be1dd99995" ;
+    rdfs:label "Result-1ed934cc-867f-6c5c-9ecc-4e7738aa1228" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-867f-6c5c-9ecc-4e7738aa1228" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_1/scaled/data/5500> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0521-6722-b772-3c91fb4461f3 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0521-6722-b772-3c91fb4461f3" ;
+uuid:1ed934cc-867f-6c5d-b6ad-064e20d2af76 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-867f-6c5d-b6ad-064e20d2af76" ;
+    dcterms:identifier "1ed934cc-867f-6c5d-b6ad-064e20d2af76" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0521-6721-98ed-c6be1dd99995 ;
+    sosa:hasResult uuid:1ed934cc-867f-6c5c-9ecc-4e7738aa1228 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0521-6723-bd57-e5ede9f5cd63 a qudt:QuantityValue,
+uuid:1ed934cc-8682-6366-80da-d96a16bed284 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0521-6723-bd57-e5ede9f5cd63" ;
+    rdfs:label "Result-1ed934cc-8682-6366-80da-d96a16bed284" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8682-6366-80da-d96a16bed284" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_2/scaled/data/5500> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0521-6724-9e02-b51f8fbf9002 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0521-6724-9e02-b51f8fbf9002" ;
+uuid:1ed934cc-8682-6367-9a25-7d1b6dae1996 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8682-6367-9a25-7d1b6dae1996" ;
+    dcterms:identifier "1ed934cc-8682-6367-9a25-7d1b6dae1996" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0521-6723-bd57-e5ede9f5cd63 ;
+    sosa:hasResult uuid:1ed934cc-8682-6366-80da-d96a16bed284 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0521-6725-b652-07ff0344e9dd a qudt:QuantityValue,
+uuid:1ed934cc-8682-6368-89aa-88f5052e2cad a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0521-6725-b652-07ff0344e9dd" ;
+    rdfs:label "Result-1ed934cc-8682-6368-89aa-88f5052e2cad" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8682-6368-89aa-88f5052e2cad" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_3/scaled/data/5500> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0521-6726-b2e6-43a88c2bb0ae a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0521-6726-b2e6-43a88c2bb0ae" ;
+uuid:1ed934cc-8684-6a71-b551-d3ceaee78f6f a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8684-6a71-b551-d3ceaee78f6f" ;
+    dcterms:identifier "1ed934cc-8684-6a71-b551-d3ceaee78f6f" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0521-6725-b652-07ff0344e9dd ;
+    sosa:hasResult uuid:1ed934cc-8682-6368-89aa-88f5052e2cad ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0523-6e34-a04a-3cfe49f32895 a qudt:QuantityValue,
+uuid:1ed934cc-8684-6a72-8d93-12eecf6106a9 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0523-6e34-a04a-3cfe49f32895" ;
+    rdfs:label "Result-1ed934cc-8684-6a72-8d93-12eecf6106a9" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8684-6a72-8d93-12eecf6106a9" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/rotational_speed/scaled/data/5500> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0523-6e35-81be-24ff56abcb2a a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0523-6e35-81be-24ff56abcb2a" ;
+uuid:1ed934cc-8684-6a73-9f01-3b74c57e3203 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8684-6a73-9f01-3b74c57e3203" ;
+    dcterms:identifier "1ed934cc-8684-6a73-9f01-3b74c57e3203" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0523-6e34-a04a-3cfe49f32895 ;
+    sosa:hasResult uuid:1ed934cc-8684-6a72-8d93-12eecf6106a9 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0523-6e36-8747-514c68ec6ab4 a qudt:QuantityValue,
+uuid:1ed934cc-8687-617a-84b8-bde37a855a91 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0523-6e36-8747-514c68ec6ab4" ;
+    rdfs:label "Result-1ed934cc-8687-617a-84b8-bde37a855a91" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8687-617a-84b8-bde37a855a91" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_1/scaled/data/5500> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0523-6e37-ab8d-57f0d2b564f9 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0523-6e37-ab8d-57f0d2b564f9" ;
+uuid:1ed934cc-868e-66ae-93c5-affd2f7c8b03 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-868e-66ae-93c5-affd2f7c8b03" ;
+    dcterms:identifier "1ed934cc-868e-66ae-93c5-affd2f7c8b03" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0523-6e36-8747-514c68ec6ab4 ;
+    sosa:hasResult uuid:1ed934cc-8687-617a-84b8-bde37a855a91 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0523-6e38-86f3-d12db3f8f9a7 a qudt:QuantityValue,
+uuid:1ed934cc-8690-6dfb-8212-52a2ef08fef2 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0523-6e38-86f3-d12db3f8f9a7" ;
+    rdfs:label "Result-1ed934cc-8690-6dfb-8212-52a2ef08fef2" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8690-6dfb-8212-52a2ef08fef2" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_2/scaled/data/5500> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0523-6e39-bab9-025544176ff3 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0523-6e39-bab9-025544176ff3" ;
+uuid:1ed934cc-8693-64c2-ab45-ff674afbdf73 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8693-64c2-ab45-ff674afbdf73" ;
+    dcterms:identifier "1ed934cc-8693-64c2-ab45-ff674afbdf73" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0523-6e38-86f3-d12db3f8f9a7 ;
+    sosa:hasResult uuid:1ed934cc-8690-6dfb-8212-52a2ef08fef2 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0523-6e3a-b7e8-890314f23110 a qudt:QuantityValue,
+uuid:1ed934cc-8693-64c3-8555-c9749eb0f669 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0523-6e3a-b7e8-890314f23110" ;
+    rdfs:label "Result-1ed934cc-8693-64c3-8555-c9749eb0f669" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8693-64c3-8555-c9749eb0f669" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_tank/scaled/data/5500> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0526-6546-9767-69360eccd054 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0526-6546-9767-69360eccd054" ;
+uuid:1ed934cc-8693-64c4-b96e-1eb298e0c8fd a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8693-64c4-b96e-1eb298e0c8fd" ;
+    dcterms:identifier "1ed934cc-8693-64c4-b96e-1eb298e0c8fd" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0523-6e3a-b7e8-890314f23110 ;
+    sosa:hasResult uuid:1ed934cc-8693-64c3-8555-c9749eb0f669 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0526-6547-8cf2-8c877cf59e48 a qudt:QuantityValue,
+uuid:1ed934cc-8695-6bc0-9f69-33a0d63df9d6 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0526-6547-8cf2-8c877cf59e48" ;
+    rdfs:label "Result-1ed934cc-8695-6bc0-9f69-33a0d63df9d6" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8695-6bc0-9f69-33a0d63df9d6" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/torque/scaled/data/5500> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0526-6548-aaaa-18cd71e09170 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0526-6548-aaaa-18cd71e09170" ;
+uuid:1ed934cc-8695-6bc1-9b1f-fdd0d99ec92a a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8695-6bc1-9b1f-fdd0d99ec92a" ;
+    dcterms:identifier "1ed934cc-8695-6bc1-9b1f-fdd0d99ec92a" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0526-6547-8cf2-8c877cf59e48 ;
+    sosa:hasResult uuid:1ed934cc-8695-6bc0-9f69-33a0d63df9d6 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0526-6549-a793-7b03ed92a4ca a qudt:QuantityValue,
+uuid:1ed934cc-8695-6bc2-8f58-37ee9bef4c47 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0526-6549-a793-7b03ed92a4ca" ;
+    rdfs:label "Result-1ed934cc-8695-6bc2-8f58-37ee9bef4c47" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8695-6bc2-8f58-37ee9bef4c47" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/valve_position/scaled/data/5500> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0526-654a-a312-eb11056666c2 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0526-654a-a312-eb11056666c2" ;
+uuid:1ed934cc-8698-62cb-b805-c76b1af5fd10 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8698-62cb-b805-c76b1af5fd10" ;
+    dcterms:identifier "1ed934cc-8698-62cb-b805-c76b1af5fd10" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0526-6549-a793-7b03ed92a4ca ;
+    sosa:hasResult uuid:1ed934cc-8695-6bc2-8f58-37ee9bef4c47 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0526-654b-adc8-5dd639ea1794 a qudt:QuantityValue,
+uuid:1ed934cc-8698-62cc-b5c9-0b8cbfea601e a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0526-654b-adc8-5dd639ea1794" ;
+    rdfs:label "Result-1ed934cc-8698-62cc-b5c9-0b8cbfea601e" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-8698-62cc-b5c9-0b8cbfea601e" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/volume_flow/scaled/data/5500> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0526-654c-9e2d-2ec12d5fbe16 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0526-654c-9e2d-2ec12d5fbe16" ;
+uuid:1ed934cc-8698-62cd-99bd-2d20340f36c0 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-8698-62cd-99bd-2d20340f36c0" ;
+    dcterms:identifier "1ed934cc-8698-62cd-99bd-2d20340f36c0" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0526-654b-adc8-5dd639ea1794 ;
+    sosa:hasResult uuid:1ed934cc-8698-62cc-b5c9-0b8cbfea601e ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0528-6c5e-8c0d-bfe8661e8050 a qudt:QuantityValue,
+uuid:1ed934cc-869a-69d0-964a-98b11707baae a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0528-6c5e-8c0d-bfe8661e8050" ;
+    rdfs:label "Result-1ed934cc-869a-69d0-964a-98b11707baae" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-869a-69d0-964a-98b11707baae" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_1/scaled/data/8000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0528-6c5f-b882-57853f38fe26 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0528-6c5f-b882-57853f38fe26" ;
+uuid:1ed934cc-869a-69d1-85b0-1975b6faa6d1 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-869a-69d1-85b0-1975b6faa6d1" ;
+    dcterms:identifier "1ed934cc-869a-69d1-85b0-1975b6faa6d1" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0528-6c5e-8c0d-bfe8661e8050 ;
+    sosa:hasResult uuid:1ed934cc-869a-69d0-964a-98b11707baae ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0528-6c60-8b16-4341d12d9a0e a qudt:QuantityValue,
+uuid:1ed934cc-869d-60dd-ba10-168e995be694 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0528-6c60-8b16-4341d12d9a0e" ;
+    rdfs:label "Result-1ed934cc-869d-60dd-ba10-168e995be694" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-869d-60dd-ba10-168e995be694" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_2/scaled/data/8000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0528-6c61-9181-563d7dbb86e5 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0528-6c61-9181-563d7dbb86e5" ;
+uuid:1ed934cc-869d-60de-9e5e-ccef8ef5ac92 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-869d-60de-9e5e-ccef8ef5ac92" ;
+    dcterms:identifier "1ed934cc-869d-60de-9e5e-ccef8ef5ac92" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0528-6c60-8b16-4341d12d9a0e ;
+    sosa:hasResult uuid:1ed934cc-869d-60dd-ba10-168e995be694 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-0528-6c62-ba56-d3c2b4803abb a qudt:QuantityValue,
+uuid:1ed934cc-869d-60df-b8c7-631d148259ee a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-0528-6c62-ba56-d3c2b4803abb" ;
+    rdfs:label "Result-1ed934cc-869d-60df-b8c7-631d148259ee" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-869d-60df-b8c7-631d148259ee" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/pressure_3/scaled/data/8000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-0528-6c63-b6a4-de48bb0eba00 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-0528-6c63-b6a4-de48bb0eba00" ;
+uuid:1ed934cc-869f-67e1-8daa-40710df00cf7 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-869f-67e1-8daa-40710df00cf7" ;
+    dcterms:identifier "1ed934cc-869f-67e1-8daa-40710df00cf7" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-0528-6c62-ba56-d3c2b4803abb ;
+    sosa:hasResult uuid:1ed934cc-869d-60df-b8c7-631d148259ee ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-052b-636a-8322-339a2916c613 a qudt:QuantityValue,
+uuid:1ed934cc-869f-67e2-a793-c58733f3117f a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-052b-636a-8322-339a2916c613" ;
+    rdfs:label "Result-1ed934cc-869f-67e2-a793-c58733f3117f" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-869f-67e2-a793-c58733f3117f" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/rotational_speed/scaled/data/8000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-052b-636b-9358-faed7ce061fa a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-052b-636b-9358-faed7ce061fa" ;
+uuid:1ed934cc-869f-67e3-9ea0-cfd67538eb7a a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-869f-67e3-9ea0-cfd67538eb7a" ;
+    dcterms:identifier "1ed934cc-869f-67e3-9ea0-cfd67538eb7a" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-052b-636a-8322-339a2916c613 ;
+    sosa:hasResult uuid:1ed934cc-869f-67e2-a793-c58733f3117f ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-052b-636c-82cb-07dafd701a33 a qudt:QuantityValue,
+uuid:1ed934cc-86a1-6ee9-be25-f3f1057a37f2 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-052b-636c-82cb-07dafd701a33" ;
+    rdfs:label "Result-1ed934cc-86a1-6ee9-be25-f3f1057a37f2" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-86a1-6ee9-be25-f3f1057a37f2" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_1/scaled/data/8000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-052b-636d-96b2-bf3b138925dc a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-052b-636d-96b2-bf3b138925dc" ;
+uuid:1ed934cc-86a1-6eea-89f2-c625659c644d a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-86a1-6eea-89f2-c625659c644d" ;
+    dcterms:identifier "1ed934cc-86a1-6eea-89f2-c625659c644d" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-052b-636c-82cb-07dafd701a33 ;
+    sosa:hasResult uuid:1ed934cc-86a1-6ee9-be25-f3f1057a37f2 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-052b-636e-a0da-a6a5a896a7d0 a qudt:QuantityValue,
+uuid:1ed934cc-86a1-6eeb-8c04-a8b1100177cf a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-052b-636e-a0da-a6a5a896a7d0" ;
+    rdfs:label "Result-1ed934cc-86a1-6eeb-8c04-a8b1100177cf" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-86a1-6eeb-8c04-a8b1100177cf" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_2/scaled/data/8000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-052b-636f-a642-2ab8c24e8109 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-052b-636f-a642-2ab8c24e8109" ;
+uuid:1ed934cc-86a4-65f8-b9e6-7b07980cfee7 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-86a4-65f8-b9e6-7b07980cfee7" ;
+    dcterms:identifier "1ed934cc-86a4-65f8-b9e6-7b07980cfee7" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-052b-636e-a0da-a6a5a896a7d0 ;
+    sosa:hasResult uuid:1ed934cc-86a1-6eeb-8c04-a8b1100177cf ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-052b-6370-b15d-61ca6f7220cf a qudt:QuantityValue,
+uuid:1ed934cc-86a4-65f9-a116-e9f078f4d7db a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-052b-6370-b15d-61ca6f7220cf" ;
+    rdfs:label "Result-1ed934cc-86a4-65f9-a116-e9f078f4d7db" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-86a4-65f9-a116-e9f078f4d7db" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/temperature_tank/scaled/data/8000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-052b-6371-9a6f-698407bcf91e a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-052b-6371-9a6f-698407bcf91e" ;
+uuid:1ed934cc-86a4-65fa-ba12-6955ca564054 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-86a4-65fa-ba12-6955ca564054" ;
+    dcterms:identifier "1ed934cc-86a4-65fa-ba12-6955ca564054" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-052b-6370-b15d-61ca6f7220cf ;
+    sosa:hasResult uuid:1ed934cc-86a4-65f9-a116-e9f078f4d7db ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-052d-6a7c-a887-840f425f90e5 a qudt:QuantityValue,
+uuid:1ed934cc-86a6-6cfe-9604-4127f490fa4a a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-052d-6a7c-a887-840f425f90e5" ;
+    rdfs:label "Result-1ed934cc-86a6-6cfe-9604-4127f490fa4a" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-86a6-6cfe-9604-4127f490fa4a" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/torque/scaled/data/8000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-052d-6a7d-8211-b356f570dfae a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-052d-6a7d-8211-b356f570dfae" ;
+uuid:1ed934cc-86a6-6cff-b6c5-cd2035179bd3 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-86a6-6cff-b6c5-cd2035179bd3" ;
+    dcterms:identifier "1ed934cc-86a6-6cff-b6c5-cd2035179bd3" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-052d-6a7c-a887-840f425f90e5 ;
+    sosa:hasResult uuid:1ed934cc-86a6-6cfe-9604-4127f490fa4a ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-052d-6a7e-bd4c-8fd98b3cd4f1 a qudt:QuantityValue,
+uuid:1ed934cc-86a6-6d00-b580-c95b122c3772 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-052d-6a7e-bd4c-8fd98b3cd4f1" ;
+    rdfs:label "Result-1ed934cc-86a6-6d00-b580-c95b122c3772" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-86a6-6d00-b580-c95b122c3772" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/valve_position/scaled/data/8000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-052d-6a7f-843e-e7788f151792 a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-052d-6a7f-843e-e7788f151792" ;
+uuid:1ed934cc-86a9-640f-84c2-498db16b4987 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-86a9-640f-84c2-498db16b4987" ;
+    dcterms:identifier "1ed934cc-86a9-640f-84c2-498db16b4987" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-052d-6a7e-bd4c-8fd98b3cd4f1 ;
+    sosa:hasResult uuid:1ed934cc-86a6-6d00-b580-c95b122c3772 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
-uuid:1ed7197a-052d-6a80-b336-dace10a6e74f a qudt:QuantityValue,
+uuid:1ed934cc-86a9-6410-9835-a7f98cde95c9 a qudt:QuantityValue,
         dcat:Dataset,
         sosa:Result ;
-    rdfs:label "Result-1ed7197a-052d-6a80-b336-dace10a6e74f" ;
+    rdfs:label "Result-1ed934cc-86a9-6410-9835-a7f98cde95c9" ;
     dcterms:creator "nstoermer" ;
+    dcterms:identifier "1ed934cc-86a9-6410-9835-a7f98cde95c9" ;
     dcterms:title "None" ;
     qudt:numericValue <#/rdf-metadata/run_01/pipelines/measured/volume_flow/scaled/data/8000> ;
     qudt:unit unit:UNITLESS .
 
-uuid:1ed7197a-052d-6a81-a1c4-32469d4f1bfc a sosa:Observation ;
-    rdfs:label "Observation-1ed7197a-052d-6a81-a1c4-32469d4f1bfc" ;
+uuid:1ed934cc-86a9-6411-8150-ad661f32a9c0 a sosa:Observation ;
+    rdfs:label "Observation-1ed934cc-86a9-6411-8150-ad661f32a9c0" ;
+    dcterms:identifier "1ed934cc-86a9-6411-8150-ad661f32a9c0" ;
     sosa:hasFeatureOfInterest <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    sosa:hasResult uuid:1ed7197a-052d-6a80-b336-dace10a6e74f ;
+    sosa:hasResult uuid:1ed934cc-86a9-6410-9835-a7f98cde95c9 ;
     sosa:madeBySensor <180311592> ;
     sosa:observedProperty <volume_flow> .
 
@@ -2259,95 +2481,103 @@ uuid:1ed7197a-052d-6a81-a1c4-32469d4f1bfc a sosa:Observation ;
     rdfs:label "electric ball valve" ;
     dbo:owner "FST" ;
     dcterms:identifier "KVTF-L6-AJA-B12-DN25/20-D15-B02-PN40" ;
+    schema:manufacturer "Somas" ;
+    schema:serialNumber "KVTF-L6-AJA-B12-DN25/20-D15-B02-PN40" ;
     rdfs:comment "electric ball valve" ;
     sosa:actsOnProperty <BallValve/FlowCoefficient> ;
     sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    ssn:hasProperty <valve_position> ;
-    schema:manufacturer "Somas" ;
-    schema:serialNumber "KVTF-L6-AJA-B12-DN25/20-D15-B02-PN40" .
+    ssn:hasProperty <valve_position> .
 
 <BallValve/FlowCoefficient> a qudt:Quantity,
-        sosa:ObservableProperty ;
+        ssn:Property ;
     rdfs:label "flow coefficient of ball valve" ;
     qudt:hasQuantityKind quantitykind:VolumeFlowRate ;
     ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <ElectricMotor> a dcmitype:PhysicalObject,
-        sosa:Actuator,
-        sosa:FeatureOfInterest ;
+        sosa:Actuator ;
     rdfs:label "electric motor for the pump shaft" ;
     dbo:owner "FST" ;
     dcterms:identifier "LSMV 160 MP" ;
+    schema:manufacturer "Leroy Somer" ;
+    schema:serialNumber "LSMV 160 MP" ;
     rdfs:comment "electric motor for the pump shaft" ;
     sosa:actsOnProperty <rotational_speed> ;
     sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
-    ssn:hasProperty <rotational_speed> ;
-    schema:manufacturer "Leroy Somer" ;
-    schema:serialNumber "LSMV 160 MP" .
+    ssn:hasProperty <rotational_speed> .
 
 <NeedleValve/FlowCoefficient> a qudt:Quantity,
-        sosa:ObservableProperty ;
+        ssn:Property ;
     rdfs:label "flow coefficient of needle valve" ;
     qudt:hasQuantityKind quantitykind:VolumeFlowRate ;
     ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <ParticleNumberDensity> a qudt:Quantity,
-        sosa:ObservableProperty ;
+        ssn:Property ;
     rdfs:label "number density of contamination particles in hydraulic fluid" ;
     qudt:hasQuantityKind quantitykind:ParticleNumberDensity ;
     ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <pressure_1> a qudt:Quantity,
-        sosa:ObservableProperty ;
+        sosa:ObservableProperty,
+        ssn:Property ;
     rdfs:label "pressure at measurement location 1" ;
     qudt:hasQuantityKind quantitykind:Pressure ;
     ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <pressure_2> a qudt:Quantity,
-        sosa:ObservableProperty ;
+        sosa:ObservableProperty,
+        ssn:Property ;
     rdfs:label "pressure at measurement location 2" ;
     qudt:hasQuantityKind quantitykind:Pressure ;
     ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <pressure_3> a qudt:Quantity,
-        sosa:ObservableProperty ;
+        sosa:ObservableProperty,
+        ssn:Property ;
     rdfs:label "pressure at measurement location 3" ;
     qudt:hasQuantityKind quantitykind:Pressure ;
     ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <temperature_1> a qudt:Quantity,
-        sosa:ObservableProperty ;
+        sosa:ObservableProperty,
+        ssn:Property ;
     rdfs:label "temperature of hydraulic fluid at measurement location 1" ;
     qudt:hasQuantityKind quantitykind:Temperature ;
     ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <temperature_2> a qudt:Quantity,
-        sosa:ObservableProperty ;
+        sosa:ObservableProperty,
+        ssn:Property ;
     rdfs:label "temperature of hydraulic fluid at measurement location 2" ;
     qudt:hasQuantityKind quantitykind:Temperature ;
     ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <torque> a qudt:Quantity,
-        sosa:ObservableProperty ;
+        sosa:ObservableProperty,
+        ssn:Property ;
     rdfs:label "torque of pump shaft" ;
     qudt:hasQuantityKind quantitykind:Torque ;
     ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <temperature_tank> a qudt:Quantity,
-        sosa:ObservableProperty ;
+        sosa:ObservableProperty,
+        ssn:Property ;
     rdfs:label "temperature of hydraulic fluid at tank" ;
     qudt:hasQuantityKind quantitykind:Temperature ;
     ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
 
 <valve_position> a qudt:Quantity,
-        sosa:ObservableProperty ;
+        sosa:ObservableProperty,
+        ssn:Property ;
     rdfs:label "position of ball valve" ;
     qudt:hasQuantityKind quantitykind:PERCENT ;
     ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall>,
         <BallValve> .
 
 <rotational_speed> a qudt:Quantity,
-        sosa:ObservableProperty ;
+        sosa:ObservableProperty,
+        ssn:Property ;
     rdfs:label "rotational speed of electric motor",
         "rotational speed of pump shaft" ;
     qudt:hasQuantityKind quantitykind:REV-PER-MIN ;
@@ -2359,14 +2589,16 @@ uuid:1ed7197a-052d-6a81-a1c4-32469d4f1bfc a sosa:Observation ;
     rdfs:label "volume flow sensor" ;
     dbo:owner "FST" ;
     dcterms:identifier "SVC 40 A1 G1 F1 S1" ;
+    schema:location "['small test rig for displacement pumps']" ;
+    schema:manufacturer "Kracht GmbH" ;
+    schema:serialNumber "180311592" ;
     sosa:isHostedBy <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> ;
     sosa:observes <volume_flow> ;
-    schema:location "small test rig for displacement pumps" ;
-    schema:manufacturer "Kracht GmbH" ;
-    schema:serialNumber "180311592" .
+    ssn-system:hasSystemCapability <180311592/Capability> .
 
 <volume_flow> a qudt:Quantity,
-        sosa:ObservableProperty ;
+        sosa:ObservableProperty,
+        ssn:Property ;
     rdfs:label "volume flow in the hydraulic circuit" ;
     qudt:hasQuantityKind quantitykind:VolumeFlowRate ;
     ssn:isPropertyOf <https://git.rwth-aachen.de/fst-tuda/.../testrig/HydraulicSmall> .
@@ -2377,6 +2609,8 @@ uuid:1ed7197a-052d-6a81-a1c4-32469d4f1bfc a sosa:Observation ;
     rdfs:label "small test rig for displacement pumps" ;
     dbo:owner "FST" ;
     dcterms:identifier "hydraulic_small" ;
+    schema:manufacturer "FST" ;
+    schema:serialNumber "None" ;
     sosa:hosts <098927>,
         <180311592>,
         <1A00LHR1KIQ>,
@@ -2406,6 +2640,5 @@ uuid:1ed7197a-052d-6a81-a1c4-32469d4f1bfc a sosa:Observation ;
         <temperature_tank>,
         <torque>,
         <valve_position>,
-        <volume_flow> ;
-    schema:manufacturer "FST" .
+        <volume_flow> .
 

@@ -2,15 +2,15 @@ from itertools import chain
 from datetime import datetime
 from urllib.parse import quote
 from rdflib import URIRef, Literal, Namespace
-from rdflib.namespace import RDF, RDFS, XSD, DCTERMS, SOSA, SDO
+from rdflib.namespace import RDF, XSD, DCTERMS, SOSA, SDO
 from pyKRAKEN.kraken import (FST, QUANTITYKIND, UNIT, Kraken, PhysicalObject, ObservationCollection,
-                             Observation, ObservableProperty, Sensor, Result)
+                             Observation, Quantity, Sensor, Result)
 import h5py
 
 
 def safeval(val):
     if isinstance(val, bytes):
-        val = val.decode(encoding="ascii", errors="replace")
+        val = val.decode(encoding="latin-1", errors="replace")
     return val
 
 
@@ -51,7 +51,7 @@ for h5run in sourcefile.values():
         case _:
             testriglabel = h5testrigname
 
-    testrig = PhysicalObject(data, URIRef(TRNS.rstrip("/")), testriglabel, h5testrigname, "FST", "FST")
+    testrig = PhysicalObject(data, iri=URIRef(TRNS.rstrip("/")), identifier=h5testrigname, label=testriglabel, owner="FST", manufacturer="FST")
 
     h5testrig = h5run["test_rig"]
 
@@ -113,12 +113,10 @@ for h5run in sourcefile.values():
             case _:
                 raise LookupError("unrecognized componant or actor name")
 
-        actor = PhysicalObject(data, TRNS[actorname], actorlabel,
-                               identifier, "FST", manufacturer).isHostedBy(testrig.iri)
-        actuatedproperty = ObservableProperty(data, propname, proplabel, propqkind, propfeature)
+        actor = PhysicalObject(data, iri=TRNS[actorname], identifier=identifier, label=actorlabel, comment=actorlabel,
+                               isHostedBy=testrig.iri, owner="FST", manufacturer=manufacturer, serialNumber=identifier)
+        actuatedproperty = Quantity(data, hasQuantityKind=propqkind, isPropertyOf=propfeature, iri=propname, label=proplabel)
         data.g.add((actor.iri, RDF.type, SOSA.Actuator))
-        data.g.add((actor.iri, RDFS.comment, Literal(actorlabel)))  # actorlabel should be more specific
-        data.g.add((actor.iri, SDO.serialNumber, Literal(identifier)))
         data.g.add((actor.iri, SOSA.actsOnProperty, actuatedproperty.iri))
 
     # ./operation/nom_rot_speed > actuatedProperty @FoI = Pump, actor = e motor, FU
@@ -128,7 +126,8 @@ for h5run in sourcefile.values():
     h5pump = h5run["unit_under_test"]
     pumpname = safeval(h5run.attrs["pump_type"])  # pumps should be items in lookup service, match by this
     manufacturer = safeval(h5run.attrs["pump_manufacturer"])
-    pump = PhysicalObject(data, TRNS[pumpname], pumpname, pumpname, "FST", manufacturer).isHostedBy(testrig.iri)
+    pump = PhysicalObject(data, iri=TRNS[pumpname], identifier=pumpname, label=pumpname, 
+                          isHostedBy=testrig.iri, owner="FST", manufacturer=manufacturer)
     # ./geometry > property @FoI Pump
 
     h5pipelines = h5run["pipelines/measured"]
@@ -219,9 +218,9 @@ for h5run in sourcefile.values():
                 propfeature = testrig.iri
 
         unit = safeval(h5pipeline.attrs["units"])
-        observedproperty = ObservableProperty(data, propname, proplabel, propqkind, propfeature)
-        sensor = Sensor(data, sensoriri, sensorlabel, sensortype, serialnumber,
-                        "FST", manufacturer, testrig.label).observes(observedproperty.iri).isHostedBy(testrig.iri)
+        observedproperty = Quantity(data, isPropertyOf=propfeature, hasQuantityKind=propqkind, iri=propname, label=proplabel)
+        sensor = Sensor(data, hasSensorCapability="Capability", iri=sensoriri, identifier=sensortype, label=sensorlabel, isHostedBy=testrig.iri,
+                        owner="FST", manufacturer=manufacturer, serialNumber=serialnumber, location=testrig.label).observes(observedproperty.iri)
 
         # ./data/<datasetname> : datasetname > observationCollection
         # ./data/<datasetname> : dataset > observation, result
@@ -232,7 +231,7 @@ for h5run in sourcefile.values():
     print(str(len(data.g)) + "statements")
 
     # one collection for the measurement run, also one collection each for every operating point of the run
-    run_collection = ObservationCollection(data, None, h5run.name)
+    run_collection = ObservationCollection(data, label=h5run.name)
     data.g.add((run_collection.iri, DCTERMS.description, Literal(
                 safeval(h5run.attrs["msmt_type"]))))
     data.g.add((run_collection.iri, DCTERMS.created, Literal(
@@ -261,8 +260,7 @@ for h5run in sourcefile.values():
             raise LookupError("datasets for operating points should have the same name for each pipeline")
         label = label.pop()
         timestamp = min([datetime.fromisoformat(measurement[idx]) for measurement in timestamps])
-        measurement = ObservationCollection(data, None, label)
-        data.g.add((run_collection.iri, SOSA.hasMember, measurement.iri))
+        measurement = ObservationCollection(data, label=label).isMemberOf(run_collection.iri)
         data.g.add((measurement.iri, DCTERMS.description, Literal("operating point")))
         data.g.add((measurement.iri, DCTERMS.created, Literal(timestamp, datatype=XSD.dateTime)))
         data.g.add((measurement.iri, DCTERMS.creator, Literal(creator)))
@@ -272,9 +270,9 @@ for h5run in sourcefile.values():
 
     for measurement in measurements:
         for sensor, pipename in observations:
-            dset = h5run["pipelines/measured/" + pipename + "/scaled/data/" + measurement.label]
-            result = Result(data, None, None, creator, UNIT.UNITLESS, dset.name, None)
-            Observation(data, None, None, sensoriri, result.iri).isMemberOf(measurement.iri)  # member of run?
+            dset = h5run["pipelines/measured/" + pipename + "/scaled/data/" + measurement.label[0]]
+            result = Result(data, unit=UNIT.UNITLESS, h5path=dset.name, creator=creator)
+            Observation(data, hasResult=result.iri, madeBySensor=sensoriri).isMemberOf(measurement.iri)  # member of run?
 
     rdfpath = filepath_source.removesuffix(".h5") + ".ttl"
     data.g.serialize(destination=rdfpath, base=TRNS)

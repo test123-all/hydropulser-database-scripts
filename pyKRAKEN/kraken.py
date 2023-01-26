@@ -3,13 +3,14 @@ from __future__ import annotations
 from typing import List
 
 from rdflib import Graph, URIRef, Literal, Namespace
-from rdflib.namespace import DCAT, DCMITYPE, DCTERMS, RDF, RDFS, SOSA, SSN, SDO, FOAF
+from rdflib.namespace import DCAT, DCMITYPE, DCTERMS, RDF, RDFS, SOSA, SSN, FOAF
 from uuid6 import uuid6
 
 H5PATH_RDF_METADATA = "/rdf-metadata"  # could be an input instead, necessary if multiple graphs allowed
 
 FST = Namespace("https://git.rwth-aachen.de/fst-tuda/.../")  # change to resolvable URL (e.g. project or wiki)
 URNUUID = Namespace("urn:uuid:")
+SDO = Namespace("http://schema.org/")
 DBO = Namespace("http://dbpedia.org/ontology/")
 QUDT = Namespace("http://qudt.org/schema/qudt/")
 QUANTITYKIND = Namespace("http://qudt.org/vocab/quantitykind/")
@@ -62,6 +63,9 @@ class Thing(object):
                  identifier: URIRef | str | None = None,
                  label: str | None = None,
                  comment: str | None = None,
+                 subjectOf: URIRef | None = None,
+                 image: URIRef | None = None,
+                 documentation: URIRef | None = None,
                  rdftype: URIRef | None = None,
                  isHostedBy: URIRef | None = None) -> None:
         # how do we handle multiple occurence of properties?
@@ -75,6 +79,9 @@ class Thing(object):
         self.identifier = identifier  # maybe needs to be renamed because of collision with rdflib resource
         self.label = label
         self.comment = comment
+        self.subjectOf = subjectOf
+        self.image = image
+        self.documentation = documentation
         self.rdftype = rdftype
         self.isHostedBy = isHostedBy
 
@@ -88,9 +95,11 @@ class Thing(object):
         # probably do this via accepting a dict like {"ns": ns, "id": id}
         if iri is None:
             self._uuid = uuid6()
-            self.identifier = str(self._uuid)
             iri = URNUUID[str(self._uuid)]  # provide option to declare other namespaces
-        self._iri = iri
+            self._iri = iri
+            self.identifier = str(self._uuid)
+        else:
+            self._iri = iri
 
     @property
     def identifier(self):
@@ -131,6 +140,48 @@ class Thing(object):
         self.g.add((self.iri, RDFS.comment, Literal(comment)))
 
     @property
+    def subjectOf(self):
+        subjectOfs = self.g.objects(subject=self.iri, predicate=SDO.subjectOf)
+        return [subjectOf.toPython() for subjectOf in subjectOfs]
+
+    @subjectOf.setter
+    def subjectOf(self, subjectOf):
+        if subjectOf is None:
+            return
+        if not isinstance(subjectOf, URIRef):
+            raise ValueError("input argument \"subjectOf\" must be a valid IRI")
+
+        self.g.add((self.iri, SDO.subjectOf, subjectOf))
+
+    @property
+    def image(self):
+        images = self.g.objects(subject=self.iri, predicate=SDO.image)
+        return [image.toPython() for image in images]
+
+    @image.setter
+    def image(self, image):
+        if image is None:
+            return
+        if not isinstance(image, URIRef):
+            raise ValueError("input argument \"image\" must be a valid IRI")
+
+        self.g.add((self.iri, SDO.image, image))
+
+    @property
+    def documentation(self):
+        documentations = self.g.objects(subject=self.iri, predicate=SDO.documentation)
+        return [documentation.toPython() for documentation in documentations]
+
+    @documentation.setter
+    def documentation(self, documentation):
+        if documentation is None:
+            return
+        if not isinstance(documentation, URIRef):
+            raise ValueError("input argument \"documentation\" must be a valid IRI")
+
+        self.g.add((self.iri, SDO.documentation, documentation))
+
+    @property
     def rdftype(self):
         types = self.g.objects(subject=self.iri, predicate=RDF.type)
         return [rdftype for rdftype in types]
@@ -167,12 +218,15 @@ class PhysicalObject(Thing):
                  identifier: str | None = None,
                  label: str | None = None,
                  comment: str | None = None,
+                 subjectOf: URIRef | None = None,
+                 image: URIRef | None = None,
+                 documentation: URIRef | None = None,
                  rdftype: URIRef | None = None,
                  isHostedBy: URIRef | None = None,
                  owner: str | None = None,
                  manufacturer: str | None = None,
                  serialNumber: str | None = None):
-        super().__init__(kraken, iri, identifier, label, comment, rdftype, isHostedBy)
+        super().__init__(kraken, iri, identifier, label, comment, subjectOf, image, documentation, rdftype, isHostedBy)
 
         # all following properties actually indicate schema:Product
         self.owner = owner  # alternatively use dcterms:rightsHolder
@@ -193,14 +247,17 @@ class Sensor(PhysicalObject):  # Sensor(System), System(Thing) in the future
                  identifier: str | None = None,
                  label: str | None = None,
                  comment: str | None = None,
+                 subjectOf: URIRef | None = None,
+                 image: URIRef | None = None,
+                 documentation: URIRef | None = None,
                  rdftype: URIRef | None = None,
                  isHostedBy: URIRef | None = None,
                  owner: str | None = None,
                  manufacturer: str | None = None,
                  serialNumber: str | None = None,
                  location: str | None = None):
-        super().__init__(kraken, iri, identifier, label, comment, rdftype,
-                         isHostedBy, owner, manufacturer, serialNumber)
+        super().__init__(kraken, iri, identifier, label, comment, subjectOf, image, documentation,
+                         rdftype, isHostedBy, owner, manufacturer, serialNumber)
 
         self.hasSensorCapability = hasSensorCapability
         self.location = location
@@ -220,7 +277,7 @@ class Sensor(PhysicalObject):  # Sensor(System), System(Thing) in the future
     @hasSensorCapability.setter
     def hasSensorCapability(self, hasSensorCapability):
         if not isinstance(hasSensorCapability, URIRef):  # assume its string
-            hasSensorCapability = "/".join([self.iri, hasSensorCapability.strip("/")])
+            hasSensorCapability = URIRef("/".join([self.iri, hasSensorCapability.strip("/")]))
 
         self.g.add((self.iri, RDF.type, SOSA.Sensor))
         self.g.add((self.iri, SSN_SYSTEM.hasSystemCapability, hasSensorCapability))
@@ -241,8 +298,11 @@ class SensorCapability(Thing):
                  identifier: str | None = None,
                  label: str | None = None,
                  comment: str | None = None,
+                 subjectOf: URIRef | None = None,
+                 image: URIRef | None = None,
+                 documentation: URIRef | None = None,
                  rdftype: URIRef | None = None):
-        super().__init__(kraken, iri, identifier, label, comment, rdftype)
+        super().__init__(kraken, iri, identifier, label, comment, subjectOf, image, documentation, rdftype)
 
         self.hasSystemProperty = hasSystemProperty
 
@@ -274,8 +334,11 @@ class Property(Thing):
                  identifier: str | None = None,
                  label: str | None = None,
                  comment: str | None = None,
+                 subjectOf: URIRef | None = None,
+                 image: URIRef | None = None,
+                 documentation: URIRef | None = None,
                  rdftype: URIRef | None = None,):
-        super().__init__(kraken, iri, identifier, label, comment, rdftype)
+        super().__init__(kraken, iri, identifier, label, comment, subjectOf, image, documentation, rdftype)
 
         self.isPropertyOf = isPropertyOf
         self.value = value
@@ -344,8 +407,12 @@ class PropertyValue(Property):
                  identifier: str | None = None,
                  label: str | None = None,
                  comment: str | None = None,
+                 subjectOf: URIRef | None = None,
+                 image: URIRef | None = None,
+                 documentation: URIRef | None = None,
                  rdftype: URIRef | None = None):
-        super().__init__(kraken, isPropertyOf, value, minValue, maxValue, iri, identifier, label, comment, rdftype)
+        super().__init__(kraken, isPropertyOf, value, minValue, maxValue, iri, identifier, label, comment,
+                         subjectOf, image, documentation, rdftype)
 
         self.name = name
 
@@ -376,8 +443,12 @@ class Quantity(Property):
                  identifier: str | None = None,
                  label: str | None = None,
                  comment: str | None = None,
+                 subjectOf: URIRef | None = None,
+                 image: URIRef | None = None,
+                 documentation: URIRef | None = None,
                  rdftype: URIRef | None = None):
-        super().__init__(kraken, isPropertyOf, value, minValue, maxValue, iri, identifier, label, comment, rdftype)
+        super().__init__(kraken, isPropertyOf, value, minValue, maxValue, iri, identifier, label, comment,
+                         subjectOf, image, documentation, rdftype)
 
         self.hasQuantityKind = hasQuantityKind
         self.unit = unit
@@ -426,11 +497,14 @@ class Observation(Thing):
                  identifier: str | None = None,
                  label: str | None = None,
                  comment: str | None = None,
+                 subjectOf: URIRef | None = None,
+                 image: URIRef | None = None,
+                 documentation: URIRef | None = None,
                  rdftype: URIRef | None = None,
                  madeBySensor: URIRef | None = None):
         # sosa:resultTime
         # sosa:phenomenonTime
-        super().__init__(kraken, iri, identifier, label, comment, rdftype)
+        super().__init__(kraken, iri, identifier, label, comment, subjectOf, image, documentation, rdftype)
 
         if isinstance(hasResult, URIRef):
             hasResult = [hasResult]
@@ -464,6 +538,9 @@ class ObservationCollection(Thing):
                  identifier: str | None = None,
                  label: str | None = None,
                  comment: str | None = None,
+                 subjectOf: URIRef | None = None,
+                 image: URIRef | None = None,
+                 documentation: URIRef | None = None,
                  rdftype: URIRef | None = None):
         # make this a more general "Collection", and combine with dcat:Catalog for results?
 
@@ -471,9 +548,13 @@ class ObservationCollection(Thing):
         # sosa:phenomenonTime
         # sosa:madeBySensor
         # after those are implemented it may make sense to do ObservationCollection(Observation)
-        super().__init__(kraken, iri, identifier, label, comment, rdftype)
+        super().__init__(kraken, iri, identifier, label, comment, subjectOf, image, documentation, rdftype)
 
         self.g.add((self.iri, RDF.type, SOSA.ObservationCollection))
+
+    def isMemberOf(self, iri: URIRef) -> Observation:
+        self.g.add((iri, SOSA.hasMember, self.iri))
+        return self
 
 
 class Result(Thing):
@@ -485,9 +566,12 @@ class Result(Thing):
                  identifier: str | None = None,
                  label: str | None = None,
                  comment: str | None = None,
+                 subjectOf: URIRef | None = None,
+                 image: URIRef | None = None,
+                 documentation: URIRef | None = None,
                  rdftype: URIRef | None = None,
                  creator: str | None = None):
-        super().__init__(kraken, iri, identifier, label, comment, rdftype)
+        super().__init__(kraken, iri, identifier, label, comment, subjectOf, image, documentation, rdftype)
         accessurl = ""  # for now we only support same document references
 
         self.title = label
