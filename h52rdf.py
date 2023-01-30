@@ -51,7 +51,8 @@ for h5run in sourcefile.values():
         case _:
             testriglabel = h5testrigname
 
-    testrig = PhysicalObject(data, iri=URIRef(TRNS.rstrip("/")), identifier=h5testrigname, label=testriglabel, owner="FST", manufacturer="FST")
+    testrig = PhysicalObject(data, iri=URIRef(TRNS.rstrip("/")), identifier=h5testrigname,
+                             label=testriglabel, owner="FST", manufacturer="FST")
 
     h5testrig = h5run["test_rig"]
 
@@ -115,7 +116,8 @@ for h5run in sourcefile.values():
 
         actor = PhysicalObject(data, iri=TRNS[actorname], identifier=identifier, label=actorlabel, comment=actorlabel,
                                isHostedBy=testrig.iri, owner="FST", manufacturer=manufacturer, serialNumber=identifier)
-        actuatedproperty = Quantity(data, hasQuantityKind=propqkind, isPropertyOf=propfeature, iri=propname, label=proplabel)
+        actuatedproperty = Quantity(data, hasQuantityKind=propqkind, isPropertyOf=propfeature,
+                                    iri=propname, label=proplabel)
         data.g.add((actor.iri, RDF.type, SOSA.Actuator))
         data.g.add((actor.iri, SOSA.actsOnProperty, actuatedproperty.iri))
 
@@ -126,7 +128,7 @@ for h5run in sourcefile.values():
     h5pump = h5run["unit_under_test"]
     pumpname = safeval(h5run.attrs["pump_type"])  # pumps should be items in lookup service, match by this
     manufacturer = safeval(h5run.attrs["pump_manufacturer"])
-    pump = PhysicalObject(data, iri=TRNS[pumpname], identifier=pumpname, label=pumpname, 
+    pump = PhysicalObject(data, iri=TRNS[pumpname], identifier=pumpname, label=pumpname,
                           isHostedBy=testrig.iri, owner="FST", manufacturer=manufacturer)
     # ./geometry > property @FoI Pump
 
@@ -218,9 +220,11 @@ for h5run in sourcefile.values():
                 propfeature = testrig.iri
 
         unit = safeval(h5pipeline.attrs["units"])
-        observedproperty = Quantity(data, isPropertyOf=propfeature, hasQuantityKind=propqkind, iri=propname, label=proplabel)
-        sensor = Sensor(data, hasSensorCapability="Capability", iri=sensoriri, identifier=sensortype, label=sensorlabel, isHostedBy=testrig.iri,
-                        owner="FST", manufacturer=manufacturer, serialNumber=serialnumber, location=testrig.label).observes(observedproperty.iri)
+        observedproperty = Quantity(data, isPropertyOf=propfeature, hasQuantityKind=propqkind,
+                                    iri=propname, label=proplabel)
+        sensor = Sensor(data, hasSensorCapability="Capability", iri=sensoriri, identifier=sensortype, label=sensorlabel,
+                        isHostedBy=testrig.iri, owner="FST", manufacturer=manufacturer, serialNumber=serialnumber,
+                        location=testrig.label[0]).observes(observedproperty.iri)
 
         # ./data/<datasetname> : datasetname > observationCollection
         # ./data/<datasetname> : dataset > observation, result
@@ -272,7 +276,8 @@ for h5run in sourcefile.values():
         for sensor, pipename in observations:
             dset = h5run["pipelines/measured/" + pipename + "/scaled/data/" + measurement.label[0]]
             result = Result(data, unit=UNIT.UNITLESS, h5path=dset.name, creator=creator)
-            Observation(data, hasResult=result.iri, madeBySensor=sensoriri).isMemberOf(measurement.iri)  # member of run?
+            Observation(data, hasResult=result.iri, madeBySensor=sensoriri).isMemberOf(measurement.iri)
+            # member of run?
 
     rdfpath = filepath_source.removesuffix(".h5") + ".ttl"
     data.g.serialize(destination=rdfpath, base=TRNS)

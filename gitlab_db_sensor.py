@@ -66,8 +66,8 @@ sensor.documentation = datasheet
 
 # rdf doc references
 docttl = SENSOR[sensor_id + "/rdf.ttl"]
-data.g.add((docttl, RDF.type, FOAF.Document))  # creativeWork
-data.g.add((docttl, FOAF.primaryTopic, sensor.iri))  # about
+data.g.add((docttl, RDF.type, FOAF.Document))  # schema:CreativeWork
+data.g.add((docttl, FOAF.primaryTopic, sensor.iri))  # schema:about
 
 docxml = SENSOR[sensor_id + "/rdf.xml"]
 data.g.add((docxml, RDF.type, FOAF.Document))
