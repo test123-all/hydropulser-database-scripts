@@ -7,7 +7,7 @@ from pyKRAKEN.kraken import (
     Kraken,
     Sensor,
     SensorCapability,
-    PropertyValue,
+    Property,
     Quantity
 )
 
@@ -31,25 +31,25 @@ git_sha = ""
 
 # the sensor
 sensor = Sensor(data, hasSensorCapability=SENSOR[sensor_id + "/SensorCapability"],
-                iri=SENSOR[sensor_id], identifier=sensor_id, label="PAA-33X/10bar",
+                iri=SENSOR[sensor_id], identifier=sensor_id, name="PAA-33X/10bar",
                 comment="Drucksensor", owner="FST", manufacturer="Keller", serialNumber="1011240",
                 location="Sirup Mischanlage")
 sensor.identifier = "fst-inv:D117"
 
 # properties
-sys_capa = SensorCapability(data, iri=SENSOR[sensor_id + "/SensorCapability"], label="sensor capabilities",
+sys_capa = SensorCapability(data, iri=SENSOR[sensor_id + "/SensorCapability"], name="sensor capabilities",
                             comment="sensor capabilities not regarding any conditions at this time")
 
 meas_range = Quantity(data, isPropertyOf=sys_capa.iri, hasQuantityKind=QUANTITYKIND.Pressure,
                       minValue=0, maxValue=10, unit=UNIT.BAR,
-                      iri=SENSOR[sensor_id + "/MeasurementRange"], identifier=None, label="measurement range",
+                      iri=SENSOR[sensor_id + "/MeasurementRange"], identifier=None, name="measurement range",
                       comment="absolute pressure", rdftype=SSN_SYSTEM.MeasurementRange)
 
-sensitivity = PropertyValue(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Sensitivity"],
-                            label="sensitivity", rdftype=SSN_SYSTEM.Sensitivity, name="gain", value=1)
+sensitivity = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Sensitivity"],
+                       comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensitivity", value=1)
 
-bias = PropertyValue(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Bias"],
-                     label="bias", rdftype=SSN_SYSTEM.SystemProperty, name="offset", value=0)
+bias = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Bias"],
+                comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="bias", value=0)
 
 # documentation
 img = SENSOR[sensor_id + "/link-to-image.jpg"]
