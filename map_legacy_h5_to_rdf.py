@@ -32,14 +32,14 @@ def lookup_actor(item_slug):
             propname = TRNS["valve_position"]
             proplabel = "position of ball valve"
             propqkind = QUANTITYKIND.PERCENT
-            propfeature = TRNS["BallValve"]  # lets hope there are no weird files where this does not work
+            propfeature = None  # TRNS["BallValve"] < lets hope there are no weird files where this does not work
         case "frequency_converter":
             actorname = "ElectricMotor/InverterDrive"  # probably this is a ssn:hasSubsystem situation
             actorlabel = "inverter drive"
             propname = TRNS["rotational_speed"]
             proplabel = "rotational speed of electric motor"
             propqkind = QUANTITYKIND["REV-PER-MIN"]
-            propfeature = TRNS["ElectricMotor"]  # lets hope there are no weird files where this does not work
+            propfeature = None  # TRNS["ElectricMotor"] < lets hope there are no weird files where this does not work
         case "needle_valve":
             actorname = "NeedleValve"
             actorlabel = "needle valve"
@@ -255,6 +255,7 @@ def map_actor(kraken, equip, testrig, h5actor):
                                 name=actor_props["proplabel"])
     kraken.g.add((actor.iri, RDF.type, SOSA.Actuator))
     kraken.g.add((actor.iri, SOSA.actsOnProperty, actuatedproperty.iri))
+    # should imply target of actuatedproperty ispropertyof > feature of interest
 
 
 def map_sensor(kraken, testrig, h5pipeline, h5testrig):
@@ -342,60 +343,66 @@ for root, _, filenames in walk(dirpath):
                     except LookupError as err:
                         raise LookupError(f"something went wrong in file {filepath}: {err}")
 
-rdfpath = filepath_source.removesuffix(".h5") + ".setup.ttl"
-data.g.serialize(destination=rdfpath, base=FST)
-print(f"{len(set(data.g.subjects()))} nodes")
-print(f"{len(data.g)} statements")
-print(f"{num_runs} runs")
-equip.g.serialize(destination="data/equipment.ttl", base=FST)
+                rdfpath = filepath.removesuffix(".h5") + ".setup.ttl"
+                data.g.serialize(destination=rdfpath, base=FST)
+                print(f"{len(set(data.g.subjects()))} nodes")
+                print(f"{len(data.g)} statements")
+                print(f"{num_runs} runs")
+                equip.g.serialize(destination="data/equipment.ttl", base=FST)
 
-if False:
-    # one collection for the measurement run, also one collection each for every operating point of the run
-    run_collection = ObservationCollection(data, name=h5run.name)
-    data.g.add((run_collection.iri, DCTERMS.description, Literal(
-                safeval(h5run.attrs["msmt_type"]))))
-    data.g.add((run_collection.iri, DCTERMS.created, Literal(
-                safeval(h5run.attrs["timestamp_created"]), datatype=XSD.dateTime)))
-    creator = safeval(h5run.attrs["author"])
-    accountable = safeval(h5run.attrs["pmanager"])
-    data.g.add((run_collection.iri, DCTERMS.creator, Literal(creator)))
-    data.g.add((run_collection.iri, SDO.accountablePerson, Literal(accountable)))
+                if True:
+                    # one collection for the measurement run, also one collection for every operating point of the run
+                    run_collection = ObservationCollection(data, name=h5run.name)
+                    data.g.add((run_collection.iri, DCTERMS.description, Literal(
+                                safeval(h5run.attrs["msmt_type"]))))
+                    data.g.add((run_collection.iri, DCTERMS.created, Literal(
+                                safeval(h5run.attrs["timestamp_created"]), datatype=XSD.dateTime)))
+                    creator = safeval(h5run.attrs["author"])
+                    accountable = safeval(h5run.attrs["pmanager"])
+                    data.g.add((run_collection.iri, DCTERMS.creator, Literal(creator)))
+                    data.g.add((run_collection.iri, SDO.accountablePerson, Literal(accountable)))
 
-    observations = [(sensoriri, data.g.compute_qname(prop)[2]) for (sensoriri, prop)
-                    in data.g.subject_objects(predicate=SOSA.observes)]
+                    # THIS ONLY WORKS IF LAST PART OF PROPERTY IRI IS = H5 PIPENAME!:
+                    # ALSO - set this more up like workflow along sensor API:
+                    # ~ for sensor in sensors > for property in sensor
+                    observations = [(sensoriri, prop, data.g.compute_qname(prop)[2]) for (sensoriri, prop)
+                                    in data.g.subject_objects(predicate=SOSA.observes)]
 
-    dsetnames = []
-    timestamps = []
-    for _, pipename in observations:
-        dsets = h5run["pipelines/measured/" + pipename + "/scaled/data"]
-        dsetnames.append([x for x in dsets.keys()])
-        timestamps.append([safeval(x.attrs["timestamp"]) for x in dsets.values()])
+                    dsetnames = []
+                    timestamps = []
+                    for _, _, pipename in observations:
+                        dsets = h5run["pipelines/measured/" + pipename + "/scaled/data"]
+                        dsetnames.append([x for x in dsets.keys()])
+                        timestamps.append([safeval(x.attrs["timestamp"]) for x in dsets.values()])
 
-    # make sure all lists have same number of elements here
+                    # make sure all lists have same number of elements here
 
-    measurements = []
-    for idx in range(len(timestamps[0])):
-        name = set([dsetname[idx] for dsetname in dsetnames])
-        if len(name) != 1:
-            raise LookupError("datasets for operating points should have the same name for each pipeline")
-        name = name.pop()
-        timestamp = min([datetime.fromisoformat(measurement[idx]) for measurement in timestamps])
-        measurement = ObservationCollection(data, name=name).isMemberOf(run_collection.iri)
-        data.g.add((measurement.iri, DCTERMS.description, Literal("operating point")))
-        data.g.add((measurement.iri, DCTERMS.created, Literal(timestamp, datatype=XSD.dateTime)))
-        data.g.add((measurement.iri, DCTERMS.creator, Literal(creator)))
-        data.g.add((measurement.iri, SDO.accountablePerson, Literal(accountable)))
+                    measurements = []
+                    for idx in range(len(timestamps[0])):
+                        name = set([dsetname[idx] for dsetname in dsetnames])
+                        if len(name) != 1:
+                            raise LookupError("datasets for operating points must have the same name for each pipeline")
+                        name = name.pop()
+                        timestamp = min([datetime.fromisoformat(measurement[idx]) for measurement in timestamps])
+                        measurement = ObservationCollection(data, name=name).isMemberOf(run_collection.iri)
+                        data.g.add((measurement.iri, DCTERMS.description, Literal("operating point")))
+                        data.g.add((measurement.iri, DCTERMS.created, Literal(timestamp, datatype=XSD.dateTime)))
+                        data.g.add((measurement.iri, DCTERMS.creator, Literal(creator)))
+                        data.g.add((measurement.iri, SDO.accountablePerson, Literal(accountable)))
 
-        measurements.append(measurement)
+                        measurements.append(measurement)
 
-    for measurement in measurements:
-        for sensor, pipename in observations:
-            dset = h5run["pipelines/measured/" + pipename + "/scaled/data/" + measurement.name[0]]
-            result = Result(data, unit=UNIT.UNITLESS, h5path=dset.name, creator=creator)
-            Observation(data, hasResult=result.iri, madeBySensor=sensor.iri).isMemberOf(measurement.iri)
-            # member of run?
+                    for measurement in measurements:
+                        for _, prop, pipename in observations:
+                            # THIS ONLY WORKS IF LAST PART OF PROPERTY IRI IS = H5 PIPENAME!:
+                            # ALSO - set this more up like workflow along sensor API:
+                            # ~ for sensor in sensors > for property in sensor
+                            dset = h5run["pipelines/measured/" + pipename + "/scaled/data/" + measurement.name[0]]
+                            result = Result(data, unit=UNIT.UNITLESS, h5path=dset.name, creator=creator)
+                            Observation(data, hasResult=result.iri, observedProperty=prop).isMemberOf(measurement.iri)
+                            # member of run?
 
-    rdfpath = filepath_source.removesuffix(".h5") + ".ttl"
-    data.g.serialize(destination=rdfpath, base=TRNS)
-    print(str(len(set(data.g.subjects()))) + "nodes")
-    print(str(len(data.g)) + "statements")
+                    rdfpath = filepath.removesuffix(".h5") + ".ttl"
+                    data.g.serialize(destination=rdfpath, base=TRNS)
+                    print(str(len(set(data.g.subjects()))) + "nodes")
+                    print(str(len(data.g)) + "statements")

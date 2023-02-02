@@ -467,7 +467,7 @@ class Observation(Thing):
                  image: URIRef | None = None,
                  documentation: URIRef | None = None,
                  rdftype: URIRef | None = None,
-                 madeBySensor: URIRef | None = None):
+                 observedProperty: URIRef | None = None):
         # sosa:resultTime
         # sosa:phenomenonTime
         super().__init__(kraken, iri, identifier, name, comment, subjectOf, image, documentation, rdftype)
@@ -475,20 +475,19 @@ class Observation(Thing):
         if isinstance(hasResult, URIRef):
             hasResult = [hasResult]
 
-        self.madeBySensor = madeBySensor
+        self.observedProperty = observedProperty
         self.hasResult = hasResult
 
         self.g.add((self.iri, RDF.type, SOSA.Observation))
-        self.g.add((self.iri, SOSA.madeBySensor, self.madeBySensor))
+        self.g.add((self.iri, SOSA.observedProperty, self.observedProperty))
 
-        self.observedProperty = self.g.value(
-            subject=self.madeBySensor, predicate=SOSA.observes, any=False)
+        self.madeBySensor = self.g.value(
+            predicate=SOSA.observes, object=self.observedProperty, any=False)
         self.hasFeatureOfInterest = self.g.value(
             subject=self.observedProperty, predicate=SSN.isPropertyOf, any=False)
 
-        self.g.add((self.iri, SOSA.observedProperty, self.observedProperty))
-        self.g.add((self.iri, SOSA.hasFeatureOfInterest,
-                   self.hasFeatureOfInterest))
+        self.g.add((self.iri, SOSA.madeBySensor, self.madeBySensor))
+        self.g.add((self.iri, SOSA.hasFeatureOfInterest, self.hasFeatureOfInterest))
 
         for element in self.hasResult:
             self.g.add((self.iri, SOSA.hasResult, element))

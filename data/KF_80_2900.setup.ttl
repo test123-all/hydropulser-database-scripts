@@ -205,11 +205,6 @@
     sosa:observes <testrig/HydraulicSmall/temperature_tank> ;
     ssn-system:hasSystemCapability <sensor/Nr.4/Capability> .
 
-<testrig/HydraulicSmall/BallValve> a sosa:FeatureOfInterest ;
-    ssn:hasProperty <testrig/HydraulicSmall/valve_position> .
-
-<testrig/HydraulicSmall/ElectricMotor> ssn:hasProperty <testrig/HydraulicSmall/rotational_speed> .
-
 <testrig/HydraulicSmall/BallValve/FlowCoefficient> a qudt:Quantity,
         ssn:Property ;
     qudt:hasQuantityKind quantitykind:VolumeFlowRate ;
@@ -289,8 +284,7 @@
         ssn:Property ;
     qudt:hasQuantityKind quantitykind:PERCENT ;
     schema:name "position of ball valve" ;
-    ssn:isPropertyOf <testrig/HydraulicSmall>,
-        <testrig/HydraulicSmall/BallValve> .
+    ssn:isPropertyOf <testrig/HydraulicSmall> .
 
 <testrig/HydraulicSmall/rotational_speed> a qudt:Quantity,
         sosa:ObservableProperty,
@@ -298,8 +292,7 @@
     qudt:hasQuantityKind quantitykind:REV-PER-MIN ;
     schema:name "rotational speed of electric motor",
         "rotational speed of pump shaft" ;
-    ssn:isPropertyOf <testrig/HydraulicSmall>,
-        <testrig/HydraulicSmall/ElectricMotor> .
+    ssn:isPropertyOf <testrig/HydraulicSmall> .
 
 <testrig/HydraulicSmall> a dcmitype:PhysicalObject,
         sosa:FeatureOfInterest,
