@@ -2,18 +2,19 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix kraken: <https://aims-projekt.de/ap/fst/kraken/> .
 
-kraken:Thing
+kraken:ThingProfile
     dcterms:created "2022-11-23"^^xsd:date ;
 	dcterms:creator "Nils Preuß" ;
-	dcterms:description "some physical or virtual object, person, document, etc."@en ;
+	dcterms:description "profile for some physical or virtual object, person, document, etc."@en ;
 	dcterms:rights "https://spdx.org/licenses/CC0-1.0.html" ;
 	dcterms:subject "https://github.com/tibonto/dfgfo/4"@en ;
-	dcterms:title "thing"@en ;
+	dcterms:title "thing profile"@en ;
 	a sh:NodeShape ;
 	sh:closed false ;
 	sh:property [
@@ -23,9 +24,9 @@ kraken:Thing
 		sh:path dcterms:identifier ;
 	], [
 		sh:datatype xsd:string ;
-		sh:name "label, name or nickname"@en, "name"@de ;
+		sh:name "name, nickname or label"@en, "name"@de ;
 		sh:order 2 ;
-		sh:path rdfs:label ;
+		sh:path schema:name ;
 		sh:minCount 1 ;
 	], [
 		sh:datatype xsd:string ;
@@ -40,7 +41,7 @@ kraken:Thing
 	], [
 		sh:name "additional key value pair"@en ;
 		sh:order 5 ;
-		sh:path <https://schema.org/additionalProperty> ;
+		sh:path schema:additionalProperty ;
 		sh:nodeKind sh:IRI ;
 	], [
 		sh:datatype xsd:string ;
@@ -51,6 +52,6 @@ kraken:Thing
 		sh:name "has property"@en ;
 		sh:order 6 ;
 		sh:path ssn:hasProperty ;
-		sh:node kraken:Property ;
+		sh:node kraken:PropertyProfile ;
 	] ;
-	owl:imports kraken:Property .
+	owl:imports kraken:PropertyProfile .
