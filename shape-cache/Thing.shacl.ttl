@@ -21,7 +21,7 @@ kraken:ThingProfile
 		sh:datatype xsd:string ;
 		sh:name "identifier"@de, "identifier"@en ;
 		sh:order 1 ;
-		sh:path dcterms:identifier ;
+		sh:path schema:identifier ;
 	], [
 		sh:datatype xsd:string ;
 		sh:name "name, nickname or label"@en, "name"@de ;
@@ -32,11 +32,11 @@ kraken:ThingProfile
 		sh:datatype xsd:string ;
 		sh:name "description"@de, "description"@en ;
 		sh:order 3 ;
-		sh:path dcterms:description ;
+		sh:path schema:description ;
 	], [
 		sh:name "has part"@en ;
 		sh:order 7 ;
-		sh:path dcterms:hasPart ;
+		sh:path schema:hasPart ;
 		sh:nodeKind sh:IRI ;
 	], [
 		sh:name "additional key value pair"@en ;
