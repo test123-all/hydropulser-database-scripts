@@ -25,7 +25,14 @@ kraken:ProfileProfile
     sh:property [
 		sh:name "creator"@en ;
 		sh:path dcterms:creator ;
-		sh:datatype xsd:string ;
+		sh:or (
+			[
+				sh:datatype xsd:string ;
+			]
+			[
+				sh:nodeKind sh:IRI ;
+			]
+		) ;
 	] ;
     sh:property [
 		sh:name "description"@en ;
@@ -35,9 +42,24 @@ kraken:ProfileProfile
     sh:property [
 		sh:name "rights"@en ;
 		sh:path dcterms:rights ;
-        sh:datatype xsd:string ;
-        # requirement just for myself:
-		sh:hasValue "https://spdx.org/licenses/CC0-1.0.html" ;  # why is this a string?
+		sh:or (
+			[
+				sh:datatype xsd:string ;
+        		# requirement just for myself:
+				sh:in (
+					"https://spdx.org/licenses/CC0-1.0.html"  # why is this a string?
+					"https://spdx.org/licenses/CC-BY-4.0.html"
+				) ;
+			]
+			[
+				sh:nodeKind sh:IRI ;
+				sh:in (
+					<https://spdx.org/licenses/CC0-1.0.html>
+					<https://spdx.org/licenses/CC-BY-4.0.html>
+				) ;
+			]
+		) ;
+        
 	] ;
     sh:property [
 		sh:name "title"@en ;
@@ -47,9 +69,25 @@ kraken:ProfileProfile
     sh:property [
         sh:name "subject"@en ;
         sh:path dcterms:subject ;  # should be dcterms:audience or smth
-        sh:datatype rdf:langString ;
-        # requirement just for myself:
-        sh:hasValue "https://github.com/tibonto/dfgfo/4"@en ;  # why is this a string with language tag?
+		sh:or (
+			[
+				sh:datatype rdf:langString ;
+        		# requirement just for myself:
+        		sh:in (
+					"https://github.com/tibonto/dfgfo/4"@en  # why is this a string with language tag?
+					"https://github.com/tibonto/dfgfo/41"@en
+					"https://github.com/tibonto/dfgfo/407-02"@en
+				) ;
+			]
+			[
+				sh:nodeKind sh:IRI ;
+				sh:in (
+					<https://github.com/tibonto/dfgfo/4>
+					<https://github.com/tibonto/dfgfo/41>
+					<https://github.com/tibonto/dfgfo/407-02>
+				) ;
+			]
+		) ;
     ] ;
 	sh:targetClass sh:NodeShape .
     # could use owl:imports shsh if implemented
