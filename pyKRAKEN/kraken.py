@@ -8,7 +8,7 @@ from uuid6 import uuid6
 
 H5PATH_RDF_METADATA = "/rdf-metadata"  # could be an input instead, necessary if multiple graphs allowed
 
-FST = Namespace("https://git.rwth-aachen.de/fst-tuda/.../")  # change to resolvable URL (e.g. project or wiki)
+FST = Namespace("https://w3id.org/fst/resource/")
 URNUUID = Namespace("urn:uuid:")
 SDO = Namespace("http://schema.org/")
 DBO = Namespace("http://dbpedia.org/ontology/")
