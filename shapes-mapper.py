@@ -3,21 +3,23 @@ from pyshacl import validate
 from rdflib import Graph
 
 # VALIDATION OF METADATA PROFILES
-shapes_location = "shape-cache"
+# shapes_location = "shape-cache"
+shapes_location = "C:/Users/NP/Documents/AIMS/usecase/shapes"
 meta_shapefiles = ["AIMS-AP.shacl.ttl", "shacl-shacl.ttl"]
 shape_graph = Graph()
 for shapefile in meta_shapefiles:
-    shape_graph.parse(f"{shapes_location}/{shapefile}")
+    shape_graph.parse(f"shape-cache/{shapefile}")
 
-with os.scandir(shapes_location) as shapefiles:
-    for shapefile in shapefiles:
-        if shapefile.name in meta_shapefiles:
-            print(f"skipping meta shape {shapefile.name}\n")
+for root, _, filenames in os.walk(shapes_location):
+    for filename in filenames:
+        if filename in meta_shapefiles:
+            print(f"skipping meta shape {filename}\n")
             continue
-        if shapefile.name.endswith(".ttl") and shapefile.is_file():
+        if filename.endswith(".ttl"):
+            filepath = "/".join([root, filename])
 
-            print(shapefile.path)
-            r = validate(shapefile.path,
+            print(filepath)
+            r = validate(filepath,
                          data_graph_format="ttl",
                          shacl_graph=shape_graph,
                          inference="rdfs",
