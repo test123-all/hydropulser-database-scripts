@@ -4,18 +4,18 @@
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema: <https://schema.org/> .
+@prefix schema: <http://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix kraken: <https://aims-projekt.de/ap/fst/kraken/> .
 
-kraken:Quantity
+kraken:QuantityProfile
     dcterms:created "2022-11-23"^^xsd:date ;
 	dcterms:creator "Nils Preuß" ;
-	dcterms:description "a physical quantity with a quantitykind or unit"@en ;
+	dcterms:description "profile for a physical quantity with a quantitykind or unit"@en ;
 	dcterms:rights "https://spdx.org/licenses/CC0-1.0.html" ;
 	dcterms:subject "https://github.com/tibonto/dfgfo/4"@en ;
-	dcterms:title "quantity"@en ;
+	dcterms:title "quantity profile"@en ;
 	a sh:Nodeshape ;
 	sh:closed false ;
 	sh:property [
@@ -36,8 +36,8 @@ kraken:Quantity
 	], [
 		sh:name "value"@en ;
 		sh:order 9 ;
-		sh:path qudt:value ;
+		sh:path schema:value ;
 		sh:nodeKind sh:IRIOrLiteral ;
 	] ;
-	owl:imports kraken:Property ;
-	sh:node kraken:Property .
+	owl:imports kraken:PropertyProfile ;
+	sh:node kraken:PropertyProfile .

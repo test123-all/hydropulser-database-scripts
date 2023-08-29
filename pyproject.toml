@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "pyKRAKEN"
+version = "0.1.0"
+description = "KRAKEN Represents Additional Knowledge (about) Experiment Numbers"
+license = "Apache License, Version 2.0"
+authors = ["Nils Preuß <nils.preuss@fst.tu-darmstadt.de>"]
+readme = "README.md"
+# homepage = "https://git.rwth-aachen.de/aims/wp5/pyKRAKEN"
+repository = "https://git.rwth-aachen.de/aims/wp5/pyKRAKEN"
+documentation = "https://git.rwth-aachen.de/aims/wp5/pyKRAKEN/-/wikis/home"
+# keywords = ["key", "word"]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+packages = [
+    {include = "pyKRAKEN"}
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+# [tool.poetry.scripts]
+# devtest = { callable = "mypackage:test.run_tests", extras = ["test"] }
+rdflib = "^6.2.0"
+pyshacl = "^0.20.0"
+uuid6 = "^2022.10.25"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://git.rwth-aachen.de/aims/wp5/pyKRAKEN/-/issues"
+
+[tool.poetry.group.examples.dependencies]
+h5py = "^3.7.0"
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.20.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

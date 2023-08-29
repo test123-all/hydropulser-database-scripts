@@ -2,22 +2,22 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema: <https://schema.org/> .
+@prefix schema: <http://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix kraken: <https://aims-projekt.de/ap/fst/kraken/> .
 
-kraken:Property
+kraken:PropertyProfile
     dcterms:created "2022-11-23"^^xsd:date ;
 	dcterms:creator "Nils Preuß" ;
-	dcterms:description "A quality of an entity. An aspect of an entity that is intrinsic to and cannot exist without the entity."@en ;
+	dcterms:description "profile for a quality of an entity. An aspect of an entity that is intrinsic to and cannot exist without the entity."@en ;
 	dcterms:rights "https://spdx.org/licenses/CC0-1.0.html" ;
 	dcterms:subject "https://github.com/tibonto/dfgfo/4"@en ;
-	dcterms:title "property"@en ;
+	dcterms:title "property profile"@en ;
 	a sh:NodeShape ;
-	owl:imports kraken:Thing ;
+	owl:imports kraken:ThingProfile ;
 	sh:closed false ;
-	sh:node kraken:Thing ;
+	sh:node kraken:ThingProfile ;
 	sh:property [
 		sh:name "property identifier"@en ;
 		sh:nodeKind sh:IRIOrLiteral ;

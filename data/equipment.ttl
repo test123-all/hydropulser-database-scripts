@@ -1,0 +1,63 @@
+@base <https://git.rwth-aachen.de/fst-tuda/.../> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+
+<actor/DV-20%20> a dcmitype:PhysicalObject ;
+    dbo:owner "FST" ;
+    dcterms:identifier "DV-20 " ;
+    schema:manufacturer "HYDAC INTERNATIONAL GmbH" ;
+    schema:name "needle valve" ;
+    schema:serialNumber "DV-20 " ;
+    rdfs:comment "needle valve" .
+
+<actor/HEX%20S615-30> a dcmitype:PhysicalObject ;
+    dbo:owner "FST" ;
+    dcterms:identifier "HEX S615-30" ;
+    schema:manufacturer "HYDAC INTERNATIONAL GmbH" ;
+    schema:name "heat exchanger" ;
+    schema:serialNumber "HEX S615-30" ;
+    rdfs:comment "heat exchanger" .
+
+<actor/KVTF-L6-AJA-B12-DN25%2F20-D15-B02-PN40> a dcmitype:PhysicalObject ;
+    dbo:owner "FST" ;
+    dcterms:identifier "KVTF-L6-AJA-B12-DN25/20-D15-B02-PN40" ;
+    schema:manufacturer "Somas" ;
+    schema:name "electric ball valve" ;
+    schema:serialNumber "KVTF-L6-AJA-B12-DN25/20-D15-B02-PN40" ;
+    rdfs:comment "electric ball valve" .
+
+<actor/LF%20330%20I%20F%20A%201.0> a dcmitype:PhysicalObject ;
+    dbo:owner "FST" ;
+    dcterms:identifier "LF 330 I F A 1.0" ;
+    schema:manufacturer "HYDAC INTERNATIONAL GmbH" ;
+    schema:name "oil filter" ;
+    schema:serialNumber "LF 330 I F A 1.0" ;
+    rdfs:comment "oil filter" .
+
+<actor/LSMV%20160%20MP> a dcmitype:PhysicalObject ;
+    dbo:owner "FST" ;
+    dcterms:identifier "LSMV 160 MP" ;
+    schema:manufacturer "Leroy Somer" ;
+    schema:name "electric motor for the pump shaft" ;
+    schema:serialNumber "LSMV 160 MP" ;
+    rdfs:comment "electric motor for the pump shaft" .
+
+<actor/SGC%2005.1%20%2B%20EA0S056-B-0.08> a dcmitype:PhysicalObject ;
+    dbo:owner "FST" ;
+    dcterms:identifier "SGC 05.1 + EA0S056-B-0.08" ;
+    schema:manufacturer "AUMA Riester GmbH & Co. KG" ;
+    schema:name "electric drive for the ball valve" ;
+    schema:serialNumber "SGC 05.1 + EA0S056-B-0.08" ;
+    rdfs:comment "electric drive for the ball valve" .
+
+<actor/SINAMICS%20G120%20%2B%20CU230P-2> a dcmitype:PhysicalObject ;
+    dbo:owner "FST" ;
+    dcterms:identifier "SINAMICS G120 + CU230P-2" ;
+    schema:manufacturer "Siemens AG" ;
+    schema:name "inverter drive" ;
+    schema:serialNumber "SINAMICS G120 + CU230P-2" ;
+    rdfs:comment "inverter drive" .
+
