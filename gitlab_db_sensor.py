@@ -22,11 +22,18 @@ import numpy as np
 
 SENSOR = Namespace("https://w3id.org/fst/resource/")
 
-quantitykind_dict = {"Druck": QUANTITYKIND.Pressure, }
+quantitykind_dict = {"Druck": QUANTITYKIND.Pressure,
+                     "Temperatur": QUANTITYKIND.Temperature,
+                     "Kraft": QUANTITYKIND.Force,
+                     "Weg": QUANTITYKIND.Displacement}
 
 unit_dict = {"bar": UNIT.BAR,
              "mbar": UNIT.MilliBAR,
-             "psi": UNIT.PSI, }
+             "psi": UNIT.PSI,
+             "°C": UNIT.DEG_C,
+             "N": UNIT.N,
+             "kN": UNIT.KiloN,
+             "mm": UNIT.MilliM}
 
 
 def generate_sensor_files(sensor_dir, sheet_name, df_row):
@@ -35,7 +42,7 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
 
     sensor_id = df_row["uuid"]  # str(uuid6())
     fst_id = df_row["Ident-Nummer"]
-    val_ref = df_row["absolut/ relativ"]
+    val_ref = None # df_row["absolut/ relativ"]
     maintainer = df_row["Verantwortlicher WiMi"]
     meas_tech = df_row["Messprinzip"]
     modified = df_row["letzte Prüfung/ Kalibration"]
@@ -119,13 +126,15 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
     print(data.g.serialize(destination=rdfpath + "rdf.xml", base=SENSOR, format="xml"))
 
 
-dfs = pd.read_excel("info_Messtechnik_Uebersicht_FST_Wetterich.xlsx", sheet_name=None, skiprows=[1])
+dfs = pd.read_excel("info_Messtechnik_Uebersicht_FST_Wetterich_NEU.xlsx", sheet_name=None, skiprows=[1])
 
-sheet_name = "Druck"
-sensor_dir = "C:/Users/NP/Documents/AIMS/metadata_hub/data/fst_measurement_equipment/"
+sheet_name = "Weg"
+# sensor_dir = "C:/Users/NP/Documents/AIMS/metadata_hub/data/fst_measurement_equipment/"
+sensor_dir = "./_generated/"
 
 df = dfs[sheet_name]
 for idx in df.index:
     row = df.iloc[idx]
     row = row.replace({np.nan: None})
-    generate_sensor_files(sensor_dir, sheet_name, row)
+    if row['Verantwortlicher WiMi'] == 'Rexer':
+        generate_sensor_files(sensor_dir, sheet_name, row)

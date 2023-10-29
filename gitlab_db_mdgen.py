@@ -141,7 +141,7 @@ def generate_sensor_md(resource_dir):
         print(s, file=f)
 
 
-sensor_dir = "C:/Users/NP/Documents/AIMS/metadata_hub/data/fst_measurement_equipment/"
+sensor_dir = "./_generated/"
 
 with os.scandir(sensor_dir) as it:
     for entry in it:
