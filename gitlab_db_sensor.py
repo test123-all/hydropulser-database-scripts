@@ -1,9 +1,12 @@
 import os
-
 from pathlib import Path
 from urllib.parse import quote
+
 from rdflib import Namespace, Literal, URIRef
 from rdflib.namespace import RDF, FOAF, SOSA, DCTERMS
+import pandas as pd
+import numpy as np
+
 from pyKRAKEN.kraken import (
     SDO,
     DBO,
@@ -16,15 +19,13 @@ from pyKRAKEN.kraken import (
     Property,
     Quantity
 )
-import pandas as pd
-import numpy as np
 
 
 SENSOR = Namespace("https://w3id.org/fst/resource/")
 
 quantitykind_dict = {"Druck": QUANTITYKIND.Pressure,
-                     "Temperatur": QUANTITYKIND.Temperature,
                      "Kraft": QUANTITYKIND.Force,
+                     "Temperatur": QUANTITYKIND.Temperature,
                      "Weg": QUANTITYKIND.Displacement}
 
 unit_dict = {"bar": UNIT.BAR,
@@ -42,7 +43,10 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
 
     sensor_id = df_row["uuid"]  # str(uuid6())
     fst_id = df_row["Ident-Nummer"]
-    val_ref = None # df_row["absolut/ relativ"]
+    if sheet_name == "Druck":
+        val_ref = df_row["absolut/ relativ"]
+    else:
+        val_ref = None
     maintainer = df_row["Verantwortlicher WiMi"]
     meas_tech = df_row["Messprinzip"]
     modified = df_row["letzte Prüfung/ Kalibration"]
@@ -126,15 +130,22 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
     print(data.g.serialize(destination=rdfpath + "rdf.xml", base=SENSOR, format="xml"))
 
 
-dfs = pd.read_excel("info_Messtechnik_Uebersicht_FST_Wetterich_NEU.xlsx", sheet_name=None, skiprows=[1])
 
-sheet_name = "Weg"
-# sensor_dir = "C:/Users/NP/Documents/AIMS/metadata_hub/data/fst_measurement_equipment/"
-sensor_dir = "./_generated/"
+def run_script(sensor_table_path: [Path, str]):
+    SUPPORTED_SENSOR_TABLE_SHEET_NAMES = ["Druck",
+                                          "Kraft",
+                                          "Temperatur",
+                                          "Weg"]
 
-df = dfs[sheet_name]
-for idx in df.index:
-    row = df.iloc[idx]
-    row = row.replace({np.nan: None})
-    if row['Verantwortlicher WiMi'] == 'Rexer':
-        generate_sensor_files(sensor_dir, sheet_name, row)
+    dfs = pd.read_excel(sensor_table_path, sheet_name=None, skiprows=[1])
+    # sensor_dir = "C:/Users/NP/Documents/AIMS/metadata_hub/data/fst_measurement_equipment/"
+    sensor_dir = f"{Path(sensor_table_path)}/_generated/"
+
+    for sheet_name in SUPPORTED_SENSOR_TABLE_SHEET_NAMES:
+        df = dfs[sheet_name]
+        for idx in df.index:
+            row = df.iloc[idx]
+            row = row.replace({np.nan: None})
+
+            # TODO: Add some control code that checks if the necessary minimal set of information is present
+            generate_sensor_files(sensor_dir, sheet_name, row)
