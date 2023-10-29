@@ -13,10 +13,15 @@ def main():
     path_for_generated_files = Path(f"{file_directory}/_generated")
     path_for_generated_labels = Path(f"{path_for_generated_files}/labels")
 
-    # These are the variables you need to adjust ----------------------------------
+
+
+    # These are the variables you need to adjust ------------------------------------------
     sensor_excel_sheet_name = 'sensor_table.xlsx'
+    # The name of the WiMi you want to create the files for. This is the same information
+    # you have inserted into the sensor table.
     responsible_WiMi = 'Rexer'
-    # -----------------------------------------------------------------------------
+    # -------------------------------------------------------------------------------------
+
 
 
     path_to_sensor_excel_table = Path(f"{file_directory}/{sensor_excel_sheet_name}")
