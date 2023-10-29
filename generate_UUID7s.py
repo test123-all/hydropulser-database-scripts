@@ -4,7 +4,7 @@ from pathlib import Path
 import uuid6
 
 
-def run_script(quanitity_ofUUID7s :int = 10):
+def main(quanitity_ofUUID7s :int = 10):
     # Get the directory path of this file
     directory_path = path(__file__).parent.resolve()
     generated_directory = Path(f"{directory_path}/_generated/")
@@ -26,3 +26,8 @@ def run_script(quanitity_ofUUID7s :int = 10):
             uuid_set.add(unique_id)
 
     print(f"Successfuly written {len(uuid_set)} UUID7s into the file at the path '{saved_data_filepath.resolve()}'")
+
+
+
+if __name__ == '__main__':
+    main()
