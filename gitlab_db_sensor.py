@@ -31,10 +31,14 @@ quantitykind_dict = {"Druck": QUANTITYKIND.Pressure,
 unit_dict = {"bar": UNIT.BAR,
              "mbar": UNIT.MilliBAR,
              "psi": UNIT.PSI,
+             "kPa": UNIT.KiloPA,
+             "MPa": UNIT.MegaPA,
              "°C": UNIT.DEG_C,
+             "K": UNIT.K,
              "N": UNIT.N,
              "kN": UNIT.KiloN,
-             "mm": UNIT.MilliM}
+             "mm": UNIT.MilliM,
+             "cm": UNIT.CentiM}
 
 
 def generate_sensor_files(sensor_dir, sheet_name, df_row):
