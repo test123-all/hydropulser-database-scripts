@@ -160,4 +160,4 @@ def run_script(sensor_table_path: [Path, str]):
             row = row.replace({np.nan: None})
 
             # TODO: Add some control code that checks if the necessary minimal set of information is present
-            generate_sensor_files(path_for_generated_files, sheet_name, row)
+            generate_sensor_files(f"{path_for_generated_files}/", sheet_name, row)
