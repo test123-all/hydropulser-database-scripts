@@ -144,11 +144,8 @@ def generate_sensor_md(resource_dir):
         print(s, file=f)
 
 
-def generate_sensor_md_s_from_directory(sensors_directory_path: [str, Path] = ''):
-    file_directory = Path(__file__).parent.resolve()
-    search_directory = Path(f"{file_directory}/_generated/")
-
-    with os.scandir(search_directory) as it:
+def generate_sensor_md_s_from_directory(sensors_directory_search_path: [Path, str]):
+    with os.scandir(sensors_directory_search_path) as it:
     # TODO: Check whether insidethe directory are the awaited contents
         for entry in it:
             if entry.is_dir() and entry.name != ".git":

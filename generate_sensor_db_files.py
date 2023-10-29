@@ -10,7 +10,8 @@ from fstlabelcreator import script_functions
 def main():
     file_directory = Path(__file__).parent.resolve()
     path_for_generated_files = Path(f"{file_directory}/_generated")
-    path_for_generated_labels = Path(f"{path_for_generated_files}/labels")
+    path_for_generated_labels = Path(f"{path_for_generated_files}/pID_label_files")
+    path_for_generated_PID_files = Path(f"{path_for_generated_files}/pID_directories")
 
     try:
         path_for_generated_files.mkdir()
@@ -19,6 +20,11 @@ def main():
 
     try:
         path_for_generated_labels.mkdir()
+    except FileExistsError:
+        pass
+
+    try:
+        path_for_generated_PID_files.mkdir()
     except FileExistsError:
         pass
 
@@ -38,11 +44,11 @@ def main():
                                                                        responsible_WiMi= responsible_WiMi)
 
     print('Start of the generation of the sensor files.')
-    generate_gitlab_db_sensor_files(sensor_table_path= str(path_to_sensor_excel_table.resolve()))
+    generate_gitlab_db_sensor_files(sensor_table_path= path_to_sensor_excel_table.resolve(), generated_files_directory_path= path_for_generated_PID_files.resolve())
     print('Generation of the sensor files successfully finished!')
 
     print('Start of the generation of the README.md files of the sensor directories.')
-    generate_sensor_md_s_from_directory(sensors_directory_path= str(path_for_generated_files.resolve()))
+    generate_sensor_md_s_from_directory(sensors_directory_search_path= path_for_generated_PID_files.resolve())
 
 if __name__ == '__main__':
     main()
