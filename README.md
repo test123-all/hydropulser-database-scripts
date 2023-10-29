@@ -3,8 +3,8 @@
 This is the repository of the hydropulser database scripts, that are based on the scripts from the AIMS project 
 (https://www.aims-projekt.de/impressum-und-haftungsauschluss/ and https://git.rwth-aachen.de/aims/public/pyKRAKEN) by 
 Nils Preuß (https://orcid.org/0000-0002-6793-8533). <br>
-These scripts generate the rdf files of sensors that are hosted on a gitlab instance behind a PID namespace like 
-(https://w3id.org/fst/resource/) with a two step redirect. The genrated rdf and .md files are comittet and pushed to a
+These scripts generate the rdf files of sensors (and substances, components) that are hosted on a gitlab instance behind a PID namespace like 
+(https://w3id.org/fst/resource/) with a two step redirect. The generated rdf and .md files are comittet and pushed to a
 data repository that is a submodule of the metadata hub repository of the FST. The metadata hub repository of the FST
 can be currently found at https://git.rwth-aachen.de/fst-tuda/projects/rdm/metadata_hub [State of end of october 2023]. <br> 
 It is only visible to scientific staff (WiMis) and maintainer. 
@@ -14,7 +14,8 @@ that ties these functions together. The wrapper script also calls the FST Label 
 sensor labels. 
 
 Therefore, only two scripts, `generate_UUID7s.py` and `generate_sensor_db_files.py` and one
-excel table `sensor_table.xlsx` file, that contains the data, are provided to the user as a small easy to use 'interface'.
+excel table `sensor_table.xlsx` file, that contains the data, are provided to the user as a small easy to use 'interface'. 
+Therefore the barriers of entry to reuse the software tool chain are minimized.
 
 
 ## Installation
@@ -37,13 +38,13 @@ Please use poetry (https://python-poetry.org/) the python package manager or ven
 
 ## Getting started
 ### How to create UUIDs for my objects?
-Just run the `generate_UUID7s.py` script located inside the root directory of this repository with `python .\generate_UUID7s.py`.
-For installation isntructions please have a look at the 'Installation'-section of this README.md file.
-The script creates a directory called '_generated_UUIDs' with a .csv file inside with the name 'saved_UUID7s.csv' that contains 
+Just run the `generate_UUID7s.py` script located inside the root directory of this repository with `python ./generate_UUID7s.py` .
+For installation instructions please have a look at the 'Installation'-section of this README.md file.
+The script creates a directory called `_generated_UUIDs` with a .csv file inside with the name `saved_UUID7s.csv` that contains 
 10 UUID7s. If you run the script multiple times the data will be overwritten, and you will get 10 new UUID7s.
 If you want to change the quantity of generated UUID7s please open the `generate_UUID7s.py` script and change the `10`
-inside the `def main(quanitity_ofUUID7s :int = 10):` line to a natural number of the amount of UUID7s you rather like 
-to generate.  
+inside the `def main(quanitity_of_UUID7s :int = 10):` line to a natural number of the amount of UUID7s you rather like 
+to generate (for example `20`).  
 
 
 
@@ -60,20 +61,20 @@ the file and largely separated from the rest. You should therefore be able to fi
   responsible_WiMi = 'Rexer'
   # -------------------------------------------------------------------------------------
 ```
-3. Run the file with `python ./generate_sensor_db_files.py` that generates directories inside a 
-`./hardcoded_generate_scripts/_generated that are named` that are named after the single UUIds of the sensors and 
+3. Run the file with `python ./generate_sensor_db_files.py` that will generate sensor directories inside a generated
+`./hardcoded_generate_scripts/_generated` directory that are named after the single UUID7s of the sensors and 
 contain the corresponding rdf files and the generated README.md
-4. Copy the generated sensor directories inside of your cloned data repository.
-5. Commit them.
+4. Copy the generated sensor directories from this repository to your cloned data repository.
+5. Commit them to the data repository.
 6. Push the commit[s].
 7. And make sure all overlying data repositories, that contain the mentioned data repository as a submodule, are updated
-to the newest version of the underlying data repositories, to make sure that the CI/CD pipeline of the data hub repository gets initiated and
+to the newest version of the underlying data repositories. This makes sure that the CI/CD pipeline of the data hub repository gets initiated and
 is able to generate the redirect files.
-8. 
+
 
 **Disclaimer:** <br>
 Currently the fst label creator doesn't resolve the path of incscape on windows machines (since windows doesn't
-resolve CLI tool names to the corresponding file, therefore an explicit standard path needs to be given, that isn't
+resolve CLI tool names to the corresponding file automatically, therefore an explicit standard path needs to be given, that isn't
 implemented yet).
 
 ### Restrictions placed on the sensor table:
@@ -99,10 +100,10 @@ implemented yet).
   
 ## Improvement Suggestions
 - The scripts of the AIMS project are mainly hardcoded especially 
-  - for the components (`gitlab_db_component.py`) and the substances (`gitlab_db_substance.py`)
-  - The `gitlab_db_mdgen.py` is hardcoded to the sensors
+  - for the components (`gitlab_db_component.py`) and the substances (`gitlab_db_substance.py`).
+  - the `gitlab_db_mdgen.py` to the sensors and doesn't work with components and substances.
 - Enhance the rdf sensor files by different uncertainties and the possibility of declaring these uncertainties inside
-the sensor_table.xlsx 
+the `sensor_table.xlsx`.
 
 
 
