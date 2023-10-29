@@ -1,8 +1,11 @@
 import os
+from pathlib import Path
 from string import Template
 from textwrap import dedent
+
 from rdflib import Graph, URIRef
 from rdflib.namespace import RDF, RDFS, DCTERMS, FOAF, SOSA
+
 from pyKRAKEN.kraken import SDO, DBO
 
 
@@ -141,9 +144,14 @@ def generate_sensor_md(resource_dir):
         print(s, file=f)
 
 
-sensor_dir = "./_generated/"
+def generate_sensor_md_s_from_directory(sensors_directory_path: [str, Path] = ''):
+    file_directory = Path(__file__).parent.resolve()
+    search_directory = Path(f"{file_directory}/_generated/")
 
-with os.scandir(sensor_dir) as it:
-    for entry in it:
-        if entry.is_dir() and entry.name != ".git":
-            generate_sensor_md(entry.path + "/")
+    with os.scandir(search_directory) as it:
+    # TODO: Check whether insidethe directory are the awaited contents
+        for entry in it:
+            if entry.is_dir() and entry.name != ".git":
+                generate_sensor_md(entry.path + "/")
+
+    print("Succesfully created all md files")
