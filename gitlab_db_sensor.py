@@ -141,9 +141,17 @@ def run_script(sensor_table_path: [Path, str]):
                                           "Temperatur",
                                           "Weg"]
 
+    # Get the path of the direcotry of this file
+    directory_path = Path(__file__).parent.resolve()
+
     dfs = pd.read_excel(sensor_table_path, sheet_name=None, skiprows=[1])
     # sensor_dir = "C:/Users/NP/Documents/AIMS/metadata_hub/data/fst_measurement_equipment/"
-    sensor_dir = f"{Path(sensor_table_path)}/_generated/"
+    path_for_generated_files = Path(f"{Path(directory_path)}/_generated/")
+
+    try:
+        path_for_generated_files.mkdir()
+    except FileExistsError:
+        pass
 
     for sheet_name in SUPPORTED_SENSOR_TABLE_SHEET_NAMES:
         df = dfs[sheet_name]
@@ -152,4 +160,4 @@ def run_script(sensor_table_path: [Path, str]):
             row = row.replace({np.nan: None})
 
             # TODO: Add some control code that checks if the necessary minimal set of information is present
-            generate_sensor_files(sensor_dir, sheet_name, row)
+            generate_sensor_files(path_for_generated_files, sheet_name, row)
