@@ -116,3 +116,6 @@ dmypy.json
 
 # Pycharm generated files
 .idea
+
+# Ignore generated directories
+**/_generated*/**
