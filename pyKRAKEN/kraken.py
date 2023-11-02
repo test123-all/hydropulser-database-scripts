@@ -26,11 +26,11 @@ class Kraken(object):
     """
     # iri strategy object / function as input
 
-    def __init__(self, filepath: str = None) -> None:
+    def __init__(self, filepath: str = None, base: [Namespace, URIRef] = None) -> None:
         if filepath is None:
             filepath = ""
 
-        g = Graph()
+        g = Graph(base=base)
 
         # could separate binds via subclass of namespace manager, or wrapper?
         g.bind("fst", FST)
