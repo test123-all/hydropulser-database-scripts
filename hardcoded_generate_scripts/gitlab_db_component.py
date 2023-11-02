@@ -161,7 +161,8 @@ def main():
         data.g.add((datasheet, DCTERMS.subject, airspring))
         data.g.add((docs, DCTERMS.hasPart, datasheet))
 
-    dir_path = Path(f"./{airspring_id}")
+    current_python_file_dir_path = Path(__file__).parent.resolve()
+    dir_path = Path(f"{current_python_file_dir_path}/{airspring_id}")
 
     try:
         dir_path.mkdir()

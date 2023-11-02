@@ -109,7 +109,9 @@ def main ():
     data.g.add((docjson, RDF.type, FOAF.Document))
     data.g.add((docjson, FOAF.primaryTopic, air))
 
-    dir_path = Path(f"./{air_id}")
+
+    current_python_file_dir_path = Path(__file__).parent.resolve()
+    dir_path = Path(f"{current_python_file_dir_path}/{air_id}")
 
     try:
         dir_path.mkdir()
