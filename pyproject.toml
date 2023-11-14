@@ -5,8 +5,6 @@ description = ""
 license = ""
 authors = ["Sebastian Neumeier <sebastian.neumeier@stud.tu-darmstadt.de>"]
 readme = "README.md"
-repository = ""
-documentation = ""
 classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3 :: Only",
