@@ -38,7 +38,10 @@ unit_dict = {"bar": UNIT.BAR,
              "N": UNIT.N,
              "kN": UNIT.KiloN,
              "mm": UNIT.MilliM,
-             "cm": UNIT.CentiM}
+             "cm": UNIT.CentiM,
+             "V": UNIT.V,
+             "mV": UNIT.MilliV,
+             "µV": UNIT.MicroV}
 
 
 def generate_sensor_files(sensor_dir, sheet_name, df_row):
@@ -81,14 +84,39 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
                           minValue=df_row["Messbereich von"], maxValue=df_row["Messbereich bis"], unit=unit_dict[df_row["Messbereich Einheit"]],
                           iri=SENSOR[sensor_id + "/MeasurementRange"], identifier=None, name="measurement range",
                           rdftype=SSN_SYSTEM.MeasurementRange)
+
     if val_ref is not None:
         data.g.add((meas_range.iri, SDO.valueReference, Literal(val_ref)))
 
+    sensor_actuation_range = Quantity(data, isPropertyOf=sys_capa.iri, hasQuantityKind=QUANTITYKIND.Voltage,
+                                      minValue=df_row["Ausgabebereich von"], maxValue=df_row["Ausgabebereich bis"],
+                                      unit=unit_dict[df_row["Ausgabebereich Einheit"]],
+                                      iri=SENSOR[sensor_id + "/SensorActuationRange"], identifier=None, name="sensor output voltage range",
+                                      rdftype=SSN_SYSTEM.ActuationRange)
+
     sensitivity = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Sensitivity"],
-                           comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensitivity", value=df_row["Kennlinie Steigung"])
+                           comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensitivity", value=df_row["Kennlinie Steigung _ Sensitivity"])
 
     bias = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Bias"],
-                    comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="bias", value=df_row["Kennlinie Offset"])
+                    comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="bias",
+                    description="The bias of the sensor of the linear transfer function of a sensor.",
+                    seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo= URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
+                    value=df_row["Kennlinie Offset _ Bias"])
+
+    sensitivity_error = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/SensitivityError"],
+                                 description="The sensitivity error of the linear transfer function of a sensor.",
+                                 name="sensitivity error", seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
+                                 value=df_row["Sensitivity Error"])
+
+    linearity_error = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/LinearityError"],
+                               name="linearity error", seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
+                               description="The linearity error of the linear transfer function of a sensor.",
+                               value=df_row["Linearity Error"])
+
+    hysteresis_error = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/HysteresisError"],
+                                name="hysteresis error", seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
+                                description="The hysteresis error of the linear transfer function of a sensor.",
+                                value=df_row["Hysteresis Error"])
 
     # we got all info we want > make dirs if they dont exist
     rdfpath = sensor_dir + sensor_id + "/"
