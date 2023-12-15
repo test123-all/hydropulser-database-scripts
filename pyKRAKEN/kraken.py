@@ -10,13 +10,12 @@ H5PATH_RDF_METADATA = "/rdf-metadata"  # could be an input instead, necessary if
 
 FST = Namespace("https://w3id.org/fst/resource/")
 URNUUID = Namespace("urn:uuid:")
-SDO = Namespace("http://schema.org/")
-DBO = Namespace("http://dbpedia.org/ontology/")
-QUDT = Namespace("http://qudt.org/schema/qudt/")
-QUANTITYKIND = Namespace("http://qudt.org/vocab/quantitykind/")
-UNIT = Namespace("http://qudt.org/vocab/unit/")
-SSN_SYSTEM = Namespace("http://www.w3.org/ns/ssn/systems/")
-
+SDO = Namespace("https://schema.org/")
+DBO = Namespace("https://dbpedia.org/ontology/")
+QUDT = Namespace("https://qudt.org/schema/qudt/")
+QUANTITYKIND = Namespace("https://qudt.org/vocab/quantitykind/")
+UNIT = Namespace("https://qudt.org/vocab/unit/")
+SSN_SYSTEM = Namespace("https://www.w3.org/ns/ssn/systems/")
 
 # wrapper for graph to automate configuration and possibly behavior
 class Kraken(object):
@@ -63,6 +62,9 @@ class Thing(object):
                  identifier: URIRef | str | None = None,
                  name: str | None = None,
                  comment: str | None = None,
+                 description: str | None = None,
+                 seeAlso: str| URIRef | None = None,
+                 conformsTo: str | URIRef | None = None,
                  subjectOf: URIRef | None = None,
                  image: URIRef | None = None,
                  documentation: URIRef | None = None,
@@ -79,6 +81,9 @@ class Thing(object):
         self.identifier = identifier  # maybe needs to be renamed because of collision with rdflib resource
         self.name = name
         self.comment = comment
+        self.description = description
+        self.seeAlso = seeAlso
+        self.conformsTo = conformsTo
         self.subjectOf = subjectOf
         self.image = image
         self.documentation = documentation
@@ -138,6 +143,52 @@ class Thing(object):
         if comment is None:
             return
         self.g.add((self.iri, RDFS.comment, Literal(comment)))
+
+    @property
+    def description(self):
+        descriptions = self.g.objects(subject=self.iri, predicate=SDO.description)
+        return [description.toPython() for description in descriptions]
+
+    @description.setter
+    def description(self, description: str | None):
+        if description is None:
+            return
+        self.g.add((self.iri, SDO.description, Literal(description)))
+
+    @property
+    def seeAlso(self):
+        see_also_generator = self.g.objects(subject=self.iri, predicate=RDFS.seeAlso)
+        return [see_also.toPython() for see_also in see_also_generator]
+
+    @seeAlso.setter
+    def seeAlso(self, seeAlso: str | URIRef | None):
+        if seeAlso is None:
+            return
+        elif isinstance(seeAlso, URIRef):
+            self.g.add((self.iri, RDFS.seeAlso, seeAlso))
+        elif isinstance(seeAlso, str):
+            self.g.add((self.iri, RDFS.seeAlso, Literal(seeAlso)))
+        else:
+            # TODO:
+            raise ValueError
+
+    @property
+    def conformsTo(self):
+        conforms_to_generator = self.g.objects(subject=self.iri, predicate=DCTERMS.conformsTo)
+        return [conforms_to_.toPython() for conforms_to_ in conforms_to_generator]
+
+    @conformsTo.setter
+    def conformsTo(self, conformsTo: str | URIRef | None):
+        if conformsTo is None:
+            return
+        elif isinstance(conformsTo, URIRef):
+            self.g.add((self.iri, DCTERMS.conformsTo, conformsTo))
+        elif isinstance(conformsTo, str):
+            self.g.add((self.iri, DCTERMS.conformsTo, Literal(conformsTo)))
+        else:
+            # TODO:
+            raise ValueError
+
 
     @property
     def subjectOf(self):
@@ -334,11 +385,21 @@ class Property(Thing):
                  identifier: str | None = None,
                  name: str | None = None,
                  comment: str | None = None,
+                 description: str | None = None,
+                 seeAlso: str | URIRef | None = None,
+                 conformsTo: str | URIRef | None = None,
                  subjectOf: URIRef | None = None,
                  image: URIRef | None = None,
                  documentation: URIRef | None = None,
                  rdftype: URIRef | None = None,):
-        super().__init__(kraken, iri, identifier, name, comment, subjectOf, image, documentation, rdftype)
+        super().__init__(kraken, iri, identifier, name, comment,
+                         description=description,
+                         seeAlso=seeAlso,
+                         conformsTo=conformsTo,
+                         subjectOf=subjectOf,
+                         image=image,
+                         documentation=documentation,
+                         rdftype=rdftype)
 
         self.isPropertyOf = isPropertyOf
         self.value = value
