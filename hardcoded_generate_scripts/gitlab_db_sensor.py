@@ -99,9 +99,14 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
 
     bias = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Bias"],
                     comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="bias",
-                    description="The bias of the sensor of the linear transfer function of a sensor.",
-                    seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo= URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
                     value=df_row["Kennlinie Offset _ Bias"])
+
+    bias_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/BiasUncertainty"],
+                    name="bias uncertainty",
+                    description="The bias uncertainty of the sensor of the linear transfer function of a sensor.",
+                    seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
+                    conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
+                    value=df_row["Bias Uncertainty"])
 
     sensitivity_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/SensitivityUncertainty"],
                                  description="The sensitivity uncertainty of the linear transfer function of a sensor.",
