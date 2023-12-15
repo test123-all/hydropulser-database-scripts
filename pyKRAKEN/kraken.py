@@ -10,13 +10,12 @@ H5PATH_RDF_METADATA = "/rdf-metadata"  # could be an input instead, necessary if
 
 FST = Namespace("https://w3id.org/fst/resource/")
 URNUUID = Namespace("urn:uuid:")
-SDO = Namespace("http://schema.org/")
-DBO = Namespace("http://dbpedia.org/ontology/")
-QUDT = Namespace("http://qudt.org/schema/qudt/")
-QUANTITYKIND = Namespace("http://qudt.org/vocab/quantitykind/")
-UNIT = Namespace("http://qudt.org/vocab/unit/")
-SSN_SYSTEM = Namespace("http://www.w3.org/ns/ssn/systems/")
-
+SDO = Namespace("https://schema.org/")
+DBO = Namespace("https://dbpedia.org/ontology/")
+QUDT = Namespace("https://qudt.org/schema/qudt/")
+QUANTITYKIND = Namespace("https://qudt.org/vocab/quantitykind/")
+UNIT = Namespace("https://qudt.org/vocab/unit/")
+SSN_SYSTEM = Namespace("https://www.w3.org/ns/ssn/systems/")
 
 # wrapper for graph to automate configuration and possibly behavior
 class Kraken(object):
