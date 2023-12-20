@@ -379,6 +379,7 @@ class Property(Thing):
     def __init__(self, kraken: Kraken,
                  isPropertyOf: URIRef,
                  value=None,
+                 unit: URIRef | None = None,
                  minValue=None,
                  maxValue=None,
                  iri: URIRef | None = None,
@@ -405,6 +406,7 @@ class Property(Thing):
         self.value = value
         self.minValue = minValue
         self.maxValue = maxValue
+        self.unit = unit
         # location
         # propertyID
 
@@ -456,6 +458,23 @@ class Property(Thing):
 
         self.g.add((self.iri, SDO.maxValue, Literal(maxValue)))
 
+    @property
+    def unit(self):
+        return self.g.value(subject=self.iri, predicate=QUDT.unit, any=False).toPython()
+
+    @unit.setter
+    def unit(self, unit):
+        if unit is None:
+            return
+        elif isinstance(unit, URIRef):
+            self.g.add((self.iri, QUDT.unit, unit))
+        elif isinstance(unit, str):
+            self.g.add((self.iri, QUDT.unit, Literal(unit)))
+        else:
+            # TODO:
+            raise ValueError
+
+
 
 class Quantity(Property):
     def __init__(self, kraken: Kraken,
@@ -474,8 +493,18 @@ class Quantity(Property):
                  image: URIRef | None = None,
                  documentation: URIRef | None = None,
                  rdftype: URIRef | None = None):
-        super().__init__(kraken, isPropertyOf, value, minValue, maxValue, iri, identifier, name, comment,
-                         subjectOf, image, documentation, rdftype)
+        super().__init__(kraken, isPropertyOf,
+                         value=value,
+                         minValue=minValue,
+                         maxValue=maxValue,
+                         iri=iri,
+                         identifier=identifier,
+                         name=name,
+                         comment=comment,
+                         subjectOf=subjectOf,
+                         image=image,
+                         documentation=documentation,
+                         rdftype=rdftype)
 
         self.hasQuantityKind = hasQuantityKind
         self.unit = unit
@@ -502,8 +531,13 @@ class Quantity(Property):
     def unit(self, unit):
         if unit is None:
             return
-
-        self.g.add((self.iri, QUDT.unit, unit))
+        elif isinstance(unit, URIRef):
+            self.g.add((self.iri, QUDT.unit, unit))
+        elif isinstance(unit, str):
+            self.g.add((self.iri, QUDT.unit, Literal(unit)))
+        else:
+            # TODO:
+            raise ValueError
 
     @property
     def symbol(self):
