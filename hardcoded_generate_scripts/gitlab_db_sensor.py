@@ -106,22 +106,26 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
                     description="The bias uncertainty of the sensor of the linear transfer function of a sensor.",
                     seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
                     conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
-                    value=df_row["Bias Uncertainty"])
+                    value=df_row["Bias Uncertainty"],
+                    unit=df_row["Bias Uncertainty Unit"])
 
     sensitivity_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/SensitivityUncertainty"],
                                  description="The sensitivity uncertainty of the linear transfer function of a sensor.",
                                  name="sensitivity uncertainty", seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
-                                 value=df_row["Sensitivity Uncertainty"])
+                                 value=df_row["Sensitivity Uncertainty"],
+                                 unit = df_row["Sensitivity Uncertainty Unit"])
 
     linearity_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/LinearityUncertainty"],
                                name="linearity uncertainty", seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
                                description="The linearity uncertainty of the linear transfer function of a sensor.",
-                               value=df_row["Linearity Uncertainty"])
+                               value=df_row["Linearity Uncertainty"],
+                               unit=df_row["Linearity Uncertainty Unit"])
 
     hysteresis_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/HysteresisUncertainty"],
                                 name="hysteresis uncertainty", seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
                                 description="The hysteresis uncertainty of the linear transfer function of a sensor.",
-                                value=df_row["Hysteresis Uncertainty"])
+                                value=df_row["Hysteresis Uncertainty"],
+                                unit=df_row["Hysteresis Uncertainty Unit"])
 
     # we got all info we want > make dirs if they dont exist
     rdfpath = sensor_dir + sensor_id + "/"
