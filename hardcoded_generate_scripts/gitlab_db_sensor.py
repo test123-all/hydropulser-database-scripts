@@ -101,33 +101,49 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
                     comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="bias",
                     value=df_row["Kennlinie Offset _ Bias"])
 
+    if df_row["Bias Uncertainty Unit"] in unit_dict.keys():
+        bias_uncertainty_unit = unit_dict[df_row["Bias Uncertainty Unit"]]
+    else:
+        bias_uncertainty_unit = df_row["Bias Uncertainty Unit"]
     bias_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/BiasUncertainty"],
                     name="bias uncertainty",
                     description="The bias uncertainty of the sensor of the linear transfer function of a sensor.",
                     seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
                     conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
                     value=df_row["Bias Uncertainty"],
-                    unit=df_row["Bias Uncertainty Unit"])
+                    unit=bias_uncertainty_unit)
 
+    if df_row["Sensitivity Uncertainty Unit"] in unit_dict.keys():
+        sensitivity_uncertainty_unit = unit_dict[df_row["Sensitivity Uncertainty Unit"]]
+    else:
+        sensitivity_uncertainty_unit = df_row["Sensitivity Uncertainty Unit"]
     sensitivity_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/SensitivityUncertainty"],
                                  description="The sensitivity uncertainty of the linear transfer function of a sensor.",
                                  name="sensitivity uncertainty", seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
                                  value=df_row["Sensitivity Uncertainty"],
-                                 unit = df_row["Sensitivity Uncertainty Unit"])
+                                 unit=sensitivity_uncertainty_unit)
 
+    if df_row["Linearity Uncertainty Unit"] in unit_dict.keys():
+        linearity_uncertainty_unit = unit_dict[df_row["Linearity Uncertainty Unit"]]
+    else:
+        linearity_uncertainty_unit = df_row["Linearity Uncertainty Unit"]
     linearity_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/LinearityUncertainty"],
                                name="linearity uncertainty", seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
                                description="The linearity uncertainty of the linear transfer function of a sensor.",
                                value=df_row["Linearity Uncertainty"],
-                               unit=df_row["Linearity Uncertainty Unit"])
+                               unit=linearity_uncertainty_unit)
 
+    if df_row["Hysteresis Uncertainty Unit"] in unit_dict.keys():
+        hysteresis_uncertainty_unit = unit_dict[df_row["Hysteresis Uncertainty Unit"]]
+    else:
+        hysteresis_uncertainty_unit = df_row["Hysteresis Uncertainty Unit"]
     hysteresis_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/HysteresisUncertainty"],
                                 name="hysteresis uncertainty", seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
                                 description="The hysteresis uncertainty of the linear transfer function of a sensor.",
                                 value=df_row["Hysteresis Uncertainty"],
-                                unit=df_row["Hysteresis Uncertainty Unit"])
+                                unit=hysteresis_uncertainty_unit)
 
-    # we got all info we want > make dirs if they dont exist
+    # We got all info we want > make dirs if they don't exist
     rdfpath = sensor_dir + sensor_id + "/"
     docpath = rdfpath + "docs"
     imgpath = rdfpath + "img"
