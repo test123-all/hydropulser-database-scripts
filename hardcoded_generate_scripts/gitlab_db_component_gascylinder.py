@@ -21,6 +21,8 @@ from pyKRAKEN.kraken import (
 # COMPONENT = Namespace(FST["component/"])
 # SUBSTANCE = Namespace(FST["substance/"])
 
+SSN_SYSTEM = Namespace("https://www.w3.org/ns/ssn/systems/")
+
 COMPONENT = Namespace("https://w3id.org/fst/resource/")
 SUBSTANCE = Namespace("https://w3id.org/fst/resource/")
 
@@ -56,6 +58,9 @@ def main():
     data.g.add((displacement_area, QUDT.unit, UNIT.M2))
     data.g.add((displacement_area, QUDT.value, Literal("-0.000804200000000000", datatype=XSD.double)))
     data.g.add((displacement_area, RDFS.comment, Literal("negative direction")))
+    # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
+    # data.g.add((displacement_area, SSN_SYSTEM.Accuracy, Literal("", datatype=XSD.double)))
+
 
     volume_design_point = COMPONENT[gas_cylinder_id + "/V1"]
     data.g.add((gas_cylinder, SSN.hasProperty, volume_design_point))
@@ -66,6 +71,8 @@ def main():
     data.g.add((volume_design_point, QUDT.hasQuantityKind, QUANTITYKIND.Volume))
     data.g.add((volume_design_point, QUDT.unit, UNIT.M3))
     data.g.add((volume_design_point, QUDT.value, Literal("0.000043", datatype=XSD.double)))
+    # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
+    # data.g.add((volume_design_point, SSN_SYSTEM.Accuracy, Literal("", datatype=XSD.double)))
 
     volume_design_point0 = COMPONENT[gas_cylinder_id + "/V0"]
     data.g.add((gas_cylinder, SSN.hasProperty, volume_design_point0))
@@ -76,6 +83,8 @@ def main():
     data.g.add((volume_design_point0, QUDT.hasQuantityKind, QUANTITYKIND.Volume))
     data.g.add((volume_design_point0, QUDT.unit, UNIT.M3))
     data.g.add((volume_design_point0, QUDT.value, Literal("0.000043", datatype=XSD.double)))
+    # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
+    # data.g.add((volume_design_point0, SSN_SYSTEM.Accuracy, Literal("", datatype=XSD.double)))
 
     wall_area = COMPONENT[gas_cylinder_id + "/A_w"]
     data.g.add((gas_cylinder, SSN.hasProperty, wall_area))
@@ -86,6 +95,8 @@ def main():
     data.g.add((wall_area, QUDT.hasQuantityKind, QUANTITYKIND.Area))
     data.g.add((wall_area, QUDT.unit, UNIT.M2))
     data.g.add((wall_area, QUDT.value, Literal("0.00686", datatype=XSD.double)))
+    # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
+    # data.g.add((wall_area, SSN_SYSTEM.Accuracy, Literal("", datatype=XSD.double)))
 
     specific_surface_area = COMPONENT[gas_cylinder_id + "/s"]
     data.g.add((gas_cylinder, SSN.hasProperty, specific_surface_area))
@@ -96,6 +107,8 @@ def main():
     data.g.add((specific_surface_area, QUDT.hasQuantityKind, QUANTITYKIND.InverseLength))
     data.g.add((specific_surface_area, QUDT.unit, UNIT["NUM-PER-M"]))
     data.g.add((specific_surface_area, QUDT.value, Literal("159.534883720930", datatype=XSD.double)))
+    # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
+    # data.g.add((specific_surface_area, SSN_SYSTEM.Accuracy, Literal("", datatype=XSD.double)))
 
     # documentation this can probably be automated
     img = COMPONENT[gas_cylinder_id + "/IMG_20190809_113156_Bokeh.jpg"]
