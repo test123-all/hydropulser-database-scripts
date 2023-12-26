@@ -30,24 +30,24 @@ def main():
     # data.g.bind("fst-substance", SUBSTANCE)
     data.g.bind("fst", COMPONENT)
 
-    airspring_id = "1ed6c2f8-282a-64b4-94d0-4ee51dfba10e"  # str(uuid6())
+    gas_cylinder_id = "1ed6c2f8-282a-64b4-94d0-4ee51dfba10e"  # str(uuid6())
 
 
     # the component = the gascylinder
-    airspring = COMPONENT[airspring_id]
+    gas_cylinder = COMPONENT[gas_cylinder_id]
    
-    data.g.add((airspring, RDF.type, DCMITYPE.PhysicalObject))
+    data.g.add((gas_cylinder, RDF.type, DCMITYPE.PhysicalObject))
     
-    data.g.add((airspring, RDFS.label, Literal("gas cylinder")))
-    data.g.add((airspring, DCTERMS.identifier, Literal(airspring_id)))
-    # data.g.add((airspring, DCTERMS.identifier, Literal("Part-no.:TAB.026.134.R")))
-    data.g.add((airspring, DBO.owner, Literal("Chair of Fluidsystems")))
-    data.g.add((airspring, SDO.manufacturer, Literal("Chair of Fluidsystems")))
-    # data.g.add((airspring, SDO.serialNumber, Literal("4K0-616-001-E")))
+    data.g.add((gas_cylinder, RDFS.label, Literal("gas cylinder")))
+    data.g.add((gas_cylinder, DCTERMS.identifier, Literal(gas_cylinder_id)))
+    # data.g.add((gas_cylinder, DCTERMS.identifier, Literal("Part-no.:TAB.026.134.R")))
+    data.g.add((gas_cylinder, DBO.owner, Literal("Chair of Fluidsystems")))
+    data.g.add((gas_cylinder, SDO.manufacturer, Literal("Chair of Fluidsystems")))
+    # data.g.add((gas_cylinder, SDO.serialNumber, Literal("4K0-616-001-E")))
 
     # properties
-    displacement_area = COMPONENT[airspring_id + "/A_d"]
-    data.g.add((airspring, SSN.hasProperty, displacement_area))
+    displacement_area = COMPONENT[gas_cylinder_id + "/A_d"]
+    data.g.add((gas_cylinder, SSN.hasProperty, displacement_area))
     data.g.add((displacement_area, RDF.type, SSN.Property))
     data.g.add((displacement_area, RDF.type, QUDT.Quantity))
     data.g.add((displacement_area, RDFS.label, Literal("displacement area")))
@@ -57,8 +57,8 @@ def main():
     data.g.add((displacement_area, QUDT.value, Literal("-0.000804200000000000", datatype=XSD.double)))
     data.g.add((displacement_area, RDFS.comment, Literal("negative direction")))
 
-    volume_design_point = COMPONENT[airspring_id + "/V1"]
-    data.g.add((airspring, SSN.hasProperty, volume_design_point))
+    volume_design_point = COMPONENT[gas_cylinder_id + "/V1"]
+    data.g.add((gas_cylinder, SSN.hasProperty, volume_design_point))
     data.g.add((volume_design_point, RDF.type, SSN.Property))
     data.g.add((volume_design_point, RDF.type, QUDT.Quantity))
     data.g.add((volume_design_point, RDFS.label, Literal("volume design point")))
@@ -67,8 +67,8 @@ def main():
     data.g.add((volume_design_point, QUDT.unit, UNIT.M3))
     data.g.add((volume_design_point, QUDT.value, Literal("0.000043", datatype=XSD.double)))
 
-    volume_design_point0 = COMPONENT[airspring_id + "/V0"]
-    data.g.add((airspring, SSN.hasProperty, volume_design_point0))
+    volume_design_point0 = COMPONENT[gas_cylinder_id + "/V0"]
+    data.g.add((gas_cylinder, SSN.hasProperty, volume_design_point0))
     data.g.add((volume_design_point0, RDF.type, SSN.Property))
     data.g.add((volume_design_point0, RDF.type, QUDT.Quantity))
     data.g.add((volume_design_point0, RDFS.label, Literal("volume design point")))
@@ -77,8 +77,8 @@ def main():
     data.g.add((volume_design_point0, QUDT.unit, UNIT.M3))
     data.g.add((volume_design_point0, QUDT.value, Literal("0.000043", datatype=XSD.double)))
 
-    wall_area = COMPONENT[airspring_id + "/A_w"]
-    data.g.add((airspring, SSN.hasProperty, wall_area))
+    wall_area = COMPONENT[gas_cylinder_id + "/A_w"]
+    data.g.add((gas_cylinder, SSN.hasProperty, wall_area))
     data.g.add((wall_area, RDF.type, SSN.Property))
     data.g.add((wall_area, RDF.type, QUDT.Quantity))
     data.g.add((wall_area, RDFS.label, Literal("wall area")))
@@ -87,86 +87,49 @@ def main():
     data.g.add((wall_area, QUDT.unit, UNIT.M2))
     data.g.add((wall_area, QUDT.value, Literal("0.00686", datatype=XSD.double)))
 
-    spec_surface_area = COMPONENT[airspring_id + "/s"]
-    data.g.add((airspring, SSN.hasProperty, spec_surface_area))
-    data.g.add((spec_surface_area, RDF.type, SSN.Property))
-    data.g.add((spec_surface_area, RDF.type, QUDT.Quantity))
-    data.g.add((spec_surface_area, RDFS.label, Literal("specific surface area")))
-    data.g.add((spec_surface_area, QUDT.symbol, Literal("s")))
-    data.g.add((spec_surface_area, QUDT.hasQuantityKind, QUANTITYKIND.InverseLength))
-    data.g.add((spec_surface_area, QUDT.unit, UNIT["NUM-PER-M"]))
-    data.g.add((spec_surface_area, QUDT.value, Literal("159.534883720930", datatype=XSD.double)))
+    specific_surface_area = COMPONENT[gas_cylinder_id + "/s"]
+    data.g.add((gas_cylinder, SSN.hasProperty, specific_surface_area))
+    data.g.add((specific_surface_area, RDF.type, SSN.Property))
+    data.g.add((specific_surface_area, RDF.type, QUDT.Quantity))
+    data.g.add((specific_surface_area, RDFS.label, Literal("specific surface area")))
+    data.g.add((specific_surface_area, QUDT.symbol, Literal("s")))
+    data.g.add((specific_surface_area, QUDT.hasQuantityKind, QUANTITYKIND.InverseLength))
+    data.g.add((specific_surface_area, QUDT.unit, UNIT["NUM-PER-M"]))
+    data.g.add((specific_surface_area, QUDT.value, Literal("159.534883720930", datatype=XSD.double)))
 
     # documentation this can probably be automated
-    img = COMPONENT[airspring_id + "/IMG_20190809_113156_Bokeh.jpg"]
-    data.g.add((airspring, SDO.subjectOf, img))
-    data.g.add((airspring, SDO.image, img))
+    img = COMPONENT[gas_cylinder_id + "/IMG_20190809_113156_Bokeh.jpg"]
+    data.g.add((gas_cylinder, SDO.subjectOf, img))
+    data.g.add((gas_cylinder, SDO.image, img))
 
-    docs = COMPONENT[airspring_id + "/CAD"]
-    data.g.add((airspring, SDO.subjectOf, docs))
-    data.g.add((airspring, SDO.documentation, docs))
+    docs = COMPONENT[gas_cylinder_id + "/CAD"]
+    data.g.add((gas_cylinder, SDO.subjectOf, docs))
+    data.g.add((gas_cylinder, SDO.documentation, docs))
 
-    thesis = COMPONENT[airspring_id + "/DOC/thesis.pdf"]
-    data.g.add((airspring, SDO.subjectOf, thesis))
-    data.g.add((airspring, SDO.documentation, thesis))
+    thesis = COMPONENT[gas_cylinder_id + "/DOC/thesis.pdf"]
+    data.g.add((gas_cylinder, SDO.subjectOf, thesis))
+    data.g.add((gas_cylinder, SDO.documentation, thesis))
 
-    datasheet = COMPONENT[airspring_id + "/DOC/gesamtbaugruppe.pdf"]
-    data.g.add((airspring, SDO.subjectOf, datasheet))
-    data.g.add((airspring, SDO.documentation, datasheet))
+    datasheet = COMPONENT[gas_cylinder_id + "/DOC/gesamtbaugruppe.pdf"]
+    data.g.add((gas_cylinder, SDO.subjectOf, datasheet))
+    data.g.add((gas_cylinder, SDO.documentation, datasheet))
 
     # rdf doc references
-    docttl = COMPONENT[airspring_id + "/rdf.ttl"]
+    docttl = COMPONENT[gas_cylinder_id + "/rdf.ttl"]
     data.g.add((docttl, RDF.type, FOAF.Document))
-    data.g.add((docttl, FOAF.primaryTopic, airspring))
+    data.g.add((docttl, FOAF.primaryTopic, gas_cylinder))
 
-    docxml = COMPONENT[airspring_id + "/rdf.xml"]
+    docxml = COMPONENT[gas_cylinder_id + "/rdf.xml"]
     data.g.add((docxml, RDF.type, FOAF.Document))
-    data.g.add((docxml, FOAF.primaryTopic, airspring))
+    data.g.add((docxml, FOAF.primaryTopic, gas_cylinder))
 
-    docjson = COMPONENT[airspring_id + "/rdf.json"]
+    docjson = COMPONENT[gas_cylinder_id + "/rdf.json"]
     data.g.add((docjson, RDF.type, FOAF.Document))
-    data.g.add((docjson, FOAF.primaryTopic, airspring))
+    data.g.add((docjson, FOAF.primaryTopic, gas_cylinder))
 
-    # documentation extended
-    if False:
-        data.g.add((img, DCTERMS.subject, airspring))
-
-        data.g.add((docs, RDF.type, DCAT.Catalog))
-        data.g.add((docs, RDF.type, SDO.CreativeWorkSeries))
-        data.g.add((docs, DCTERMS.title, Literal("CAD Vibracoustic Luftfeder")))
-        data.g.add((docs, DCTERMS.description, Literal("CAD Daten und Technische Zeichnungen Vibracoustic Luftfeder")))
-        data.g.add((docs, DCTERMS.identifier, Literal("git-commit-SHA:")))
-        data.g.add((docs, SDO.version, Literal("1.0.0")))
-        data.g.add((docs, SDO.url, docs))
-        data.g.add((docs, DCTERMS.publisher, Literal("Manuel Rexer"))) # Alternatively rdflib.URIRef("https://orcid.org/0000-0003-0559-1156") could also be an idea
-        data.g.add((docs, DCTERMS.creator, Literal("Manuel Rexer")))
-        data.g.add((docs, DCTERMS.created, Literal("22-07-19", datatype=XSD.date)))
-        data.g.add((docs, DCTERMS.rightsHolder, Literal("Vibracoustic SE ")))
-        data.g.add((docs, DCTERMS.subject, airspring))
-
-        data.g.add((datasheet, RDF.type, DCAT.Resource))
-        data.g.add((datasheet, RDF.type, SDO.CreativeWork))
-        data.g.add((datasheet, DCTERMS.title, Literal("TB ZB Luftfeder DK2 LH / RH")))
-        data.g.add((datasheet, DCTERMS.description, Literal("Technische Zeichnung Vibracoustic Luftfeder")))
-        data.g.add((datasheet, DCTERMS.identifier, Literal("git-commit-SHA:")))
-        data.g.add((datasheet, DCTERMS.identifier, Literal("Drawing-no.:HH-AR-0521-000")))
-        data.g.add((datasheet, SDO.version, Literal("1.0.0-Ea")))
-        data.g.add((datasheet, SDO.url, datasheet))
-        data.g.add((datasheet, DCTERMS.publisher, Literal("Vibracoustic SE ")))
-        data.g.add((datasheet, DCTERMS.rightsHolder, Literal("Vibracoustic SE ")))
-        data.g.add((datasheet, DCTERMS.creator, Literal("Heinsohn")))
-        data.g.add((datasheet, DCTERMS.created, Literal("09-11-16", datatype=XSD.date)))
-        data.g.add((datasheet, DCTERMS.contributor, Literal("Müller")))
-        data.g.add((datasheet, DCTERMS.contributor, Literal("Jurk")))
-        data.g.add((datasheet, DCTERMS.modified, Literal("31-01-17", datatype=XSD.date)))
-        data.g.add((datasheet, DCTERMS.modified, Literal("28-11-17", datatype=XSD.date)))
-        data.g.add((datasheet, DCTERMS.modified, Literal("21-02-18", datatype=XSD.date)))
-        data.g.add((datasheet, DCTERMS.modified, Literal("30-11-18", datatype=XSD.date)))
-        data.g.add((datasheet, DCTERMS.subject, airspring))
-        data.g.add((docs, DCTERMS.hasPart, datasheet))
 
     current_python_file_dir_path = Path(__file__).parent.resolve()
-    dir_path = Path(f"{current_python_file_dir_path}/{airspring_id}")
+    dir_path = Path(f"{current_python_file_dir_path}/{gas_cylinder_id}")
 
     try:
         dir_path.mkdir()
@@ -175,8 +138,8 @@ def main():
 
     file_path = f"{dir_path}/rdf"
     print(data.g.serialize(destination=f"{file_path}.json", format="json-ld", auto_compact=True))
-    print(data.g.serialize(destination=f"{file_path}.ttl", base=SUBSTANCE, format="longturtle", encoding="utf-8"))
-    print(data.g.serialize(destination=f"{file_path}.xml", base=SUBSTANCE, format="xml"))
+    print(data.g.serialize(destination=f"{file_path}.ttl", format="longturtle", encoding="utf-8"))
+    print(data.g.serialize(destination=f"{file_path}.xml", format="xml"))
 
 
 if __name__ == '__main__':
