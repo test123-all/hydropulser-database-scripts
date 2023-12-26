@@ -2,8 +2,9 @@ import os
 from pathlib import Path
 from urllib.parse import quote
 
+import rdflib
 from rdflib import Namespace, Literal, URIRef
-from rdflib.namespace import RDF, FOAF, SOSA, DCTERMS
+from rdflib.namespace import RDF, FOAF, SOSA, DCTERMS, XSD
 import pandas as pd
 import numpy as np
 
@@ -81,7 +82,7 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
                                 comment="sensor capabilities not regarding any conditions at this time")
 
     meas_range = Quantity(data, isPropertyOf=sys_capa.iri, hasQuantityKind=quantitykind_dict[sheet_name],
-                          minValue=df_row["Messbereich von"], maxValue=df_row["Messbereich bis"], unit=unit_dict[df_row["Messbereich Einheit"]],
+                          minValue=Literal(str(df_row["Messbereich von"]), datatype=XSD.double), maxValue=Literal(str(df_row["Messbereich bis"]), datatype=XSD.double), unit=unit_dict[df_row["Messbereich Einheit"]],
                           iri=SENSOR[sensor_id + "/MeasurementRange"], identifier=None, name="measurement range",
                           rdftype=SSN_SYSTEM.MeasurementRange)
 
@@ -89,58 +90,78 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
         data.g.add((meas_range.iri, SDO.valueReference, Literal(val_ref)))
 
     sensor_actuation_range = Quantity(data, isPropertyOf=sys_capa.iri, hasQuantityKind=QUANTITYKIND.Voltage,
-                                      minValue=df_row["Ausgabebereich von"], maxValue=df_row["Ausgabebereich bis"],
+                                      minValue=Literal(str(df_row["Ausgabebereich von"]), datatype=XSD.double), maxValue=Literal(str(df_row["Ausgabebereich bis"]), datatype=XSD.double),
                                       unit=unit_dict[df_row["Ausgabebereich Einheit"]],
                                       iri=SENSOR[sensor_id + "/SensorActuationRange"], identifier=None, name="sensor output voltage range",
                                       rdftype=SSN_SYSTEM.ActuationRange)
 
     sensitivity = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Sensitivity"],
-                           comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensitivity", value=df_row["Kennlinie Steigung _ Sensitivity"])
+                           comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensitivity", value=Literal(str(df_row["Kennlinie Steigung _ Sensitivity"]), datatype=XSD.double))
 
     bias = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Bias"],
                     comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="bias",
-                    value=df_row["Kennlinie Offset _ Bias"])
+                    value=Literal(str(df_row["Kennlinie Offset _ Bias"]), datatype=XSD.double))
 
     if df_row["Bias Uncertainty Unit"] in unit_dict.keys():
         bias_uncertainty_unit = unit_dict[df_row["Bias Uncertainty Unit"]]
     else:
         bias_uncertainty_unit = df_row["Bias Uncertainty Unit"]
+
+    if df_row["Bias Uncertainty"] is None:
+        bias_uncertainty_value = None
+    else:
+        bias_uncertainty_value = Literal(str(df_row["Bias Uncertainty"]), datatype=XSD.double)
     bias_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/BiasUncertainty"],
                     name="bias uncertainty",
                     description="The bias uncertainty of the sensor of the linear transfer function of a sensor.",
                     seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
                     conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
-                    value=df_row["Bias Uncertainty"],
+                    value=bias_uncertainty_value,
                     unit=bias_uncertainty_unit)
 
     if df_row["Sensitivity Uncertainty Unit"] in unit_dict.keys():
         sensitivity_uncertainty_unit = unit_dict[df_row["Sensitivity Uncertainty Unit"]]
     else:
         sensitivity_uncertainty_unit = df_row["Sensitivity Uncertainty Unit"]
+
+    if df_row["Sensitivity Uncertainty Unit"] is None:
+        sensitivity_uncertainty_value = None
+    else:
+        sensitivity_uncertainty_value = Literal(str(df_row["Sensitivity Uncertainty"]), datatype=XSD.double)
     sensitivity_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/SensitivityUncertainty"],
                                  description="The sensitivity uncertainty of the linear transfer function of a sensor.",
                                  name="sensitivity uncertainty", seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
-                                 value=df_row["Sensitivity Uncertainty"],
+                                 value=sensitivity_uncertainty_value,
                                  unit=sensitivity_uncertainty_unit)
 
     if df_row["Linearity Uncertainty Unit"] in unit_dict.keys():
         linearity_uncertainty_unit = unit_dict[df_row["Linearity Uncertainty Unit"]]
     else:
         linearity_uncertainty_unit = df_row["Linearity Uncertainty Unit"]
+
+    if df_row["Linearity Uncertainty"] is None:
+        linearity_uncertainty_value = None
+    else:
+        linearity_uncertainty_value = Literal(str(df_row["Linearity Uncertainty"]), datatype=XSD.double)
     linearity_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/LinearityUncertainty"],
                                name="linearity uncertainty", seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
                                description="The linearity uncertainty of the linear transfer function of a sensor.",
-                               value=df_row["Linearity Uncertainty"],
+                               value=linearity_uncertainty_value,
                                unit=linearity_uncertainty_unit)
 
     if df_row["Hysteresis Uncertainty Unit"] in unit_dict.keys():
         hysteresis_uncertainty_unit = unit_dict[df_row["Hysteresis Uncertainty Unit"]]
     else:
         hysteresis_uncertainty_unit = df_row["Hysteresis Uncertainty Unit"]
+
+    if df_row["Hysteresis Uncertainty"] is None:
+        hysteresis_uncertainty_value = None
+    else:
+        hysteresis_uncertainty_value = Literal(str(df_row["Hysteresis Uncertainty"]), datatype=XSD.double)
     hysteresis_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/HysteresisUncertainty"],
                                 name="hysteresis uncertainty", seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
                                 description="The hysteresis uncertainty of the linear transfer function of a sensor.",
-                                value=df_row["Hysteresis Uncertainty"],
+                                value=hysteresis_uncertainty_value,
                                 unit=hysteresis_uncertainty_unit)
 
     # We got all info we want > make dirs if they don't exist
