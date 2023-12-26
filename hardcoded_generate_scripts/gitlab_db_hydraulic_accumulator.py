@@ -58,7 +58,6 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
     SSN_SYSTEM = Namespace("https://www.w3.org/ns/ssn/systems/")
     COMPONENT = Namespace("https://w3id.org/fst/resource/")
     SUBSTANCE = Namespace("https://w3id.org/fst/resource/")
-    SCHEMA = Namespace("https://schema.org/")
 
     data = Kraken(base=COMPONENT)
     # data.g.bind("fst-component", COMPONENT)
@@ -79,7 +78,9 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
     data.g.add((hydraulic_accumulator, DBO.owner, Literal("FST")))
     data.g.add((hydraulic_accumulator, SDO.manufacturer, Literal(manufacturer)))
     data.g.add((hydraulic_accumulator, SDO.serialNumber, Literal(serial_number)))
+    # The comment gets the "Schlagzahl" Information.
     data.g.add((hydraulic_accumulator, RDFS.comment, Literal(hydraulic_accumulator_comment)))
+    # TODO: FIXME: We have a furhte riformation about the manufacturing date, that isn't incorporated yet inside the rdf file.
 
     # properties
     operating_pressure = COMPONENT[hydraulic_accumulator_id + "/p_operating"]
@@ -112,7 +113,10 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
     data.g.add((volume, QUDT.hasQuantityKind, QUANTITYKIND.Volume))
     data.g.add((volume, QUDT.unit, unit_dict[volume_unit]))
     data.g.add((volume, QUDT.value, Literal(volume_value)))
+    # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
     data.g.add((volume, SSN_SYSTEM.Accuracy, Literal(volume_accuracy)))
+    # FIXME: TODO: Maybe a comment about how the Accuracy was determined or estimated. That information should be incoporated inside a good ontology in the future.
+    # data.g.add((operating_pressure, RDFS.comment, Literal("Accuracy of the nominal volume estimated as 1% of the nominal volume by Mr. Rexer")))
 
     operating_temperature_range = COMPONENT[hydraulic_accumulator_id + "/T_operating_range"]
     data.g.add((hydraulic_accumulator, SSN.hasProperty, operating_temperature_range))
@@ -151,43 +155,6 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
     data.g.add((docjson, RDF.type, FOAF.Document))
     data.g.add((docjson, FOAF.primaryTopic, hydraulic_accumulator))
 
-    # documentation extended
-    if False:
-        data.g.add((img, DCTERMS.subject, hydraulic_accumulator))
-
-        data.g.add((docs, RDF.type, DCAT.Catalog))
-        data.g.add((docs, RDF.type, SDO.CreativeWorkSeries))
-        data.g.add((docs, DCTERMS.title, Literal("CAD Vibracoustic Luftfeder")))
-        data.g.add((docs, DCTERMS.description, Literal("CAD Daten und Technische Zeichnungen Vibracoustic Luftfeder")))
-        data.g.add((docs, DCTERMS.identifier, Literal("git-commit-SHA:")))
-        data.g.add((docs, SDO.version, Literal("1.0.0")))
-        data.g.add((docs, SDO.url, docs))
-        data.g.add((docs, DCTERMS.publisher, Literal("Manuel Rexer"))) # Alternatively rdflib.URIRef("https://orcid.org/0000-0003-0559-1156") could also be an idea
-        data.g.add((docs, DCTERMS.creator, Literal("Manuel Rexer")))
-        data.g.add((docs, DCTERMS.created, Literal("22-07-19", datatype=XSD.date)))
-        data.g.add((docs, DCTERMS.rightsHolder, Literal("Vibracoustic SE ")))
-        data.g.add((docs, DCTERMS.subject, hydraulic_accumulator))
-
-        data.g.add((datasheet, RDF.type, DCAT.Resource))
-        data.g.add((datasheet, RDF.type, SDO.CreativeWork))
-        data.g.add((datasheet, DCTERMS.title, Literal("TB ZB Luftfeder DK2 LH / RH")))
-        data.g.add((datasheet, DCTERMS.description, Literal("Technische Zeichnung Vibracoustic Luftfeder")))
-        data.g.add((datasheet, DCTERMS.identifier, Literal("git-commit-SHA:")))
-        data.g.add((datasheet, DCTERMS.identifier, Literal("Drawing-no.:HH-AR-0521-000")))
-        data.g.add((datasheet, SDO.version, Literal("1.0.0-Ea")))
-        data.g.add((datasheet, SDO.url, datasheet))
-        data.g.add((datasheet, DCTERMS.publisher, Literal("Vibracoustic SE ")))
-        data.g.add((datasheet, DCTERMS.rightsHolder, Literal("Vibracoustic SE ")))
-        data.g.add((datasheet, DCTERMS.creator, Literal("Heinsohn")))
-        data.g.add((datasheet, DCTERMS.created, Literal("09-11-16", datatype=XSD.date)))
-        data.g.add((datasheet, DCTERMS.contributor, Literal("Müller")))
-        data.g.add((datasheet, DCTERMS.contributor, Literal("Jurk")))
-        data.g.add((datasheet, DCTERMS.modified, Literal("31-01-17", datatype=XSD.date)))
-        data.g.add((datasheet, DCTERMS.modified, Literal("28-11-17", datatype=XSD.date)))
-        data.g.add((datasheet, DCTERMS.modified, Literal("21-02-18", datatype=XSD.date)))
-        data.g.add((datasheet, DCTERMS.modified, Literal("30-11-18", datatype=XSD.date)))
-        data.g.add((datasheet, DCTERMS.subject, hydraulic_accumulator))
-        data.g.add((docs, DCTERMS.hasPart, datasheet))
 
     # current_python_file_dir_path = Path(__file__).parent.resolve()
     dir_path = Path(f"{save_to_dir}/{hydraulic_accumulator_id}")
