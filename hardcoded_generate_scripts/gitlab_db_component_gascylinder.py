@@ -112,7 +112,7 @@ def main():
     data.g.add((specific_surface_area, QUDT.unit, UNIT["NUM-PER-M"]))
     data.g.add((specific_surface_area, QUDT.value, Literal("159.534883720930", datatype=XSD.double)))
     # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
-    data.g.add((specific_surface_area, SSN_SYSTEM.Accuracy, Literal("", datatype=XSD.double)))
+    data.g.add((specific_surface_area, SSN_SYSTEM.Accuracy, Literal("1.531088979916640", datatype=XSD.double)))
     #source: Propagation of uncertainty according to Gauß
 
     # documentation this can probably be automated
