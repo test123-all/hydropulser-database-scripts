@@ -10,6 +10,8 @@ from pyKRAKEN.kraken import (
     Kraken
 )
 
+SSN_SYSTEM = Namespace("https://www.w3.org/ns/ssn/systems/")
+
 # this should ideally be something like e.g.:
 # https://fst.tu-darmstadt.de/namespaces/components/id/
 # or w3id
@@ -54,8 +56,12 @@ def main():
     data.g.add((displacement_area, QUDT.symbol, Literal("A_d")))
     data.g.add((displacement_area, QUDT.hasQuantityKind, QUANTITYKIND.Area))
     data.g.add((displacement_area, QUDT.unit, UNIT.M2))
-    data.g.add((displacement_area, QUDT.value, Literal("-0.01362", datatype=XSD.double)))
+    data.g.add((displacement_area, QUDT.value, Literal("-0.0136206896551724", datatype=XSD.double)))
+    # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
+    data.g.add((displacement_area, SSN_SYSTEM.Accuracy, Literal("2.352441913686447e-04", datatype=XSD.double)))
+    # source: datasheet, Area derived from Force and pressure, uncertainty assumptions: F+-8N, p+-0.1bar
     data.g.add((displacement_area, RDFS.comment, Literal("negative direction")))
+
 
     volume_design_point = COMPONENT[airspring_id + "/V1"]
     data.g.add((airspring, SSN.hasProperty, volume_design_point))
@@ -66,6 +72,9 @@ def main():
     data.g.add((volume_design_point, QUDT.hasQuantityKind, QUANTITYKIND.Volume))
     data.g.add((volume_design_point, QUDT.unit, UNIT.M3))
     data.g.add((volume_design_point, QUDT.value, Literal("0.00292", datatype=XSD.double)))
+    # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
+    data.g.add((volume_design_point, SSN_SYSTEM.Accuracy, Literal("0.00003", datatype=XSD.double)))
+    # source: datasheet and derived CAD Model
 
     volume_design_point0 = COMPONENT[airspring_id + "/V0"]
     data.g.add((airspring, SSN.hasProperty, volume_design_point0))
@@ -76,6 +85,8 @@ def main():
     data.g.add((volume_design_point0, QUDT.hasQuantityKind, QUANTITYKIND.Volume))
     data.g.add((volume_design_point0, QUDT.unit, UNIT.M3))
     data.g.add((volume_design_point0, QUDT.value, Literal("0.00292", datatype=XSD.double)))
+    # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
+    data.g.add((volume_design_point0, SSN_SYSTEM.Accuracy, Literal("0.00003", datatype=XSD.double)))
 
     wall_area = COMPONENT[airspring_id + "/A_w"]
     data.g.add((airspring, SSN.hasProperty, wall_area))
@@ -86,6 +97,9 @@ def main():
     data.g.add((wall_area, QUDT.hasQuantityKind, QUANTITYKIND.Area))
     data.g.add((wall_area, QUDT.unit, UNIT.M2))
     data.g.add((wall_area, QUDT.value, Literal("0.173", datatype=XSD.double)))
+    # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
+    data.g.add((wall_area, SSN_SYSTEM.Accuracy, Literal("0.0086", datatype=XSD.double)))
+    # source: datasheet and derived CAD Model
 
     spec_surface_area = COMPONENT[airspring_id + "/s"]
     data.g.add((airspring, SSN.hasProperty, spec_surface_area))
@@ -96,6 +110,8 @@ def main():
     data.g.add((spec_surface_area, QUDT.hasQuantityKind, QUANTITYKIND.InverseLength))
     data.g.add((spec_surface_area, QUDT.unit, UNIT["NUM-PER-M"]))
     data.g.add((spec_surface_area, QUDT.value, Literal("59.246575342465754", datatype=XSD.double)))
+    # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
+    data.g.add((spec_surface_area, SSN_SYSTEM.Accuracy, Literal("3.024219668711204", datatype=XSD.double)))
 
     # documentation this can probably be automated
     img = COMPONENT[airspring_id + "/IMG_20190809_113156_Bokeh.jpg"]
