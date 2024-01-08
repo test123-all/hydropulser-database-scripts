@@ -94,7 +94,6 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
     data.g.add((operating_pressure, QUDT.hasQuantityKind, QUANTITYKIND.Pressure))
     data.g.add((operating_pressure, QUDT.unit, unit_dict[operating_pressure_unit]))
     data.g.add((operating_pressure, QUDT.value, Literal(operating_pressure_value)))
-    # data.g.add((operating_pressure, RDFS.comment, Literal("negative direction")))
 
     maximum_pressure = COMPONENT[hydraulic_accumulator_id + "/p_max"]
     data.g.add((hydraulic_accumulator, SSN.hasProperty, maximum_pressure))
@@ -117,8 +116,7 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
     data.g.add((volume, QUDT.value, Literal(volume_value)))
     # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
     data.g.add((volume, SSN_SYSTEM.Accuracy, Literal(volume_accuracy)))
-    # FIXME: TODO: Maybe a comment about how the Accuracy was determined or estimated. That information should be incoporated inside a good ontology in the future.
-    # data.g.add((operating_pressure, RDFS.comment, Literal("Accuracy of the nominal volume estimated as 1% of the nominal volume by Mr. Rexer")))
+    data.g.add((operating_pressure, RDFS.comment, Literal("Accuracy of the nominal volume estimated as 1% of the nominal volume by Mr. Rexer 12.2023")))
 
     operating_temperature_range = COMPONENT[hydraulic_accumulator_id + "/T_operating_range"]
     data.g.add((hydraulic_accumulator, SSN.hasProperty, operating_temperature_range))
@@ -156,7 +154,6 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
     docjson = COMPONENT[hydraulic_accumulator_id + "/rdf.json"]
     data.g.add((docjson, RDF.type, FOAF.Document))
     data.g.add((docjson, FOAF.primaryTopic, hydraulic_accumulator))
-
 
     # current_python_file_dir_path = Path(__file__).parent.resolve()
     dir_path = Path(f"{save_to_dir}/{hydraulic_accumulator_id}")
