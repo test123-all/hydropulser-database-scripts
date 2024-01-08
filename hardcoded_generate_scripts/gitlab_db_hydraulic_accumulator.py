@@ -104,12 +104,12 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
     data.g.add((maximum_pressure, QUDT.unit, unit_dict[maximum_pressure_unit]))
     data.g.add((maximum_pressure, QUDT.value, Literal(maximum_pressure_value)))
 
-    volume = COMPONENT[hydraulic_accumulator_id + "/V"]
+    volume = COMPONENT[hydraulic_accumulator_id + "/V0"]
     data.g.add((hydraulic_accumulator, SSN.hasProperty, volume))
     data.g.add((volume, RDF.type, SSN.Property))
     data.g.add((volume, RDF.type, QUDT.Quantity))
     data.g.add((volume, RDFS.label, Literal("volume")))
-    data.g.add((volume, QUDT.symbol, Literal("V")))
+    data.g.add((volume, QUDT.symbol, Literal("V0")))
     data.g.add((volume, QUDT.hasQuantityKind, QUANTITYKIND.Volume))
     data.g.add((volume, QUDT.unit, unit_dict[volume_unit]))
     data.g.add((volume, QUDT.value, Literal(volume_value)))
