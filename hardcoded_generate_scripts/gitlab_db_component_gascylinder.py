@@ -116,7 +116,7 @@ def main():
     #source: Propagation of uncertainty according to Gauß
 
     # documentation this can probably be automated
-    img = COMPONENT[gas_cylinder_id + "/IMG_20190809_113156_Bokeh.jpg"]
+    img = COMPONENT[gas_cylinder_id + "/IMG_gas_cylinder_mounted_in_hydropulser.jpg"]
     data.g.add((gas_cylinder, SDO.subjectOf, img))
     data.g.add((gas_cylinder, SDO.image, img))
 
@@ -124,11 +124,11 @@ def main():
     data.g.add((gas_cylinder, SDO.subjectOf, docs))
     data.g.add((gas_cylinder, SDO.documentation, docs))
 
-    thesis = COMPONENT[gas_cylinder_id + "/DOC/thesis.pdf"]
-    data.g.add((gas_cylinder, SDO.subjectOf, thesis))
-    data.g.add((gas_cylinder, SDO.documentation, thesis))
+    # thesis = COMPONENT[gas_cylinder_id + "/DOC/thesis.pdf"]
+    # data.g.add((gas_cylinder, SDO.subjectOf, thesis))
+    # data.g.add((gas_cylinder, SDO.documentation, thesis))
 
-    datasheet = COMPONENT[gas_cylinder_id + "/DOC/gesamtbaugruppe.pdf"]
+    datasheet = COMPONENT[gas_cylinder_id + "/DOC/Zeichnungen_gesamt_Hill.pdf"]
     data.g.add((gas_cylinder, SDO.subjectOf, datasheet))
     data.g.add((gas_cylinder, SDO.documentation, datasheet))
 
