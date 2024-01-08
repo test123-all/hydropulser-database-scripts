@@ -10,6 +10,9 @@ from pyKRAKEN.kraken import (
     Kraken
 )
 
+import gitlab_db_mdgen
+
+
 # this should ideally be something like e.g.:
 # https://fst.tu-darmstadt.de/namespaces/components/id/
 # or w3id
@@ -116,7 +119,7 @@ def main():
     #source: Propagation of uncertainty according to Gauß
 
     # documentation this can probably be automated
-    img = COMPONENT[gas_cylinder_id + "/IMG_gas_cylinder_mounted_in_hydropulser.jpg"]
+    img = COMPONENT[gas_cylinder_id + "/img/IMG_gas_cylinder_mounted_in_hydropulser.jpg"]
     data.g.add((gas_cylinder, SDO.subjectOf, img))
     data.g.add((gas_cylinder, SDO.image, img))
 
@@ -124,11 +127,11 @@ def main():
     data.g.add((gas_cylinder, SDO.subjectOf, docs))
     data.g.add((gas_cylinder, SDO.documentation, docs))
 
-    # thesis = COMPONENT[gas_cylinder_id + "/DOC/thesis.pdf"]
-    # data.g.add((gas_cylinder, SDO.subjectOf, thesis))
-    # data.g.add((gas_cylinder, SDO.documentation, thesis))
+    thesis = COMPONENT[gas_cylinder_id + "/doc/report_210215_S436_Konstruktion_Aufbau_und_Inbetriebnahme_eines_Prüfaufbaus_zur_Messung_instationärer_Transportvorgänge_Hill.pdf"]
+    data.g.add((gas_cylinder, SDO.subjectOf, thesis))
+    data.g.add((gas_cylinder, SDO.documentation, thesis))
 
-    datasheet = COMPONENT[gas_cylinder_id + "/DOC/Zeichnungen_gesamt_Hill.pdf"]
+    datasheet = COMPONENT[gas_cylinder_id + "/doc/Zeichnungen_gesamt_Hill.pdf"]
     data.g.add((gas_cylinder, SDO.subjectOf, datasheet))
     data.g.add((gas_cylinder, SDO.documentation, datasheet))
 
@@ -158,6 +161,8 @@ def main():
     print(data.g.serialize(destination=f"{file_path}.json", format="json-ld", auto_compact=True))
     print(data.g.serialize(destination=f"{file_path}.ttl", format="longturtle", encoding="utf-8"))
     print(data.g.serialize(destination=f"{file_path}.xml", format="xml"))
+
+    gitlab_db_mdgen.generate_sensor_md(f'{dir_path}/')
 
 
 if __name__ == '__main__':
