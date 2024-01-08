@@ -32,7 +32,7 @@ def main():
     # data.g.bind("fst-substance", SUBSTANCE)
     data.g.bind("fst", COMPONENT)
 
-    gas_cylinder_id = "1ed6c2f8-282a-64b4-94d0-4ee51dfba10e"  # str(uuid6())
+    gas_cylinder_id = "018bb4b1-db48-73b8-9d82-8a8ffb6ee225"  # str(uuid6())
 
 
     # the component = the gascylinder
@@ -42,10 +42,10 @@ def main():
     
     data.g.add((gas_cylinder, RDFS.label, Literal("gas cylinder")))
     data.g.add((gas_cylinder, DCTERMS.identifier, Literal(gas_cylinder_id)))
-    # data.g.add((gas_cylinder, DCTERMS.identifier, Literal("Part-no.:TAB.026.134.R")))
+    # data.g.add((gas_cylinder, DCTERMS.identifier, Literal("")))
     data.g.add((gas_cylinder, DBO.owner, Literal("Chair of Fluidsystems")))
     data.g.add((gas_cylinder, SDO.manufacturer, Literal("Chair of Fluidsystems")))
-    # data.g.add((gas_cylinder, SDO.serialNumber, Literal("4K0-616-001-E")))
+    # data.g.add((gas_cylinder, SDO.serialNumber, Literal("")))
 
     # properties
     displacement_area = COMPONENT[gas_cylinder_id + "/A_d"]
