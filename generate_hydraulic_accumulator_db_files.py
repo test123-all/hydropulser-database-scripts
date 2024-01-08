@@ -68,6 +68,7 @@ def main():
                                                     manufacturer=row['Hersteller:'],
                                                     serial_number=parsed_current_serial_number,
                                                     hydraulic_accumulator_comment=row['Kommentar'],
+                                                    hydraulic_accumulator_manufacturing_date=row['Herstellungsdatum'],
                                                     operating_pressure_value=row['PS'],
                                                     operating_pressure_unit=row['PS_UNIT'],
                                                     maximum_pressure_value=row['PT'],

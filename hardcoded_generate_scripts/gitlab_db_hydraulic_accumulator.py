@@ -42,6 +42,7 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
                                    identifier: str,
                                    manufacturer: str,
                                    serial_number: str,
+                                   hydraulic_accumulator_manufacturing_date: str,
                                    hydraulic_accumulator_comment: str,
                                    operating_pressure_value: [int, float],
                                    operating_pressure_unit: str,
@@ -80,7 +81,8 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
     data.g.add((hydraulic_accumulator, SDO.serialNumber, Literal(serial_number)))
     # The comment gets the "Schlagzahl" Information.
     data.g.add((hydraulic_accumulator, RDFS.comment, Literal(hydraulic_accumulator_comment)))
-    # TODO: FIXME: We have a furhte riformation about the manufacturing date, that isn't incorporated yet inside the rdf file.
+    # The second comment gets the manufacturing date
+    data.g.add((hydraulic_accumulator, RDFS.comment, Literal(hydraulic_accumulator_manufacturing_date)))
 
     # properties
     operating_pressure = COMPONENT[hydraulic_accumulator_id + "/p_operating"]
