@@ -20,7 +20,7 @@ from pyKRAKEN.kraken import (
 # FST = Namespace(ns_root + "-/blob/main/")
 # COMPONENT = Namespace(FST["component/"])
 # SUBSTANCE = Namespace(FST["substance/"])
-
+schema = Namespace('https://schema.org/')
 
 unit_dict = {"bar": UNIT.BAR,
              "mbar": UNIT.MilliBAR,
@@ -116,7 +116,7 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
     data.g.add((volume, QUDT.value, Literal(volume_value)))
     # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
     data.g.add((volume, SSN_SYSTEM.Accuracy, Literal(volume_accuracy)))
-    data.g.add((operating_pressure, RDFS.comment, Literal("Accuracy of the nominal volume estimated as 1% of the nominal volume by Mr. Rexer 12.2023")))
+    data.g.add((volume, RDFS.comment, Literal("Accuracy of the nominal volume estimated as 1% of the nominal volume by Mr. Rexer 12.2023")))
 
     operating_temperature_range = COMPONENT[hydraulic_accumulator_id + "/T_operating_range"]
     data.g.add((hydraulic_accumulator, SSN.hasProperty, operating_temperature_range))
@@ -126,8 +126,8 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
     data.g.add((operating_temperature_range, QUDT.symbol, Literal("T_operating_range")))
     data.g.add((operating_temperature_range, QUDT.hasQuantityKind, QUANTITYKIND.Area))
     data.g.add((operating_temperature_range, QUDT.unit, unit_dict[operating_temperature_range_unit]))
-    data.g.add((operating_temperature_range, SCHEMA.minValue, Literal(operating_temperature_range_minvalue, datatype=XSD.double)))
-    data.g.add((operating_temperature_range, SCHEMA.maxValue, Literal(operating_temperature_range_maxvalue, datatype=XSD.double)))
+    data.g.add((operating_temperature_range, schema.minValue, Literal(operating_temperature_range_minvalue, datatype=XSD.double)))
+    data.g.add((operating_temperature_range, schema.maxValue, Literal(operating_temperature_range_maxvalue, datatype=XSD.double)))
 
     ## documentation this can probably be automated
     #img = COMPONENT[hydraulic_accumulator_id + "/IMG_20190809_113156_Bokeh.jpg"]
