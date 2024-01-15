@@ -10,13 +10,12 @@ H5PATH_RDF_METADATA = "/rdf-metadata"  # could be an input instead, necessary if
 
 FST = Namespace("https://w3id.org/fst/resource/")
 URNUUID = Namespace("urn:uuid:")
-SDO = Namespace("http://schema.org/")
-DBO = Namespace("http://dbpedia.org/ontology/")
-QUDT = Namespace("http://qudt.org/schema/qudt/")
-QUANTITYKIND = Namespace("http://qudt.org/vocab/quantitykind/")
-UNIT = Namespace("http://qudt.org/vocab/unit/")
-SSN_SYSTEM = Namespace("http://www.w3.org/ns/ssn/systems/")
-
+SDO = Namespace("https://schema.org/")
+DBO = Namespace("https://dbpedia.org/ontology/")
+QUDT = Namespace("https://qudt.org/schema/qudt/")
+QUANTITYKIND = Namespace("https://qudt.org/vocab/quantitykind/")
+UNIT = Namespace("https://qudt.org/vocab/unit/")
+SSN_SYSTEM = Namespace("https://www.w3.org/ns/ssn/systems/")
 
 # wrapper for graph to automate configuration and possibly behavior
 class Kraken(object):
@@ -26,11 +25,11 @@ class Kraken(object):
     """
     # iri strategy object / function as input
 
-    def __init__(self, filepath: str = None) -> None:
+    def __init__(self, filepath: str = None, base: [Namespace, URIRef] = None) -> None:
         if filepath is None:
             filepath = ""
 
-        g = Graph()
+        g = Graph(base=base)
 
         # could separate binds via subclass of namespace manager, or wrapper?
         g.bind("fst", FST)
@@ -63,6 +62,9 @@ class Thing(object):
                  identifier: URIRef | str | None = None,
                  name: str | None = None,
                  comment: str | None = None,
+                 description: str | None = None,
+                 seeAlso: str| URIRef | None = None,
+                 conformsTo: str | URIRef | None = None,
                  subjectOf: URIRef | None = None,
                  image: URIRef | None = None,
                  documentation: URIRef | None = None,
@@ -79,6 +81,9 @@ class Thing(object):
         self.identifier = identifier  # maybe needs to be renamed because of collision with rdflib resource
         self.name = name
         self.comment = comment
+        self.description = description
+        self.seeAlso = seeAlso
+        self.conformsTo = conformsTo
         self.subjectOf = subjectOf
         self.image = image
         self.documentation = documentation
@@ -138,6 +143,52 @@ class Thing(object):
         if comment is None:
             return
         self.g.add((self.iri, RDFS.comment, Literal(comment)))
+
+    @property
+    def description(self):
+        descriptions = self.g.objects(subject=self.iri, predicate=SDO.description)
+        return [description.toPython() for description in descriptions]
+
+    @description.setter
+    def description(self, description: str | None):
+        if description is None:
+            return
+        self.g.add((self.iri, SDO.description, Literal(description)))
+
+    @property
+    def seeAlso(self):
+        see_also_generator = self.g.objects(subject=self.iri, predicate=RDFS.seeAlso)
+        return [see_also.toPython() for see_also in see_also_generator]
+
+    @seeAlso.setter
+    def seeAlso(self, seeAlso: str | URIRef | None):
+        if seeAlso is None:
+            return
+        elif isinstance(seeAlso, URIRef):
+            self.g.add((self.iri, RDFS.seeAlso, seeAlso))
+        elif isinstance(seeAlso, str):
+            self.g.add((self.iri, RDFS.seeAlso, Literal(seeAlso)))
+        else:
+            # TODO:
+            raise ValueError
+
+    @property
+    def conformsTo(self):
+        conforms_to_generator = self.g.objects(subject=self.iri, predicate=DCTERMS.conformsTo)
+        return [conforms_to_.toPython() for conforms_to_ in conforms_to_generator]
+
+    @conformsTo.setter
+    def conformsTo(self, conformsTo: str | URIRef | None):
+        if conformsTo is None:
+            return
+        elif isinstance(conformsTo, URIRef):
+            self.g.add((self.iri, DCTERMS.conformsTo, conformsTo))
+        elif isinstance(conformsTo, str):
+            self.g.add((self.iri, DCTERMS.conformsTo, Literal(conformsTo)))
+        else:
+            # TODO:
+            raise ValueError
+
 
     @property
     def subjectOf(self):
@@ -328,22 +379,34 @@ class Property(Thing):
     def __init__(self, kraken: Kraken,
                  isPropertyOf: URIRef,
                  value=None,
+                 unit: URIRef | None = None,
                  minValue=None,
                  maxValue=None,
                  iri: URIRef | None = None,
                  identifier: str | None = None,
                  name: str | None = None,
                  comment: str | None = None,
+                 description: str | None = None,
+                 seeAlso: str | URIRef | None = None,
+                 conformsTo: str | URIRef | None = None,
                  subjectOf: URIRef | None = None,
                  image: URIRef | None = None,
                  documentation: URIRef | None = None,
                  rdftype: URIRef | None = None,):
-        super().__init__(kraken, iri, identifier, name, comment, subjectOf, image, documentation, rdftype)
+        super().__init__(kraken, iri, identifier, name, comment,
+                         description=description,
+                         seeAlso=seeAlso,
+                         conformsTo=conformsTo,
+                         subjectOf=subjectOf,
+                         image=image,
+                         documentation=documentation,
+                         rdftype=rdftype)
 
         self.isPropertyOf = isPropertyOf
         self.value = value
         self.minValue = minValue
         self.maxValue = maxValue
+        self.unit = unit
         # location
         # propertyID
 
@@ -395,6 +458,23 @@ class Property(Thing):
 
         self.g.add((self.iri, SDO.maxValue, Literal(maxValue)))
 
+    @property
+    def unit(self):
+        return self.g.value(subject=self.iri, predicate=QUDT.unit, any=False).toPython()
+
+    @unit.setter
+    def unit(self, unit):
+        if unit is None:
+            return
+        elif isinstance(unit, URIRef):
+            self.g.add((self.iri, QUDT.unit, unit))
+        elif isinstance(unit, str):
+            self.g.add((self.iri, QUDT.unit, Literal(unit)))
+        else:
+            # TODO:
+            raise ValueError
+
+
 
 class Quantity(Property):
     def __init__(self, kraken: Kraken,
@@ -413,8 +493,18 @@ class Quantity(Property):
                  image: URIRef | None = None,
                  documentation: URIRef | None = None,
                  rdftype: URIRef | None = None):
-        super().__init__(kraken, isPropertyOf, value, minValue, maxValue, iri, identifier, name, comment,
-                         subjectOf, image, documentation, rdftype)
+        super().__init__(kraken, isPropertyOf,
+                         value=value,
+                         minValue=minValue,
+                         maxValue=maxValue,
+                         iri=iri,
+                         identifier=identifier,
+                         name=name,
+                         comment=comment,
+                         subjectOf=subjectOf,
+                         image=image,
+                         documentation=documentation,
+                         rdftype=rdftype)
 
         self.hasQuantityKind = hasQuantityKind
         self.unit = unit
@@ -441,8 +531,13 @@ class Quantity(Property):
     def unit(self, unit):
         if unit is None:
             return
-
-        self.g.add((self.iri, QUDT.unit, unit))
+        elif isinstance(unit, URIRef):
+            self.g.add((self.iri, QUDT.unit, unit))
+        elif isinstance(unit, str):
+            self.g.add((self.iri, QUDT.unit, Literal(unit)))
+        else:
+            # TODO:
+            raise ValueError
 
     @property
     def symbol(self):

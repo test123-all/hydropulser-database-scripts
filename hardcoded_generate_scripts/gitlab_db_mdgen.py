@@ -1,8 +1,11 @@
 import os
+from pathlib import Path
 from string import Template
 from textwrap import dedent
+
 from rdflib import Graph, URIRef
 from rdflib.namespace import RDF, RDFS, DCTERMS, FOAF, SOSA
+
 from pyKRAKEN.kraken import SDO, DBO
 
 
@@ -52,7 +55,12 @@ def generate_sensor_md(resource_dir):
     mapping_image = [{"image": rawpath + str(img).removeprefix(base)}
                      for img in g.objects(subject=resource, predicate=SDO.image)]
 
-    mapping_geninfo = {"comment": str(g.value(subject=resource, predicate=RDFS.comment, any=False)),
+    triples = g.triples((resource, RDFS.comment, None))
+    comment = ''
+    for current_comment in triples:
+        comment = f'{comment}\n{str(current_comment[2])}'
+
+    mapping_geninfo = {"comment": comment,
                        "manufacturer": str(g.value(subject=resource, predicate=SDO.manufacturer, any=False)),
                        "name": name,
                        "serialnumber": str(g.value(subject=resource, predicate=SDO.serialNumber, any=False)),
@@ -141,9 +149,11 @@ def generate_sensor_md(resource_dir):
         print(s, file=f)
 
 
-sensor_dir = "C:/Users/NP/Documents/AIMS/metadata_hub/data/fst_measurement_equipment/"
+def generate_sensor_md_s_from_directory(sensors_directory_search_path: [Path, str]):
+    with os.scandir(sensors_directory_search_path) as it:
+    # TODO: Check whether insidethe directory are the awaited contents
+        for entry in it:
+            if entry.is_dir() and entry.name != ".git":
+                generate_sensor_md(entry.path + "/")
 
-with os.scandir(sensor_dir) as it:
-    for entry in it:
-        if entry.is_dir() and entry.name != ".git":
-            generate_sensor_md(entry.path + "/")
+    print("Succesfully created all md files")

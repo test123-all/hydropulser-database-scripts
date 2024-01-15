@@ -1,0 +1,3 @@
+[submodule "fst-label-creator"]
+	path = fst-label-creator
+	url = git@git.rwth-aachen.de:fst-tuda/projects/rdm/fst-label-creator.git
