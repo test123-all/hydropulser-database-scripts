@@ -21,6 +21,8 @@ from pyKRAKEN.kraken import (
     Property,
     Quantity
 )
+import gitlab_db_mdgen
+
 
 SCHEMA = Namespace("https://schema.org/")
 SENSOR = Namespace("https://w3id.org/fst/resource/")
@@ -63,7 +65,7 @@ def main():
                     comment='', owner="FST", manufacturer='Rexroth - Bosch Group',
                     serialNumber='R927000555', location='')
 
-    data.g.add((sensor.iri, DCTERMS.identifier, '0811404601'))
+    data.g.add((sensor.iri, DCTERMS.identifier, Literal('0811404601')))
     data.g.add((sensor.iri, DBO.maintainedBy, Literal(maintainer)))
     # data.g.add((sensor.iri, SDO.keywords, Literal(sheet_name)))
     # data.g.add((sensor.iri, DCTERMS.modified, Literal(modified)))
@@ -162,7 +164,8 @@ def main():
     #                             value=hysteresis_uncertainty_value,
     #                             unit=hysteresis_uncertainty_unit)
 
-    data.g.add((rdflib.URIRef(f'{SENSOR}{sensor_id}'), RDF.type, SOSA.Actuator))
+    ventil = rdflib.URIRef(f'{SENSOR}{sensor_id}')
+    data.g.add((ventil, RDF.type, SOSA.Actuator))
     actuator_capability_iri = rdflib.URIRef(f"{sensor.iri}/ActuatorCapability")
     data.g.add((sensor.iri, SSN_SYSTEM.hasSystemCapability, actuator_capability_iri))
 
@@ -198,12 +201,12 @@ def main():
     data.g.add((p_max_iri, QUDT.unit, UNIT.BAR))
     data.g.add((p_max_iri, SSN.isPropertyOf, actuator_capability_iri))
 
-    actuator_actuation_range_iri = rdflib.URIRef(f'{sensor.iri}/ActuatorActuationRange')
+    actuator_actuation_range_iri = rdflib.URIRef(f'{sensor.iri}/ActuationRange')
     data.g.add((actuator_capability_iri, SSN.hasProperty, actuator_actuation_range_iri))
     data.g.add((actuator_actuation_range_iri, RDF.type, SSN.Property))
     data.g.add((actuator_actuation_range_iri, RDF.type, SSN_SYSTEM.ActuationRange))
     data.g.add((actuator_actuation_range_iri, RDF.type, QUDT.Quantity))
-    data.g.add((actuator_actuation_range_iri, RDFS.label, Literal('actuator actuation range')))
+    data.g.add((actuator_actuation_range_iri, RDFS.label, Literal('actuation range')))
     data.g.add((actuator_actuation_range_iri, RDFS.comment, Literal('The possible actuation range of the valve in percent')))
     data.g.add((actuator_actuation_range_iri, QUDT.hasQuantityKind, QUANTITYKIND.VolumeFlowRate))
     data.g.add((actuator_actuation_range_iri, QUDT.symbol, Literal('Q')))
@@ -224,6 +227,17 @@ def main():
     data.g.add((actuator_input_voltage_iri, SCHEMA.maxValue, Literal(10, datatype=XSD.double)))
     data.g.add((actuator_input_voltage_iri, QUDT.unit, UNIT.V))
     data.g.add((actuator_input_voltage_iri, SSN.isPropertyOf, actuator_capability_iri))
+
+    ############
+    # Documentation
+    img = SENSOR[sensor_id + "/img/IMG_ventil_Bosch-Rexroth_R927000555.jpg"]
+
+    data.g.add((ventil, SDO.subjectOf, img))
+    data.g.add((ventil, SDO.image, img))
+
+    datasheet = SENSOR[sensor_id + "/doc/datenblatt_101000_Bosch-Rexroth_Ventil_Type_4WRPEH6_4-4Wege.pdf"]
+    data.g.add((ventil, SDO.subjectOf, datasheet))
+    data.g.add((ventil, SDO.documentation, datasheet))
 
 
     ############
@@ -271,6 +285,8 @@ def main():
     print(data.g.serialize(destination=rdfpath + "rdf.json", format="json-ld", auto_compact=True))
     print(data.g.serialize(destination=rdfpath + "rdf.ttl", base=SENSOR, format="longturtle"))
     print(data.g.serialize(destination=rdfpath + "rdf.xml", base=SENSOR, format="xml"))
+
+    gitlab_db_mdgen.generate_sensor_md(rdfpath)
 
 if __name__ == '__main__':
     main()
