@@ -163,16 +163,18 @@ class Thing(object):
         return [see_also.toPython() for see_also in see_also_generator]
 
     @seeAlso.setter
-    def seeAlso(self, seeAlso: str | URIRef | None):
+    def seeAlso(self, seeAlso: [str] | [URIRef] | None):
         if seeAlso is None:
             return
-        elif isinstance(seeAlso, URIRef):
-            self.g.add((self.iri, RDFS.seeAlso, seeAlso))
-        elif isinstance(seeAlso, str):
-            self.g.add((self.iri, RDFS.seeAlso, Literal(seeAlso)))
-        else:
-            # TODO:
-            raise ValueError
+
+        for item in seeAlso:
+            if isinstance(item, URIRef):
+                self.g.add((self.iri, RDFS.seeAlso, item))
+            elif isinstance(item, str):
+                self.g.add((self.iri, RDFS.seeAlso, Literal(item)))
+            else:
+                # TODO:
+                raise ValueError
 
     @property
     def conformsTo(self):
@@ -180,17 +182,18 @@ class Thing(object):
         return [conforms_to_.toPython() for conforms_to_ in conforms_to_generator]
 
     @conformsTo.setter
-    def conformsTo(self, conformsTo: str | URIRef | None):
+    def conformsTo(self, conformsTo: [str] | [URIRef] | None):
         if conformsTo is None:
             return
-        elif isinstance(conformsTo, URIRef):
-            self.g.add((self.iri, DCTERMS.conformsTo, conformsTo))
-        elif isinstance(conformsTo, str):
-            self.g.add((self.iri, DCTERMS.conformsTo, Literal(conformsTo)))
-        else:
-            # TODO:
-            raise ValueError
 
+        for item in conformsTo:
+            if isinstance(item, URIRef):
+                self.g.add((self.iri, DCTERMS.conformsTo, item))
+            elif isinstance(item, str):
+                self.g.add((self.iri, DCTERMS.conformsTo, Literal(item)))
+            else:
+                # TODO:
+                raise ValueError
 
     @property
     def subjectOf(self):
