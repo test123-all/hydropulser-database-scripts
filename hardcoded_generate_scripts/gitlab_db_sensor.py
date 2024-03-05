@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from urllib.parse import quote
+import warnings
 
 import rdflib
 from rdflib import Namespace, Literal, URIRef
@@ -46,6 +47,23 @@ unit_dict = {"bar": UNIT.BAR,
 
 
 def generate_sensor_files(sensor_dir, sheet_name, df_row):
+    if (df_row["Messbereich von"] == None
+            or isinstance(df_row["Messbereich von"], str)):
+        raise ValueError
+
+    if (df_row["Messbereich bis"] == None
+            or isinstance(df_row["Messbereich bis"], str)):
+        raise ValueError
+
+    if (df_row["Ausgabebereich von"] == None
+            or isinstance(df_row["Ausgabebereich von"], str)):
+        raise ValueError
+
+    if (df_row["Ausgabebereich bis"] == None
+            or isinstance(df_row["Ausgabebereich bis"], str)):
+        raise ValueError
+
+
     data = Kraken()
     data.g.bind("fst", SENSOR)
 
@@ -259,4 +277,9 @@ def run_script(sensor_table_path: [Path, str], generated_files_directory_path: [
             row = row.replace({np.nan: None})
 
             # TODO: Add some control code that checks if the necessary minimal set of information is present
-            generate_sensor_files(f"{generated_files_directory_path}/", sheet_name, row)
+            try:
+                generate_sensor_files(f"{generated_files_directory_path}/", sheet_name, row)
+            except ValueError as e:
+                warnings.warn(f'There is a value error in one of the inputs in the {row["Ident-Nummer"]} line.\nSkipping Line..', category=Warning, stacklevel=1)
+                pass
+
