@@ -114,8 +114,10 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
     bias_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/BiasUncertainty"],
                     name="bias uncertainty",
                     description="The bias uncertainty of the sensor of the linear transfer function of a sensor.",
-                    seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
-                    conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
+                    seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
+                             URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
+                    conformsTo=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
+                                URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
                     value=bias_uncertainty_value,
                     unit=bias_uncertainty_unit,
                     comment=df_row["Bias Uncertainty Comment"])
@@ -132,8 +134,10 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
     sensitivity_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/SensitivityUncertainty"],
                                         description="The sensitivity uncertainty of the linear transfer function of a sensor.",
                                         name="sensitivity uncertainty",
-                                        seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
-                                        conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
+                                       seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
+                                                URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
+                                       conformsTo=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
+                                                   URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
                                         value=sensitivity_uncertainty_value,
                                         unit=sensitivity_uncertainty_unit,
                                         comment=df_row["Sensitivity Uncertainty Comment"])
@@ -148,7 +152,11 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
     else:
         linearity_uncertainty_value = Literal(str(df_row["Linearity Uncertainty"]), datatype=XSD.double)
     linearity_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/LinearityUncertainty"],
-                               name="linearity uncertainty", seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
+                               name="linearity uncertainty",
+                               seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
+                                        URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
+                               conformsTo=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
+                                           URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
                                description="The linearity uncertainty of the linear transfer function of a sensor.",
                                value=linearity_uncertainty_value,
                                unit=linearity_uncertainty_unit,
@@ -164,7 +172,11 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
     else:
         hysteresis_uncertainty_value = Literal(str(df_row["Hysteresis Uncertainty"]), datatype=XSD.double)
     hysteresis_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/HysteresisUncertainty"],
-                                name="hysteresis uncertainty", seeAlso=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"), conformsTo=URIRef("https://dx.doi.org/10.2139/ssrn.4452038"),
+                                name="hysteresis uncertainty",
+                                seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
+                                         URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
+                                conformsTo=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
+                                            URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
                                 description="The hysteresis uncertainty of the linear transfer function of a sensor.",
                                 value=hysteresis_uncertainty_value,
                                 unit=hysteresis_uncertainty_unit,
