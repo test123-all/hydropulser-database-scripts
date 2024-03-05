@@ -114,11 +114,14 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
                                       rdftype=SSN_SYSTEM.ActuationRange)
 
     sensitivity = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Sensitivity"],
-                           comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensitivity", value=Literal(str(df_row["Kennlinie Steigung _ Sensitivity"]), datatype=XSD.double))
+                           comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensitivity",
+                           value=Literal(str(df_row["Kennlinie Steigung _ Sensitivity"]), datatype=XSD.double),
+                           unit=Literal(f'({str(df_row["Messbereich Einheit"])})/({str(df_row["Ausgabebereich Einheit"])})'),)
 
     bias = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Bias"],
                     comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="bias",
-                    value=Literal(str(df_row["Kennlinie Offset _ Bias"]), datatype=XSD.double))
+                    value=Literal(str(df_row["Kennlinie Offset _ Bias"]), datatype=XSD.double),
+                    unit=unit_dict[df_row["Messbereich Einheit"]])
 
     if df_row["Bias Uncertainty Unit"] in unit_dict.keys():
         bias_uncertainty_unit = unit_dict[df_row["Bias Uncertainty Unit"]]
