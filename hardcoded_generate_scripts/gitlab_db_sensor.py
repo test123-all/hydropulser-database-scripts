@@ -211,15 +211,24 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
     # rdf doc references
     docttl = SENSOR[sensor_id + "/rdf.ttl"]
     data.g.add((docttl, RDF.type, FOAF.Document))  # schema:CreativeWork
+    data.g.add((docttl, RDF.type, SDO.TextObject))
     data.g.add((docttl, FOAF.primaryTopic, sensor.iri))  # schema:about
+    data.g.add((docttl, SDO.encodingFormat, Literal('text/turtle')))
 
     docxml = SENSOR[sensor_id + "/rdf.xml"]
     data.g.add((docxml, RDF.type, FOAF.Document))
+    data.g.add((docxml, RDF.type, SDO.TextObject))
     data.g.add((docxml, FOAF.primaryTopic, sensor.iri))
+    data.g.add((docxml, SDO.encodingFormat, Literal('application/rdf+xml')))
 
     docjson = SENSOR[sensor_id + "/rdf.json"]
     data.g.add((docjson, RDF.type, FOAF.Document))
+    data.g.add((docjson, RDF.type, SDO.TextObject))
     data.g.add((docjson, FOAF.primaryTopic, sensor.iri))
+    # TODO: FIXME: Falls iana als seite bleibt oder älter ist könnte man auch kucken ob man die URL von dort als p_ID verwendet https://www.iana.org/assignments/media-types/media-types.xhtml
+    # TODO: FIXME: auch n0ochmal kucken ob das sinnvoll ist beides anzugeben, oder nur die rdf sachen
+    data.g.add((docjson, SDO.encodingFormat, Literal('application/json')))
+    data.g.add((docjson, SDO.encodingFormat, Literal('application/ld+json')))
 
     print(data.g.serialize(destination=rdfpath + "rdf.json", format="json-ld", auto_compact=True))
     print(data.g.serialize(destination=rdfpath + "rdf.ttl", base=SENSOR, format="longturtle"))
