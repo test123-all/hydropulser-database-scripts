@@ -148,6 +148,7 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
     else:
         bias_uncertainty_comment = Literal(str(df_row["Bias Uncertainty Comment"]))
 
+    bias_uncertainty = Property(data, isPropertyOf=bias.iri, iri=SENSOR[sensor_id + "/Bias/BiasUncertainty"],
                     name="bias uncertainty",
                     description="The bias uncertainty of the sensor of the linear transfer function of a sensor.",
                     seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
@@ -183,6 +184,7 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
     else:
         sensitivity_uncertainty_comment = Literal(str(df_row["Sensitivity Uncertainty Comment"]))
 
+    sensitivity_uncertainty = Property(data, isPropertyOf=sensitivity.iri, iri=SENSOR[sensor_id + "/Sensitivity/SensitivityUncertainty"],
                                         description="The sensitivity uncertainty of the linear transfer function of a sensor.",
                                         name="sensitivity uncertainty",
                                        seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
