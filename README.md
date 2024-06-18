@@ -16,6 +16,17 @@ sensor labels.
 Therefore, only two scripts, `generate_UUID7s.py` and `generate_sensor_db_files.py` and one
 excel table `sensor_table.xlsx` file, that contains the data, are provided to the user as a small easy to use 'interface'. 
 Therefore the barriers of entry to reuse the software tool chain are minimized.
+<br>
+<br>
+<b>DISCLAIMER:</b><br>
+This software is in a early proof of concept phase and mentioned in the ... paper. If you want to pay credit to this software in its current raw proof of concept state please cite the paper. <br>
+<br>
+Since this software is in a early proof of concept phase it is not commented out sufficiently yet, the functional segregation isn't good and in conclusion the function and variable names might be subject to siginificant change in the future. Therefore the backwards compatbility of the API won't be granted for now. <br>
+<br>
+As of the current plans the refactoring work will be done somewhere between the beginning of september 2024 and the end of december 2024 since the responsible person is a research aide and currently in exam phase. Thank you very much in advance for your understanding. <br>
+<br>
+Moreover it is currently discussed if this framework will be used in a broader field at the Chair of Fluid Systems (Institut für Fluidsystemtechnik). If this should come true this repository will get archived after refactoring and will be succeded by a broader more orderly and partly private repository.<br>
+Also it is currently discussed if the approach to generate the data files should be replaced by a more efficient one in the future. This would also result in the archiving of this repository and at least one succeeding repository. If this repository should get archived in the future the reasons that lead to this decision and further instructions to find the new repository(ies), if they also should be publicly avilable, will be given.
 
 
 ## Installation
