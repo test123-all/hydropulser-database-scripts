@@ -63,13 +63,14 @@ class Thing(object):
                  name: str | None = None,
                  comment: str | None = None,
                  description: str | None = None,
-                 seeAlso: str| URIRef | None = None,
-                 conformsTo: str | URIRef | None = None,
+                 seeAlso: [str] | [URIRef] | None = None,
+                 conformsTo: [str] | [URIRef] | None = None,
                  subjectOf: URIRef | None = None,
                  image: URIRef | None = None,
                  documentation: URIRef | None = None,
                  rdftype: URIRef | None = None,
-                 isHostedBy: URIRef | None = None) -> None:
+                 isHostedBy: URIRef | None = None,
+                 keywords_list: [str] | None = None,) -> None:
         # how do we handle multiple occurence of properties?
         # list is fine on init, _property: list = property: list
         # what do we do on change after?
@@ -89,6 +90,7 @@ class Thing(object):
         self.documentation = documentation
         self.rdftype = rdftype
         self.isHostedBy = isHostedBy
+        self.keywords_list = keywords_list
 
     @property
     def iri(self):
@@ -161,16 +163,18 @@ class Thing(object):
         return [see_also.toPython() for see_also in see_also_generator]
 
     @seeAlso.setter
-    def seeAlso(self, seeAlso: str | URIRef | None):
+    def seeAlso(self, seeAlso: [str] | [URIRef] | None):
         if seeAlso is None:
             return
-        elif isinstance(seeAlso, URIRef):
-            self.g.add((self.iri, RDFS.seeAlso, seeAlso))
-        elif isinstance(seeAlso, str):
-            self.g.add((self.iri, RDFS.seeAlso, Literal(seeAlso)))
-        else:
-            # TODO:
-            raise ValueError
+
+        for item in seeAlso:
+            if isinstance(item, URIRef):
+                self.g.add((self.iri, RDFS.seeAlso, item))
+            elif isinstance(item, str):
+                self.g.add((self.iri, RDFS.seeAlso, Literal(item)))
+            else:
+                # TODO:
+                raise ValueError
 
     @property
     def conformsTo(self):
@@ -178,17 +182,18 @@ class Thing(object):
         return [conforms_to_.toPython() for conforms_to_ in conforms_to_generator]
 
     @conformsTo.setter
-    def conformsTo(self, conformsTo: str | URIRef | None):
+    def conformsTo(self, conformsTo: [str] | [URIRef] | None):
         if conformsTo is None:
             return
-        elif isinstance(conformsTo, URIRef):
-            self.g.add((self.iri, DCTERMS.conformsTo, conformsTo))
-        elif isinstance(conformsTo, str):
-            self.g.add((self.iri, DCTERMS.conformsTo, Literal(conformsTo)))
-        else:
-            # TODO:
-            raise ValueError
 
+        for item in conformsTo:
+            if isinstance(item, URIRef):
+                self.g.add((self.iri, DCTERMS.conformsTo, item))
+            elif isinstance(item, str):
+                self.g.add((self.iri, DCTERMS.conformsTo, Literal(item)))
+            else:
+                # TODO:
+                raise ValueError
 
     @property
     def subjectOf(self):
@@ -261,6 +266,21 @@ class Thing(object):
         self.g.add((self.iri, SOSA.isHostedBy, iri))
         self.g.add((iri, SOSA.hosts, self.iri))
         self.g.add((iri, RDF.type, SOSA.Platform))
+
+    @property
+    def keywords_list(self):
+        keywords_list = self.g.objects(subject=self.iri, predicate=DCTERMS.identifier)
+        return [keyword.toPython() for keyword in keywords_list]
+
+    @keywords_list.setter
+    def keywords_list(self, keywords_list: [str] | None):
+        if keywords_list is None:
+            return
+        for keyword in keywords_list:
+            # TODO: Could keywords also be URIRefs? technical that should be possible but is there a relevant use case?
+            #  -> terms with efficient multi language lookup and broad search (broader topic search through different keywords connected to the selected one(s))
+
+            self.g.add((self.iri, SDO.keywords, Literal(keyword.strip())))
 
 
 class PhysicalObject(Thing):
@@ -387,12 +407,13 @@ class Property(Thing):
                  name: str | None = None,
                  comment: str | None = None,
                  description: str | None = None,
-                 seeAlso: str | URIRef | None = None,
-                 conformsTo: str | URIRef | None = None,
+                 seeAlso: [str] | [URIRef] | None = None,
+                 conformsTo: [str] | [URIRef] | None = None,
                  subjectOf: URIRef | None = None,
                  image: URIRef | None = None,
                  documentation: URIRef | None = None,
-                 rdftype: URIRef | None = None,):
+                 rdftype: URIRef | None = None,
+                 keywords_list: [str] | None = None,):
         super().__init__(kraken, iri, identifier, name, comment,
                          description=description,
                          seeAlso=seeAlso,
@@ -400,7 +421,8 @@ class Property(Thing):
                          subjectOf=subjectOf,
                          image=image,
                          documentation=documentation,
-                         rdftype=rdftype)
+                         rdftype=rdftype,
+                         keywords_list=keywords_list,)
 
         self.isPropertyOf = isPropertyOf
         self.value = value
