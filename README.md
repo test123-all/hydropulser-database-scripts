@@ -3,7 +3,7 @@
 This is the repository of the hydropulser database scripts, that are based on the scripts from the AIMS project 
 (https://www.aims-projekt.de/impressum-und-haftungsauschluss/ and https://git.rwth-aachen.de/aims/public/pyKRAKEN) by 
 Nils Preuß (https://orcid.org/0000-0002-6793-8533). <br>
-These scripts generate the rdf files of sensors (and substances, components) that are hosted on a gitlab instance behind a PID namespace like 
+These scripts generate the rdf files of sensors, substances and components that are hosted on a gitlab instance behind a PID namespace like
 (https://w3id.org/fst/resource/) with a two step redirect. The generated rdf and .md files are comittet and pushed to a
 data repository that is a submodule of the metadata hub repository of the FST. The metadata hub repository of the FST
 can be currently found at https://git.rwth-aachen.de/fst-tuda/projects/rdm/metadata_hub [State of end of october 2023]. <br> 
@@ -35,7 +35,6 @@ Please use poetry (https://python-poetry.org/) the python package manager or ven
 (shell scripts have the '.sh' suffix).
 
 
-
 ## Getting started
 ### How to create UUIDs for my objects?
 Just run the `generate_UUID7s.py` script located inside the root directory of this repository with `python ./generate_UUID7s.py` .
@@ -47,8 +46,7 @@ inside the `def main(quanitity_of_UUID7s :int = 10):` line to a natural number o
 to generate (for example `20`).  
 
 
-
-### How can I create rdf files for a data repository and labels with a QR-code?
+### How can I create rdf files for a data repository?
 1. Fill in your data into the `sensor_table.xlsx` file. A example table with already filled in data is given by the
 `sensor_table_EXAMPLE.xlsx` file. You should try to fill out all possible fields.
 2. Change the following variables inside the `generate_sensor_db_files.py`. The code block is right in the middle of
@@ -71,11 +69,6 @@ contain the corresponding rdf files and the generated README.md
 to the newest version of the underlying data repositories. This makes sure that the CI/CD pipeline of the data hub repository gets initiated and
 is able to generate the redirect files.
 
-
-**Disclaimer:** <br>
-Currently the fst label creator doesn't resolve the path of incscape on windows machines (since windows doesn't
-resolve CLI tool names to the corresponding file automatically, therefore an explicit standard path needs to be given, that isn't
-implemented yet).
 
 ### Restrictions placed on the sensor table:
 - Currently only sensors of the following type are supported (others might follow):
@@ -106,23 +99,14 @@ implemented yet).
 the `sensor_table.xlsx`.
 
 
-
 ## Current To Do List
-- How to add images to the sensor README.md files?
+- How to automatically add images to the sensor README.md files?
 - Since there is a README.md file present for the one example component of the FST. Is there a script for it or is it created 
 by hand? 
 
 
-
 ## Dependencies:
 This repository uses the following third party python packages and software as dependency:
-
-**FST Label Creator:** <br>
-- qrcode (https://pypi.org/project/qrcode/ [Last Access at 03th October 2023])
-- reportlab open source version (https://pypi.org/project/reportlab/ [Last Access at 03th October 2023], https://docs.reportlab.com/reportlab/userguide/ch1_intro/ [Last Access at 03th October 2023])
-- svglib (https://pypi.org/project/svglib/ [Last Access at 03th October 2023])
-- pandas + openpyxl (to load the data of the excel sheets) (https://pandas.pydata.org/ [Last Access at 29th October 2023]) (https://pypi.org/project/openpyxl/ [Last Access at 29th October 2023])
-- Inkscape (https://inkscape.org/ [Last Access at 03th October 2023])
 
 **The scripts from the AIMS project by Nils Preuß** <br>
 - rdflib (https://rdflib.dev/ [Last Access at 29th October 2023])
@@ -131,7 +115,6 @@ This repository uses the following third party python packages and software as d
 - numpy (https://numpy.org/ [Last Access at 29th October 2023])
 
 
-
 ## Current Maintainers:
 sebastian.neumeier[at]stud.tu-darmstadt.de <br>
-manuel.rexer[at]fst.tu-darmstadt.de <br>
+
