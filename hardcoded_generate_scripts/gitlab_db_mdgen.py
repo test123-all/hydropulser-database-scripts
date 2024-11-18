@@ -11,7 +11,7 @@ from pyKRAKEN.kraken import SDO, DBO
 
 def generate_sensor_md(resource_dir):
     rdfdocname = "rdf.ttl"
-    g = Graph().parse(resource_dir + rdfdocname)
+    g = Graph().parse(f'{resource_dir}/{rdfdocname}')
 
     subjects = set([str(iri) for iri in g.subjects()])  # set of unique subjects as string
     rdfdoc = [iri for iri in subjects if rdfdocname in iri]
