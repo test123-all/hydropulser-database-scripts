@@ -49,7 +49,8 @@ unit_dict = {"bar": UNIT.BAR,
              "µV": UNIT.MicroV,
              "A": UNIT.A,
              "W": UNIT.W,
-             "m^3/s": UNIT.M3_PER_SEC}
+             "m^3/s": UNIT.M3_PER_SEC,
+             "m^3/h": UNIT.M3_PER_HR}
 
 
 def generate_sensor_files(sensor_dir, sheet_name, df_row):
