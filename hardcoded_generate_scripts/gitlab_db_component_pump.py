@@ -68,6 +68,7 @@ def generate_pump_files(pump_files_dir, df_row):
     data.g.add((pump, DCTERMS.identifier, Literal(pump_id)))
     data.g.add((pump, DCTERMS.identifier, Literal(f"{df_row['Bezeichnung']}")))
     data.g.add((pump, DBO.owner, Literal("FST")))
+    data.g.add((pump, DBO.maintainedBy, Literal(df_row['Verantwortlicher WiMi'])))
     data.g.add((pump, SDO.manufacturer, Literal(f"{df_row['Hersteller']}")))
     data.g.add((pump, SDO.serialNumber, Literal(f"{df_row['Seriennummer']}")))
 
@@ -159,11 +160,14 @@ def generate_pump_files(pump_files_dir, df_row):
     sensitivity = Property(data, isPropertyOf=actuator_actuation_range_iri, iri=URIRef(f"{FST_NAMESPACE}{pump_id}/Sensitivity"),
                            comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensitivity",
                            value=Literal(float(df_row['Kennlinie Steigung _ Sensitivity']), datatype=XSD.double))
+    data.g.add((URIRef(f"{FST_NAMESPACE}{pump_id}/Sensitivity"), QUDT.unit, Literal(f"({df_row['Eingabebereich Einheit']})/({df_row['Ausgabebereich Einheit']})")))
+
 
     bias = Property(data, isPropertyOf=actuator_actuation_range_iri, iri=URIRef(f"{FST_NAMESPACE}{pump_id}/Bias"),
                     comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="bias",
                     value=Literal(float(df_row['Kennlinie Offset _ Bias']), datatype=XSD.double))
 
+    data.g.add((URIRef(f"{FST_NAMESPACE}{pump_id}/Bias"), QUDT.unit, unit_dict[df_row['Eingabebereich Einheit']]))
 
     power_connection = COMPONENT[pump_id + "/PowerConnection"]  # TODO :RANGE!
     data.g.add((pump, SSN.hasProperty, power_connection))
