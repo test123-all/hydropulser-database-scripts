@@ -55,7 +55,12 @@ def generate_sensor_md(resource_dir):
     mapping_image = [{"image": rawpath + str(img).removeprefix(base)}
                      for img in g.objects(subject=resource, predicate=SDO.image)]
 
-    mapping_geninfo = {"comment": str(g.value(subject=resource, predicate=RDFS.comment, any=False)),
+    triples = g.triples((resource, RDFS.comment, None))
+    comment = ''
+    for current_comment in triples:
+        comment = f'{comment}\n{str(current_comment[2])}'
+
+    mapping_geninfo = {"comment": comment,
                        "manufacturer": str(g.value(subject=resource, predicate=SDO.manufacturer, any=False)),
                        "name": name,
                        "serialnumber": str(g.value(subject=resource, predicate=SDO.serialNumber, any=False)),

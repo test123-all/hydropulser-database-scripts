@@ -4,7 +4,7 @@ import pandas as pd
 
 
 from hardcoded_generate_scripts.gitlab_db_hydraulic_accumulator import generate_gitlab_hydraulic_accumulator_files
-#from hardcoded_generate_scripts.gitlab_db_mdgen import generate_sensor_md_s_from_directory
+from hardcoded_generate_scripts.gitlab_db_mdgen import generate_sensor_md_s_from_directory
 
 from fstlabelcreator import script_functions
 
@@ -62,12 +62,13 @@ def main():
         current_serial_number = str(row['Serial_number'])
         parsed_current_serial_number = current_serial_number.replace('“', '').replace('”', '')
 
-        generate_gitlab_hydraulic_accumulator_files(save_to_dir=path_for_generated_files,
+        generate_gitlab_hydraulic_accumulator_files(save_to_dir=path_for_generated_PID_files,
                                                     hydraulic_accumulator_id=row['UUID'],
                                                     identifier=row['Product_number'],
                                                     manufacturer=row['Hersteller:'],
                                                     serial_number=parsed_current_serial_number,
                                                     hydraulic_accumulator_comment=row['Kommentar'],
+                                                    hydraulic_accumulator_manufacturing_date=row['Herstellungsdatum'],
                                                     operating_pressure_value=row['PS'],
                                                     operating_pressure_unit=row['PS_UNIT'],
                                                     maximum_pressure_value=row['PT'],
@@ -79,10 +80,10 @@ def main():
                                                     operating_temperature_range_maxvalue=row['TS_max'],
                                                     operating_temperature_range_unit=row['TS_UNIT'])
 
-    print('Generation of the sensor files successfully finished!')
+    print('Generation of the files successfully finished!')
 
-    print('Start of the generation of the README.md files of the sensor directories.')
-    #generate_sensor_md_s_from_directory(sensors_directory_search_path= path_for_generated_PID_files.resolve())
+    print('Start of the generation of the README.md files of the directories.')
+    generate_sensor_md_s_from_directory(sensors_directory_search_path=path_for_generated_PID_files.resolve())
 
 if __name__ == '__main__':
     main()
