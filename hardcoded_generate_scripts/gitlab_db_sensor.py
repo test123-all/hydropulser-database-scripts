@@ -54,20 +54,20 @@ unit_dict = {"bar": UNIT.BAR,
 
 
 def generate_sensor_files(sensor_dir, sheet_name, df_row):
-    if (df_row["Messbereich von"] == None
-            or isinstance(df_row["Messbereich von"], str)):
+    if (df_row["Sensor Messbereich von"] == None
+            or isinstance(df_row["Sensor Messbereich von"], str)):
         raise ValueError
 
-    if (df_row["Messbereich bis"] == None
-            or isinstance(df_row["Messbereich bis"], str)):
+    if (df_row["Sensor Messbereich bis"] == None
+            or isinstance(df_row["Sensor Messbereich bis"], str)):
         raise ValueError
 
-    if (df_row["Ausgabebereich von"] == None
-            or isinstance(df_row["Ausgabebereich von"], str)):
+    if (df_row["Sensor Ausgabebereich von"] == None
+            or isinstance(df_row["Sensor Ausgabebereich von"], str)):
         raise ValueError
 
-    if (df_row["Ausgabebereich bis"] == None
-            or isinstance(df_row["Ausgabebereich bis"], str)):
+    if (df_row["Sensor Ausgabebereich bis"] == None
+            or isinstance(df_row["Sensor Ausgabebereich bis"], str)):
         raise ValueError
 
 
@@ -107,73 +107,119 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
                                 comment="sensor capabilities not regarding any conditions at this time")
 
     meas_range = Quantity(data, isPropertyOf=sys_capa.iri, hasQuantityKind=quantitykind_dict[sheet_name],
-                          minValue=Literal(str(df_row["Messbereich von"]), datatype=XSD.double), maxValue=Literal(str(df_row["Messbereich bis"]), datatype=XSD.double), unit=unit_dict[df_row["Messbereich Einheit"]],
-                          iri=SENSOR[sensor_id + "/MeasurementRange"], identifier=None, name="measurement range",
+                          minValue=Literal(str(df_row["Sensor Messbereich von"]), datatype=XSD.double), maxValue=Literal(str(df_row["Sensor Messbereich bis"]), datatype=XSD.double), unit=unit_dict[df_row["Sensor Messbereich Einheit"]],
+                          iri=SENSOR[sensor_id + "/SensorCapability/MeasurementRange"], identifier=None, name="measurement range",
                           rdftype=SSN_SYSTEM.MeasurementRange)
 
     if val_ref is not None:
         data.g.add((meas_range.iri, SDO.valueReference, Literal(val_ref)))
 
     sensor_actuation_range = Quantity(data, isPropertyOf=sys_capa.iri, hasQuantityKind=QUANTITYKIND.Voltage,
-                                      minValue=Literal(str(df_row["Ausgabebereich von"]), datatype=XSD.double), maxValue=Literal(str(df_row["Ausgabebereich bis"]), datatype=XSD.double),
-                                      unit=unit_dict[df_row["Ausgabebereich Einheit"]],
-                                      iri=SENSOR[sensor_id + "/SensorActuationRange"], identifier=None, name="sensor output voltage range",
+                                      minValue=Literal(str(df_row["Sensor Ausgabebereich von"]), datatype=XSD.double), maxValue=Literal(str(df_row["Sensor Ausgabebereich bis"]), datatype=XSD.double),
+                                      unit=unit_dict[df_row["Sensor Ausgabebereich Einheit"]],
+                                      iri=SENSOR[sensor_id + "/SensorCapability/ActuationRange"], identifier=None, name="sensor output voltage range",
                                       rdftype=SSN_SYSTEM.ActuationRange)
-    sensitivity = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Sensitivity"],
+    sensitivity = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/SensorCapability/Sensitivity"],
                            comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensitivity",
-                           value=Literal(str(df_row["Kennlinie Steigung _ Sensitivity"]), datatype=XSD.double),
-                           unit=Literal(f'({str(df_row["Messbereich Einheit"])})/({str(df_row["Ausgabebereich Einheit"])})'),)
+                           value=Literal(str(df_row["Sensor Kennlinie _ Sensitivity"]), datatype=XSD.double),
+                           unit=Literal(f'({str(df_row["Sensor Messbereich Einheit"])})/({str(df_row["Sensor Ausgabebereich Einheit"])})'),)
 
-    bias = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/Bias"],
+    bias = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/SensorCapability/Bias"],
                     comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="bias",
-                    value=Literal(str(df_row["Kennlinie Offset _ Bias"]), datatype=XSD.double),
-                    unit=unit_dict[df_row["Messbereich Einheit"]])
+                    value=Literal(str(df_row["Sensor Kennlinie _ Bias"]), datatype=XSD.double),
+                    unit=unit_dict[df_row["Sensor Messbereich Einheit"]])
 
-    if (df_row["Bias Uncertainty Unit"] is not None
-            and df_row["Bias Uncertainty Unit"] in unit_dict.keys()):
-        bias_uncertainty_unit = unit_dict[df_row["Bias Uncertainty Unit"]]
-    elif (df_row["Bias Uncertainty Unit"] is None
-          or (isinstance(df_row["Bias Uncertainty"], str)
-              and df_row["Bias Uncertainty"].lower() == 'unknown')):
-        bias_uncertainty_unit = None
-    elif (df_row["Bias Uncertainty Unit"] is not None
-            and df_row["Bias Uncertainty Unit"] not in unit_dict.keys()):
-        bias_uncertainty_unit = df_row["Bias Uncertainty Unit"]
+    if (df_row["Absolute Bias Uncertainty Unit"] is not None
+            and df_row["Absolute Bias Uncertainty Unit"] in unit_dict.keys()):
+        absolute_bias_uncertainty_unit = unit_dict[df_row["Absolute Bias Uncertainty Unit"]]
+    elif (df_row["Absolute Bias Uncertainty Unit"] is None
+          or (isinstance(df_row["Absolute Bias Uncertainty"], str)
+              and df_row["Absolute Bias Uncertainty"].lower() == 'unknown')):
+        absolute_bias_uncertainty_unit = None
+    elif (df_row["Absolute Bias Uncertainty Unit"] is not None
+            and df_row["Absolute Bias Uncertainty Unit"] not in unit_dict.keys()):
+        absolute_bias_uncertainty_unit = df_row["Absolute Bias Uncertainty Unit"]
 
-    if (df_row["Bias Uncertainty"] is None
-            or (isinstance(df_row["Bias Uncertainty"], str)
-                and df_row["Bias Uncertainty"].lower() == 'unknown')):
-        bias_uncertainty_value = None
+    if (df_row["Absolute Bias Uncertainty"] is None
+            or (isinstance(df_row["Absolute Bias Uncertainty"], str)
+                and df_row["Absolute Bias Uncertainty"].lower() == 'unknown')):
+        absolute_bias_uncertainty_value = None
     else:
-        bias_uncertainty_value = Literal(str(df_row["Bias Uncertainty"]), datatype=XSD.double)
+        absolute_bias_uncertainty_value = Literal(str(df_row["Absolute Bias Uncertainty"]), datatype=XSD.double)
 
-    if (df_row["Bias Uncertainty Comment"] is None
-            or (isinstance(df_row["Bias Uncertainty Comment"], str)
-                and df_row["Bias Uncertainty Comment"].lower() == 'unknown')):
-        bias_uncertainty_comment = None
+    if (df_row["Absolute Bias Uncertainty Comment"] is None
+            or (isinstance(df_row["Absolute Bias Uncertainty Comment"], str)
+                and df_row["Absolute Bias Uncertainty Comment"].lower() == 'unknown')):
+        absolute_bias_uncertainty_comment = None
     else:
-        bias_uncertainty_comment = Literal(str(df_row["Bias Uncertainty Comment"]))
+        absolute_bias_uncertainty_comment = Literal(str(df_row["Absolute Bias Uncertainty Comment"]))
 
-    if (df_row["Bias Uncertainty Keywords"] is None
-            or (isinstance(df_row["Bias Uncertainty Keywords"], str)
-                and df_row["Bias Uncertainty Keywords"].lower() == 'unknown')):
-        bias_uncertainty_keywords_list = None
+    if (df_row["Absolute Bias Uncertainty Keywords"] is None
+            or (isinstance(df_row["Absolute Bias Uncertainty Keywords"], str)
+                and df_row["Absolute Bias Uncertainty Keywords"].lower() == 'unknown')):
+        absolute_bias_uncertainty_keywords_list = None
     else:
-        temp_string = str(df_row["Bias Uncertainty Keywords"])
-        bias_uncertainty_keywords_list = temp_string.split(';')
+        temp_string = str(df_row["Absolute Bias Uncertainty Keywords"])
+        absolute_bias_uncertainty_keywords_list = temp_string.split(';')
         del temp_string
 
-    bias_uncertainty = Property(data, isPropertyOf=bias.iri, iri=SENSOR[sensor_id + "/Bias/BiasUncertainty"],
-                    name="bias uncertainty",
-                    description="The bias uncertainty of the sensor of the linear transfer function of a sensor.",
+    absolute_bias_uncertainty = Property(data, isPropertyOf=bias.iri, iri=SENSOR[sensor_id + "/SensorCapability/Bias/AbsoluteBiasUncertainty"],
+                    name="absolute bias uncertainty",
+                    description="The absolute bias uncertainty of the sensor of the linear transfer function of a sensor.",
                     seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
                              URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
                     conformsTo=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
                                 URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
-                    value=bias_uncertainty_value,
-                    unit=bias_uncertainty_unit,
-                    comment=bias_uncertainty_comment,
-                    keywords_list=bias_uncertainty_keywords_list)
+                    value=absolute_bias_uncertainty_value,
+                    unit=absolute_bias_uncertainty_unit,
+                    comment=absolute_bias_uncertainty_comment,
+                    keywords_list=absolute_bias_uncertainty_keywords_list)
+
+    if (df_row["Relative Bias Uncertainty Unit"] is not None
+            and df_row["Relative Bias Uncertainty Unit"] in unit_dict.keys()):
+        relative_bias_uncertainty_unit = unit_dict[df_row["Relative Bias Uncertainty Unit"]]
+    elif (df_row["Relative Bias Uncertainty Unit"] is None
+          or (isinstance(df_row["Relative Bias Uncertainty"], str)
+              and df_row["Relative Bias Uncertainty"].lower() == 'unknown')):
+        relative_bias_uncertainty_unit = None
+    elif (df_row["Relative Bias Uncertainty Unit"] is not None
+            and df_row["Relative Bias Uncertainty Unit"] not in unit_dict.keys()):
+        relative_bias_uncertainty_unit = df_row["Relative Bias Uncertainty Unit"]
+
+    if (df_row["Relative Bias Uncertainty"] is None
+            or (isinstance(df_row["Relative Bias Uncertainty"], str)
+                and df_row["Relative Bias Uncertainty"].lower() == 'unknown')):
+        relative_bias_uncertainty_value = None
+    else:
+        relative_bias_uncertainty_value = Literal(str(df_row["Relative Bias Uncertainty"]), datatype=XSD.double)
+
+    if (df_row["Relative Bias Uncertainty Comment"] is None
+            or (isinstance(df_row["Relative Bias Uncertainty Comment"], str)
+                and df_row["Relative Bias Uncertainty Comment"].lower() == 'unknown')):
+        relative_bias_uncertainty_comment = None
+    else:
+        relative_bias_uncertainty_comment = Literal(str(df_row["Relative Bias Uncertainty Comment"]))
+
+    if (df_row["Relative Bias Uncertainty Keywords"] is None
+            or (isinstance(df_row["Relative Bias Uncertainty Keywords"], str)
+                and df_row["Relative Bias Uncertainty Keywords"].lower() == 'unknown')):
+        relative_bias_uncertainty_keywords_list = None
+    else:
+        temp_string = str(df_row["Relative Bias Uncertainty Keywords"])
+        relative_bias_uncertainty_keywords_list = temp_string.split(';')
+        del temp_string
+
+    relative_bias_uncertainty = Property(data, isPropertyOf=bias.iri, iri=SENSOR[sensor_id + "/SensorCapability/Bias/RelativeBiasUncertainty"],
+                    name="relative bias uncertainty",
+                    description="The relative bias uncertainty of the sensor of the linear transfer function of a sensor.",
+                    seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
+                             URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
+                    conformsTo=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
+                                URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
+                    value=relative_bias_uncertainty_value,
+                    unit=relative_bias_uncertainty_unit,
+                    comment=relative_bias_uncertainty_comment,
+                    keywords_list=relative_bias_uncertainty_keywords_list)
 
     if (df_row["Sensitivity Uncertainty Unit"] is not None
             and df_row["Sensitivity Uncertainty Unit"] in unit_dict.keys()):
@@ -209,7 +255,7 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
         sensitivity_uncertainty_keywords_list = temp_string.split(';')
         del temp_string
 
-    sensitivity_uncertainty = Property(data, isPropertyOf=sensitivity.iri, iri=SENSOR[sensor_id + "/Sensitivity/SensitivityUncertainty"],
+    sensitivity_uncertainty = Property(data, isPropertyOf=sensitivity.iri, iri=SENSOR[sensor_id + "/SensorCapability/Sensitivity/SensitivityUncertainty"],
                                         description="The sensitivity uncertainty of the linear transfer function of a sensor.",
                                         name="sensitivity uncertainty",
                                        seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
@@ -255,7 +301,7 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
         linearity_uncertainty_keywords_list = temp_string.split(';')
         del temp_string
 
-    linearity_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/LinearityUncertainty"],
+    linearity_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/SensorCapability/LinearityUncertainty"],
                                name="linearity uncertainty",
                                seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
                                         URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
@@ -301,7 +347,7 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
         hysteresis_uncertainty_keywords_list = temp_string.split(';')
         del temp_string
 
-    hysteresis_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/HysteresisUncertainty"],
+    hysteresis_uncertainty = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/SensorCapability/HysteresisUncertainty"],
                                 name="hysteresis uncertainty",
                                 seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
                                          URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
