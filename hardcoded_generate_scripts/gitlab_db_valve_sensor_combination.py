@@ -84,33 +84,33 @@ def generate_valve_files(valve_files_dir, df_row):
     #     data.g.add((valve.iri, DCTERMS.relation, Literal(rel)))
 
     # properties
-    sys_capa = SensorCapability(data, iri=FST_NAMESPACE[valve_id + "/SensorCapability"], name="sensor capabilities",
+    sensor_sys_capa = SensorCapability(data, iri=FST_NAMESPACE[valve_id + "/SensorCapability"], name="sensor capabilities",
                                 comment="sensor capabilities not regarding any conditions at this time")
 
-    meas_range = Quantity(data, isPropertyOf=sys_capa.iri, hasQuantityKind=QUANTITYKIND.VolumeFlowRate,
-                          minValue=Literal(float(df_row['Messbereich von']), datatype=XSD.double), maxValue=Literal(float(df_row['Messbereich bis']), datatype=XSD.double), unit=unit_dict[df_row['Messbereich Unit']],
+    sensor_meas_range = Quantity(data, isPropertyOf=sensor_sys_capa.iri, hasQuantityKind=QUANTITYKIND.OpeningRatio,
+                          minValue=Literal(float(df_row['Sensor Messbereich von']), datatype=XSD.double), maxValue=Literal(float(df_row['Sensor Messbereich bis']), datatype=XSD.double), unit=unit_dict[df_row['Sensor Messbereich Unit']],
                           iri=FST_NAMESPACE[valve_id + "/MeasurementRange"], identifier=None, name="measurement range",
                           rdftype=SSN_SYSTEM.MeasurementRange)
 
     # if val_ref is not None:
-    #     data.g.add((meas_range.iri, SDO.valueReference, Literal(val_ref)))
+    #     data.g.add((sensor_meas_range.iri, SDO.valueReference, Literal(val_ref)))
 
-    sensor_actuation_range = Quantity(data, isPropertyOf=sys_capa.iri, hasQuantityKind=QUANTITYKIND.Voltage,
-                                      minValue=Literal(float(df_row['Ausgabebereich von']), datatype=XSD.double), maxValue=Literal(float(df_row['Ausgabebereich bis']), datatype=XSD.double),
-                                      unit=unit_dict[df_row['Ausgabebereich Unit']],
-                                      iri=FST_NAMESPACE[valve_id + "/SensorActuationRange"], identifier=None, name="sensor output voltage range",
+    sensor_actuation_range = Quantity(data, isPropertyOf=sensor_sys_capa.iri, hasQuantityKind=QUANTITYKIND.Voltage,
+                                      minValue=Literal(float(df_row['Sensor Ausgabebereich von']), datatype=XSD.double), maxValue=Literal(float(df_row['Sensor Ausgabebereich bis']), datatype=XSD.double),
+                                      unit=unit_dict[df_row['Sensor Ausgabebereich Unit']],
+                                      iri=FST_NAMESPACE[valve_id + "/SensorCapability" + "/ActuationRange"], identifier=None, name="sensor output voltage range",
                                       rdftype=SSN_SYSTEM.ActuationRange)
 
-    sensitivity = Property(data, isPropertyOf=sys_capa.iri, iri=FST_NAMESPACE[valve_id + "/Sensitivity"],
-                           comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensitivity", value=Literal(df_row['Kennlinie Steigung _ Sensitivity']))
-    data.g.add((FST_NAMESPACE[valve_id + "/Sensitivity"], QUDT.unit, Literal(f"({df_row['Messbereich Unit']})/({df_row['Ausgabebereich Unit']})")))
+    sensor_sensitivity = Property(data, isPropertyOf=sensor_sys_capa.iri, iri=FST_NAMESPACE[valve_id + "/SensorCapability" + "/Sensitivity"],
+                           comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensor sensitivity", value=Literal(df_row['Kennlinie Steigung _ Sensitivity']))
+    data.g.add((FST_NAMESPACE[valve_id + "/SensorSensitivity"], QUDT.unit, Literal(f"({df_row['Sensor Ausgabebereich Unit']})/({df_row['Sensor Messbereich Unit']})")))
 
 
-    bias = Property(data, isPropertyOf=sys_capa.iri, iri=FST_NAMESPACE[valve_id + "/Bias"],
-                    comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="bias",
+    sensor_bias = Property(data, isPropertyOf=sensor_sys_capa.iri, iri=FST_NAMESPACE[valve_id + "/SensorCapability" + "/Bias"],
+                    comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="sensor bias",
                     value=Literal(float(df_row['Kennlinie Offset _ Bias']), datatype=XSD.double))
 
-    data.g.add((FST_NAMESPACE[valve_id + "/Bias"], QUDT.unit, unit_dict[df_row['Messbereich Unit']]))
+    data.g.add((FST_NAMESPACE[valve_id + "/SensorCapability" + "/Bias"], QUDT.unit, unit_dict[df_row['Sensor Ausgabebereich Unit']]))
 
     if (df_row["Bias Uncertainty Unit"] is not None
             and df_row["Bias Uncertainty Unit"] in unit_dict.keys()):
@@ -250,7 +250,7 @@ def generate_valve_files(valve_files_dir, df_row):
     data.g.add((p_max_iri, QUDT.unit, unit_dict[df_row['maximaler Druck Einheit']]))
     data.g.add((p_max_iri, SSN.isPropertyOf, valve.iri))
 
-    actuator_actuation_range_iri = rdflib.URIRef(f'{valve.iri}/ActuationRange')
+    actuator_actuation_range_iri = rdflib.URIRef(f'{valve.iri}/ActuatorCapability/ActuationRange')
     data.g.add((actuator_capability_iri, SSN.hasProperty, actuator_actuation_range_iri))
     data.g.add((actuator_actuation_range_iri, RDF.type, SSN.Property))
     data.g.add((actuator_actuation_range_iri, RDF.type, SSN_SYSTEM.ActuationRange))
@@ -264,18 +264,32 @@ def generate_valve_files(valve_files_dir, df_row):
     data.g.add((actuator_actuation_range_iri, QUDT.unit, unit_dict[df_row['Actuator Actuation Range unit']])) # UNIT.PERCENT))
     data.g.add((actuator_actuation_range_iri, SSN.isPropertyOf, actuator_capability_iri))
 
-    actuator_input_voltage_iri = rdflib.URIRef(f'{valve.iri}/ActuatorInputRange')
-    data.g.add((actuator_capability_iri, SSN.hasProperty, actuator_input_voltage_iri))
-    data.g.add((actuator_input_voltage_iri, RDF.type, SSN.Property))
-    data.g.add((actuator_input_voltage_iri, RDF.type, QUDT.Quantity))
-    data.g.add((actuator_input_voltage_iri, RDFS.label, Literal('actuator input voltage range')))
-    data.g.add((actuator_input_voltage_iri, RDFS.comment, Literal('The possible actuator input range of the valve that causes the actuation.')))
-    data.g.add((actuator_input_voltage_iri, QUDT.hasQuantityKind, QUANTITYKIND.Voltage))
-    data.g.add((actuator_input_voltage_iri, QUDT.symbol, Literal('U_E'))) # TODO: Nur bei Spannungen so
-    data.g.add((actuator_input_voltage_iri, SCHEMA.minValue, Literal(float(df_row['Actuator Input Range from']), datatype=XSD.double)))
-    data.g.add((actuator_input_voltage_iri, SCHEMA.maxValue, Literal(float(df_row['Actuator Input Range to']), datatype=XSD.double)))
-    data.g.add((actuator_input_voltage_iri, QUDT.unit, unit_dict[df_row['Actuator Input Range unit']]))
-    data.g.add((actuator_input_voltage_iri, SSN.isPropertyOf, actuator_capability_iri))
+    actuator_input_iri = rdflib.URIRef(f'{valve.iri}/ActuatorCapability/InputRange')
+    data.g.add((actuator_capability_iri, SSN.hasProperty, actuator_input_iri))
+    data.g.add((actuator_input_iri, RDF.type, SSN.Property))
+    data.g.add((actuator_input_iri, RDF.type, QUDT.Quantity))
+    data.g.add((actuator_input_iri, RDFS.label, Literal('actuator input range')))
+    data.g.add((actuator_input_iri, RDFS.comment, Literal('The possible actuator input range of the valve that causes the actuation.')))
+    data.g.add((actuator_input_iri, QUDT.hasQuantityKind, unit_dict[df_row['Actuator Input Range unit']]))
+    data.g.add((actuator_input_iri, QUDT.symbol, Literal('U_E'))) # TODO: Nur bei Spannungen so
+    data.g.add((actuator_input_iri, SCHEMA.minValue, Literal(float(df_row['Actuator Input Range from']), datatype=XSD.double)))
+    data.g.add((actuator_input_iri, SCHEMA.maxValue, Literal(float(df_row['Actuator Input Range to']), datatype=XSD.double)))
+    data.g.add((actuator_input_iri, QUDT.unit, unit_dict[df_row['Actuator Input Range unit']]))
+    data.g.add((actuator_input_iri, SSN.isPropertyOf, actuator_capability_iri))
+
+    actuator_sensitivity = Property(data, isPropertyOf=actuator_capability_iri,
+                                  iri=FST_NAMESPACE[valve_id + "/ActuatorCapability" + "/Sensitivity"],
+                                  comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="actuator sensitivity",
+                                  value=Literal(df_row['Actuator Kennlinie _ Sensitivity']))
+    data.g.add((FST_NAMESPACE[valve_id + "/SensorSensitivity"], QUDT.unit,
+                Literal(f"({df_row['Actuator Input Range unit']})/({df_row['Actuator Actuation Range unit']})")))
+
+    actuator_bias = Property(data, isPropertyOf=actuator_capability_iri,
+                           iri=FST_NAMESPACE[valve_id + "/ActuatorCapability" + "/Bias"],
+                           comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="actuator bias",
+                           value=Literal(float(df_row['Actuator Kennlinie _ Bias']), datatype=XSD.double))
+
+    data.g.add((FST_NAMESPACE[valve_id + "/SensorCapability" + "/Bias"], QUDT.unit, unit_dict[df_row['Actuator Input Range unit']]))
 
     if (df_row['Nenndurchmesser'] is None
             or (isinstance(df_row['Nenndurchmesser'], str)
