@@ -293,7 +293,7 @@ def generate_valve_files(valve_files_dir, df_row):
     data.g.add((p_max_iri, RDFS.comment, Literal('')))
     data.g.add((p_max_iri, QUDT.hasQuantityKind, QUANTITYKIND.Pressure))
     data.g.add((p_max_iri, QUDT.symbol, Literal('P_max')))
-    data.g.add((p_max_iri, QUDT.value, Literal(float(df_row['Kennlinie Offset _ Bias']), datatype=XSD.double)))
+    data.g.add((p_max_iri, QUDT.value, Literal(float(df_row['maximaler Druck Wert']), datatype=XSD.double)))
     data.g.add((p_max_iri, QUDT.unit, unit_dict[df_row['maximaler Druck Einheit']]))
     data.g.add((p_max_iri, SSN.isPropertyOf, valve.iri))
 
@@ -305,7 +305,7 @@ def generate_valve_files(valve_files_dir, df_row):
     data.g.add((actuator_actuation_range_iri, RDFS.label, Literal('actuation range')))
     data.g.add((actuator_actuation_range_iri, RDFS.comment, Literal('The possible actuation range of the valve in percent')))
     data.g.add((actuator_actuation_range_iri, QUDT.hasQuantityKind, QUANTITYKIND.OpeningRatio))
-    data.g.add((actuator_actuation_range_iri, QUDT.symbol, Literal('(K_v)/(K_vs)')))
+    # data.g.add((actuator_actuation_range_iri, QUDT.symbol, Literal('(K_v/K_vs) * 100%')))
     data.g.add((actuator_actuation_range_iri, SCHEMA.minValue, Literal(float(df_row['Actuator Actuation Range from']), datatype=XSD.double)))
     data.g.add((actuator_actuation_range_iri, SCHEMA.maxValue, Literal(float(df_row['Actuator Actuation Range to']), datatype=XSD.double)))
     data.g.add((actuator_actuation_range_iri, QUDT.unit, unit_dict[df_row['Actuator Actuation Range unit']])) # UNIT.PERCENT))
