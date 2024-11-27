@@ -64,7 +64,7 @@ def main():
         ID_entry = f"{FST_namespace_URL}{df_pumps_row['uuid']}"
         heading_entry = (f"{df_pumps_row['Hersteller']} {df_pumps_row['Bezeichnung']}<br/>"
                         f"P_N: {df_pumps_row['Motornennleistung']} {df_pumps_row['Motornennleistung Einheit']}<br/>"
-                        f"ω: {np.round(df_pumps_row['Ausgabebereich von'], 0)} - {np.round(df_pumps_row['Ausgabebereich bis'], 0)} 1/s")  # FIXME: TODO: hardcoded!
+                        f"ω: {np.round(df_pumps_row['Actuator Input Range from'], 0)} - {np.round(df_pumps_row['Actuator Input Range to'], 0)} {df_pumps_row['Actuator Input Range unit']}")  # FIXME: TODO: hardcoded!
 
         ID_list.append(ID_entry)
         heading_list.append(heading_entry)

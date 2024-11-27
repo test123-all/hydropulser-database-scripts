@@ -61,27 +61,27 @@ def generate_pump_files(pump_files_dir, df_row):
 
     # The component = the air spring
 
-    pump = rdflib.URIRef(f'{FST_NAMESPACE}{pump_id}')
-    data.g.add((pump, RDF.type, DCMITYPE.PhysicalObject))
-    data.g.add((pump, RDF.type, SOSA.Actuator))
-    data.g.add((pump, RDFS.label, Literal("Pump")))
-    data.g.add((pump, DCTERMS.identifier, Literal(pump_id)))
-    data.g.add((pump, DCTERMS.identifier, Literal(f"{df_row['Bezeichnung']}")))
-    data.g.add((pump, DBO.owner, Literal("FST")))
-    data.g.add((pump, DBO.maintainedBy, Literal(df_row['Verantwortlicher WiMi'])))
-    data.g.add((pump, SDO.manufacturer, Literal(f"{df_row['Hersteller']}")))
-    data.g.add((pump, SDO.serialNumber, Literal(f"{df_row['Seriennummer']}")))
+    pump_iri = rdflib.URIRef(f'{FST_NAMESPACE}{pump_id}')
+    data.g.add((pump_iri, RDF.type, DCMITYPE.PhysicalObject))
+    data.g.add((pump_iri, RDF.type, SOSA.Actuator))
+    data.g.add((pump_iri, RDFS.label, Literal("Pump")))
+    data.g.add((pump_iri, DCTERMS.identifier, Literal(pump_id)))
+    data.g.add((pump_iri, DCTERMS.identifier, Literal(f"{df_row['Bezeichnung']}")))
+    data.g.add((pump_iri, DBO.owner, Literal("FST")))
+    data.g.add((pump_iri, DBO.maintainedBy, Literal(df_row['Verantwortlicher WiMi'])))
+    data.g.add((pump_iri, SDO.manufacturer, Literal(f"{df_row['Hersteller']}")))
+    data.g.add((pump_iri, SDO.serialNumber, Literal(f"{df_row['Seriennummer']}")))
 
-    actuator_capability_iri = rdflib.URIRef(f"{pump}/ActuatorCapability")
-    data.g.add((pump, SSN_SYSTEM.hasSystemCapability, actuator_capability_iri))
+    actuator_capability_iri = rdflib.URIRef(f"{pump_iri}/ActuatorCapability")
+    data.g.add((pump_iri, SSN_SYSTEM.hasSystemCapability, actuator_capability_iri))
     data.g.add((actuator_capability_iri, RDF.type, SSN.Property))
     data.g.add((actuator_capability_iri, RDF.type, SSN_SYSTEM.SystemCapability))
-    data.g.add((actuator_capability_iri, SCHEMA.name, Literal('actuator capabilities')))
+    data.g.add((actuator_capability_iri, RDFS.label, Literal('actuator capabilities')))
     data.g.add((actuator_capability_iri, RDFS.comment,
                 Literal('actuator capabilities not regarding any conditions at this time')))
 
-    if df_row['Ausgabebereich Einheit'] == '1/s':
-        actuator_actuation_range_iri = rdflib.URIRef(f'{pump}/ActuationRange')
+    if df_row['Actuator Actuation Range unit'] == '1/s':
+        actuator_actuation_range_iri = rdflib.URIRef(f'{pump_iri}/ActuatorCapability/ActuationRange')
         data.g.add((actuator_capability_iri, SSN.hasProperty, actuator_actuation_range_iri))
         data.g.add((actuator_actuation_range_iri, RDF.type, SSN.Property))
         data.g.add((actuator_actuation_range_iri, RDF.type, SSN_SYSTEM.ActuationRange))
@@ -90,30 +90,46 @@ def generate_pump_files(pump_files_dir, df_row):
         data.g.add((actuator_actuation_range_iri, RDFS.comment, Literal('The possible actuation range (rate of rotation) of the pump in 1/s')))
         data.g.add((actuator_actuation_range_iri, QUDT.hasQuantityKind, QUANTITYKIND.AngularVelocity))
         data.g.add((actuator_actuation_range_iri, QUDT.symbol, Literal('ω')))
-        data.g.add((actuator_actuation_range_iri, SCHEMA.minValue, Literal(float(df_row['Ausgabebereich von']), datatype=XSD.double)))
-        data.g.add((actuator_actuation_range_iri, SCHEMA.maxValue, Literal(float(df_row['Ausgabebereich bis']), datatype=XSD.double)))
-        data.g.add((actuator_actuation_range_iri, QUDT.unit, unit_dict[f"{df_row['Ausgabebereich Einheit']}"]))
+        data.g.add((actuator_actuation_range_iri, SCHEMA.minValue, Literal(float(df_row['Actuator Actuation Range from']), datatype=XSD.double)))
+        data.g.add((actuator_actuation_range_iri, SCHEMA.maxValue, Literal(float(df_row['Actuator Actuation Range to']), datatype=XSD.double)))
+        data.g.add((actuator_actuation_range_iri, QUDT.unit, unit_dict[f"{df_row['Actuator Actuation Range unit']}"]))
         data.g.add((actuator_actuation_range_iri, SSN.isPropertyOf, actuator_capability_iri))
     else:
-        raise Exception(f"Unit {df_row['Ausgabebereich Einheit']} is not supported yet! Please contact the maintainers.")
+        raise Exception(f"Unit {df_row['Actuator Actuation Range unit']} is not supported yet! Please contact the maintainers.")
 
-    actuator_input_voltage_iri = rdflib.URIRef(f'{pump}/ActuatorInputVoltageRange')
-    data.g.add((actuator_capability_iri, SSN.hasProperty, actuator_input_voltage_iri))
-    data.g.add((actuator_input_voltage_iri, RDF.type, SSN.Property))
-    data.g.add((actuator_input_voltage_iri, RDF.type, QUDT.Quantity))
-    data.g.add((actuator_input_voltage_iri, RDFS.label, Literal('actuator input voltage range')))
-    data.g.add((actuator_input_voltage_iri, RDFS.comment, Literal('The possible actuator input voltage range of the pump that causes the actuation.')))
-    data.g.add((actuator_input_voltage_iri, QUDT.hasQuantityKind, QUANTITYKIND.Voltage))
-    data.g.add((actuator_input_voltage_iri, QUDT.symbol, Literal('U_E')))
-    data.g.add((actuator_input_voltage_iri, SCHEMA.minValue, Literal(float(df_row['Eingabebereich von']), datatype=XSD.double)))
-    data.g.add((actuator_input_voltage_iri, SCHEMA.maxValue, Literal(float(df_row['Eingabebereich bis']), datatype=XSD.double)))
-    data.g.add((actuator_input_voltage_iri, QUDT.unit, unit_dict[f"{df_row['Eingabebereich Einheit']}"]))
-    data.g.add((actuator_input_voltage_iri, SSN.isPropertyOf, actuator_capability_iri))
+
+    actuator_input_range_iri = rdflib.URIRef(f'{pump_iri}/ActuatorCapability/InputRange')
+    data.g.add((actuator_capability_iri, SSN.hasProperty, actuator_input_range_iri))
+    data.g.add((actuator_input_range_iri, RDF.type, SSN.Property))
+    data.g.add((actuator_input_range_iri, RDF.type, QUDT.Quantity))
+    data.g.add((actuator_input_range_iri, RDFS.label, Literal('actuator input range')))
+    data.g.add((actuator_input_range_iri, RDFS.comment,
+                Literal('The possible actuator input range of the pump that causes the actuation.')))
+
+    # TODO: FIXME: If there should be a unit that also contains 'A' or 'V' for example 'V/m' this delivers the wrong
+    #  quantitykind. This would be solveable through code that lookups the quantitkind through a ontology.
+    #  Since the qudt unit ontology doesn't contain all possible units it needs to be extended but might be a good
+    #  starting point.
+    if (isinstance(df_row['Actuator Input Range unit'], str)
+            and 'V' in df_row['Actuator Input Range unit']):
+        data.g.add((actuator_input_range_iri, QUDT.symbol, Literal('U_E')))
+        actuator_input_range_quantitiykind = QUANTITYKIND.Voltage
+    elif (isinstance(df_row['Actuator Input Range unit'], str)
+            and 'A' in df_row['Actuator Input Range unit']):
+        actuator_input_range_quantitiykind = QUANTITYKIND.Amperage
+    else:
+        raise Exception(f"Unit {df_row['Actuator Input Range unit']} is not supported yet! Please contact the maintainers.")
+
+    data.g.add((actuator_input_range_iri, QUDT.hasQuantityKind, actuator_input_range_quantitiykind)) # TODO:
+    data.g.add((actuator_input_range_iri, SCHEMA.minValue, Literal(float(df_row['Actuator Input Range from']), datatype=XSD.double)))
+    data.g.add((actuator_input_range_iri, SCHEMA.maxValue, Literal(float(df_row['Actuator Input Range to']), datatype=XSD.double)))
+    data.g.add((actuator_input_range_iri, QUDT.unit, unit_dict[df_row['Actuator Input Range unit']]))
+    data.g.add((actuator_input_range_iri, SSN.isPropertyOf, actuator_capability_iri))
 
     # // new
     # properties
     rated_power = COMPONENT[pump_id + "/P_N"]
-    data.g.add((pump, SSN.hasProperty, rated_power))
+    data.g.add((pump_iri, SSN.hasProperty, rated_power))
     data.g.add((rated_power, RDF.type, SSN.Property))
     data.g.add((rated_power, RDF.type, QUDT.Quantity))
     data.g.add((rated_power, RDFS.label, Literal("nominal/rated power"))) # TODO: add it in german Nennleistung
@@ -127,7 +143,7 @@ def generate_pump_files(pump_files_dir, df_row):
     # data.g.add((rated_power, RDFS.comment, Literal("negative direction")))
 
     input_power = COMPONENT[pump_id + "/P_in"] # TODO :RANGE!
-    data.g.add((pump, SSN.hasProperty, input_power))
+    data.g.add((pump_iri, SSN.hasProperty, input_power))
     data.g.add((input_power, RDF.type, SSN.Property))
     data.g.add((input_power, RDF.type, QUDT.Quantity))
     data.g.add((input_power, RDFS.label, Literal("input power"))) # Motoraufnahmeleistung
@@ -137,12 +153,13 @@ def generate_pump_files(pump_files_dir, df_row):
     data.g.add((input_power, SCHEMA.minValue, Literal(float(df_row['Leistungsaufnahme von']), datatype=XSD.double)))  # TODO:
     data.g.add((input_power, SCHEMA.maxValue, Literal(float(df_row['Leistungsaufnahme bis']), datatype=XSD.double)))  # TODO:
     data.g.add((input_power, DCTERMS.description, Literal("The input power of the pump."))) # TODO:
+    data.g.add((input_power, SSN.isPropertyOf, pump_iri))
     # data.g.add((input_power, SSN_SYSTEM.Accuracy, Literal("2.352441913686447e-04", datatype=XSD.double)))
     # source: datasheet, Area derived from Force and pressure, uncertainty assumptions: F+-8N, p+-0.1bar
     # data.g.add((input_power, RDFS.comment, Literal("negative direction")))
 
     current_demand = COMPONENT[pump_id + "/I_demand"]
-    data.g.add((pump, SSN.hasProperty, current_demand))
+    data.g.add((pump_iri, SSN.hasProperty, current_demand))
     data.g.add((current_demand, RDF.type, SSN.Property))
     data.g.add((current_demand, RDF.type, QUDT.Quantity))
     data.g.add((current_demand, RDFS.label, Literal("Current demand")))  # Motoraufnahmeleistung
@@ -157,20 +174,20 @@ def generate_pump_files(pump_files_dir, df_row):
     # data.g.add((current_demand, RDFS.comment, Literal("negative direction")))
 
 
-    sensitivity = Property(data, isPropertyOf=actuator_actuation_range_iri, iri=URIRef(f"{FST_NAMESPACE}{pump_id}/Sensitivity"),
+    sensitivity = Property(data, isPropertyOf=actuator_capability_iri, iri=URIRef(f"{FST_NAMESPACE}{pump_id}/ActuatorCapability/Sensitivity"),
                            comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensitivity",
-                           value=Literal(float(df_row['Kennlinie Steigung _ Sensitivity']), datatype=XSD.double))
-    data.g.add((URIRef(f"{FST_NAMESPACE}{pump_id}/Sensitivity"), QUDT.unit, Literal(f"({df_row['Eingabebereich Einheit']})/({df_row['Ausgabebereich Einheit']})")))
+                           value=Literal(float(df_row['Actuator Kennlinie _ Sensitivity']), datatype=XSD.double))
+    data.g.add((URIRef(f"{FST_NAMESPACE}{pump_id}/ActuatorCapability/Sensitivity"), QUDT.unit, Literal(f"({df_row['Actuator Input Range unit']})/({df_row['Actuator Actuation Range unit']})")))
 
 
-    bias = Property(data, isPropertyOf=actuator_actuation_range_iri, iri=URIRef(f"{FST_NAMESPACE}{pump_id}/Bias"),
+    bias = Property(data, isPropertyOf=actuator_capability_iri, iri=URIRef(f"{FST_NAMESPACE}{pump_id}/ActuatorCapability/Bias"),
                     comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="bias",
-                    value=Literal(float(df_row['Kennlinie Offset _ Bias']), datatype=XSD.double))
+                    value=Literal(float(df_row['Actuator Kennlinie _ Bias']), datatype=XSD.double))
 
-    data.g.add((URIRef(f"{FST_NAMESPACE}{pump_id}/Bias"), QUDT.unit, unit_dict[df_row['Eingabebereich Einheit']]))
+    data.g.add((URIRef(f"{FST_NAMESPACE}{pump_id}/ActuatorCapability/Bias"), QUDT.unit, unit_dict[df_row['Actuator Input Range unit']]))
 
     power_connection = COMPONENT[pump_id + "/PowerConnection"]  # TODO :RANGE!
-    data.g.add((pump, SSN.hasProperty, power_connection))
+    data.g.add((pump_iri, SSN.hasProperty, power_connection))
     data.g.add((power_connection, RDF.type, SSN.Property))
     data.g.add((power_connection, RDF.type, QUDT.Quantity))
     data.g.add((power_connection, RDFS.label, Literal("power connection")))  # Motoraufnahmeleistung
@@ -182,9 +199,10 @@ def generate_pump_files(pump_files_dir, df_row):
     # data.g.add((power_connection, SSN_SYSTEM.Accuracy, Literal("2.352441913686447e-04", datatype=XSD.double)))
     # source: datasheet, Area derived from Force and pressure, uncertainty assumptions: F+-8N, p+-0.1bar
     # data.g.add((power_connection, RDFS.comment, Literal("negative direction")))
+    data.g.add((power_connection, SSN.isPropertyOf, pump_iri))
 
-    p_max_iri = rdflib.URIRef(f"{pump}/P_max")
-    data.g.add((actuator_capability_iri, SSN.hasProperty, p_max_iri))
+    p_max_iri = rdflib.URIRef(f"{pump_iri}/P_max")
+    data.g.add((pump_iri, SSN.hasProperty, p_max_iri))
     data.g.add((p_max_iri, RDF.type, SSN.Property))
     data.g.add((p_max_iri, RDF.type, QUDT.Quantity))
     data.g.add((p_max_iri, RDFS.label, Literal('maximum pressure')))
@@ -193,7 +211,7 @@ def generate_pump_files(pump_files_dir, df_row):
     data.g.add((p_max_iri, QUDT.symbol, Literal('P_max')))
     data.g.add((p_max_iri, QUDT.value, Literal(float(df_row['maximaler Druck Wert']), datatype=XSD.double)))
     data.g.add((p_max_iri, QUDT.unit, unit_dict[f"{df_row['maximaler Druck Einheit']}"]))
-    data.g.add((p_max_iri, SSN.isPropertyOf, actuator_capability_iri))
+    data.g.add((p_max_iri, SSN.isPropertyOf, pump_iri))
 
 
     # TODO: Bild
@@ -213,15 +231,15 @@ def generate_pump_files(pump_files_dir, df_row):
     # rdf doc references
     docttl = COMPONENT[pump_id + "/rdf.ttl"]
     data.g.add((docttl, RDF.type, FOAF.Document))
-    data.g.add((docttl, FOAF.primaryTopic, pump))
+    data.g.add((docttl, FOAF.primaryTopic, pump_iri))
 
     docxml = COMPONENT[pump_id + "/rdf.xml"]
     data.g.add((docxml, RDF.type, FOAF.Document))
-    data.g.add((docxml, FOAF.primaryTopic, pump))
+    data.g.add((docxml, FOAF.primaryTopic, pump_iri))
 
     docjson = COMPONENT[pump_id + "/rdf.json"]
     data.g.add((docjson, RDF.type, FOAF.Document))
-    data.g.add((docjson, FOAF.primaryTopic, pump))
+    data.g.add((docjson, FOAF.primaryTopic, pump_iri))
 
     dir_path = Path(f"{pump_files_dir}/{pump_id}")
     try:
