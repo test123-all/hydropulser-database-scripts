@@ -112,51 +112,98 @@ def generate_valve_files(valve_files_dir, df_row):
 
     data.g.add((FST_NAMESPACE[valve_id + "/SensorCapability" + "/Bias"], QUDT.unit, unit_dict[df_row['Sensor Ausgabebereich Unit']]))
 
-    if (df_row["Bias Uncertainty Unit"] is not None
-            and df_row["Bias Uncertainty Unit"] in unit_dict.keys()):
-        bias_uncertainty_unit = unit_dict[df_row["Bias Uncertainty Unit"]]
-    elif (df_row["Bias Uncertainty Unit"] is None
-          or (isinstance(df_row["Bias Uncertainty"], str)
-              and df_row["Bias Uncertainty"].lower() == 'unknown')):
-        bias_uncertainty_unit = None
-    elif (df_row["Bias Uncertainty Unit"] is not None
-          and df_row["Bias Uncertainty Unit"] not in unit_dict.keys()):
-        bias_uncertainty_unit = df_row["Bias Uncertainty Unit"]
+    if (df_row["absolute Bias Uncertainty Unit"] is not None
+            and df_row["absolute Bias Uncertainty Unit"] in unit_dict.keys()):
+        absolute_bias_uncertainty_unit = unit_dict[df_row["absolute Bias Uncertainty Unit"]]
+    elif (df_row["absolute Bias Uncertainty Unit"] is None
+          or (isinstance(df_row["absolute Bias Uncertainty"], str)
+              and df_row["absolute Bias Uncertainty"].lower() == 'unknown')):
+        absolute_bias_uncertainty_unit = None
+    elif (df_row["absolute Bias Uncertainty Unit"] is not None
+          and df_row["absolute Bias Uncertainty Unit"] not in unit_dict.keys()):
+        absolute_bias_uncertainty_unit = df_row["absolute Bias Uncertainty Unit"]
 
-    if (df_row["Bias Uncertainty"] is None
-            or (isinstance(df_row["Bias Uncertainty"], str)
-                and df_row["Bias Uncertainty"].lower() == 'unknown')):
-        bias_uncertainty_value = None
+    if (df_row["absolute Bias Uncertainty"] is None
+            or (isinstance(df_row["absolute Bias Uncertainty"], str)
+                and df_row["absolute Bias Uncertainty"].lower() == 'unknown')):
+        absolute_bias_uncertainty_value = None
     else:
-        bias_uncertainty_value = Literal(str(df_row["Bias Uncertainty"]), datatype=XSD.double)
+        absolute_bias_uncertainty_value = Literal(str(df_row["absolute Bias Uncertainty"]), datatype=XSD.double)
 
-    if (df_row["Bias Uncertainty Comment"] is None
-            or (isinstance(df_row["Bias Uncertainty Comment"], str)
-                and df_row["Bias Uncertainty Comment"].lower() == 'unknown')):
-        bias_uncertainty_comment = None
+    if (df_row["absolute Bias Uncertainty Comment"] is None
+            or (isinstance(df_row["absolute Bias Uncertainty Comment"], str)
+                and df_row["absolute Bias Uncertainty Comment"].lower() == 'unknown')):
+        absolute_bias_uncertainty_comment = None
     else:
-        bias_uncertainty_comment = Literal(str(df_row["Bias Uncertainty Comment"]))
+        absolute_bias_uncertainty_comment = Literal(str(df_row["absolute Bias Uncertainty Comment"]))
 
-    if (df_row["Bias Uncertainty Keywords"] is None
-            or (isinstance(df_row["Bias Uncertainty Keywords"], str)
-                and df_row["Bias Uncertainty Keywords"].lower() == 'unknown')):
-        bias_uncertainty_keywords_list = None
+    if (df_row["absolute Bias Uncertainty Keywords"] is None
+            or (isinstance(df_row["absolute Bias Uncertainty Keywords"], str)
+                and df_row["absolute Bias Uncertainty Keywords"].lower() == 'unknown')):
+        absolute_bias_uncertainty_keywords_list = None
     else:
-        temp_string = str(df_row["Bias Uncertainty Keywords"])
-        bias_uncertainty_keywords_list = temp_string.split(';')
+        temp_string = str(df_row["absolute Bias Uncertainty Keywords"])
+        absolute_bias_uncertainty_keywords_list = temp_string.split(';')
         del temp_string
 
-    bias_uncertainty = Property(data, isPropertyOf=bias.iri, iri=URIRef(f"{FST_NAMESPACE}{valve_id}/Bias/BiasUncertainty"),
-                                name="bias uncertainty",
+    absolute_bias_uncertainty = Property(data, isPropertyOf=sensor_bias.iri, iri=URIRef(f"{FST_NAMESPACE}{valve_id}/SensorCapability/Bias/AbsoluteBiasUncertainty"),
+                                name="absolute bias uncertainty",
                                 description="The bias uncertainty of the sensor of the linear transfer function of a sensor.",
                                 seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
                                          URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
                                 conformsTo=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
                                             URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
-                                value=bias_uncertainty_value,
-                                unit=bias_uncertainty_unit,
-                                comment=bias_uncertainty_comment,
-                                keywords_list=bias_uncertainty_keywords_list)
+                                value=absolute_bias_uncertainty_value,
+                                unit=absolute_bias_uncertainty_unit,
+                                comment=absolute_bias_uncertainty_comment,
+                                keywords_list=absolute_bias_uncertainty_keywords_list)
+
+    # Relative uncertainty.
+    if (df_row["relative Bias Uncertainty Unit"] is not None
+            and df_row["relative Bias Uncertainty Unit"] in unit_dict.keys()):
+        realtive_bias_uncertainty_unit = unit_dict[df_row["relative Bias Uncertainty Unit"]]
+    elif (df_row["relative Bias Uncertainty Unit"] is None
+          or (isinstance(df_row["relative Bias Uncertainty"], str)
+              and df_row["relative Bias Uncertainty"].lower() == 'unknown')):
+        relative_bias_uncertainty_unit = None
+    elif (df_row["relative Bias Uncertainty Unit"] is not None
+          and df_row["relative Bias Uncertainty Unit"] not in unit_dict.keys()):
+        relative_bias_uncertainty_unit = df_row["relative Bias Uncertainty Unit"]
+
+    if (df_row["relative Bias Uncertainty"] is None
+            or (isinstance(df_row["relative Bias Uncertainty"], str)
+                and df_row["relative Bias Uncertainty"].lower() == 'unknown')):
+        relative_bias_uncertainty_value = None
+    else:
+        relative_bias_uncertainty_value = Literal(str(df_row["relative Bias Uncertainty"]), datatype=XSD.double)
+
+    if (df_row["relative Bias Uncertainty Comment"] is None
+            or (isinstance(df_row["relative Bias Uncertainty Comment"], str)
+                and df_row["relative Bias Uncertainty Comment"].lower() == 'unknown')):
+        relative_bias_uncertainty_comment = None
+    else:
+        relative_bias_uncertainty_comment = Literal(str(df_row["relative Bias Uncertainty Comment"]))
+
+    if (df_row["relative Bias Uncertainty Keywords"] is None
+            or (isinstance(df_row["relative Bias Uncertainty Keywords"], str)
+                and df_row["relative Bias Uncertainty Keywords"].lower() == 'unknown')):
+        relative_bias_uncertainty_keywords_list = None
+    else:
+        temp_string = str(df_row["relative Bias Uncertainty Keywords"])
+        relative_bias_uncertainty_keywords_list = temp_string.split(';')
+        del temp_string
+
+    relative_bias_uncertainty = Property(data, isPropertyOf=sensor_bias.iri, iri=URIRef(f"{FST_NAMESPACE}{valve_id}/SensorCapability/Bias/RelativeBiasUncertainty"),
+                                name="relative bias uncertainty",
+                                description="The bias uncertainty of the sensor of the linear transfer function of a sensor.",
+                                seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
+                                         URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
+                                conformsTo=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
+                                            URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
+                                value=relative_bias_uncertainty_value,
+                                unit=relative_bias_uncertainty_unit,
+                                comment=relative_bias_uncertainty_comment,
+                                keywords_list=relative_bias_uncertainty_keywords_list)
 
     # if df_row["Sensitivity Uncertainty Unit"] in unit_dict.keys():
     #     sensitivity_uncertainty_unit = unit_dict[df_row["Sensitivity Uncertainty Unit"]]
