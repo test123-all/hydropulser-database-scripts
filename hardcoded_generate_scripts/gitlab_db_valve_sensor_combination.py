@@ -214,7 +214,7 @@ def generate_valve_files(valve_files_dir, df_row):
     data.g.add((actuator_capability_iri, SCHEMA.name, Literal('actuator capabilities')))
     data.g.add((actuator_capability_iri, RDFS.comment, Literal('actuator capabilities not regarding any conditions at this time')))
 
-    nominal_flow_iri = rdflib.URIRef(f"{valve.iri}/K_vs")
+    k_vs_iri = rdflib.URIRef(f"{valve.iri}/K_vs")
 
     if (df_row['K_vs Wert'] is None
             or (isinstance(df_row['K_vs Wert'], str)
@@ -225,21 +225,21 @@ def generate_valve_files(valve_files_dir, df_row):
         K_vs_value = Literal(df_row['K_vs Wert'], datatype=XSD.double)
         K_vs_unit = URIRef(unit_dict[df_row['K_vs Wert Einheit']])
 
-    data.g.add((actuator_capability_iri, SSN.hasProperty, nominal_flow_iri))
-    data.g.add((nominal_flow_iri, RDF.type, SSN.Property))
-    data.g.add((nominal_flow_iri, RDF.type, QUDT.Quantity))
-    data.g.add((nominal_flow_iri, RDFS.label, Literal('K_vs value')))
-    data.g.add((nominal_flow_iri, RDFS.comment, Literal(df_row['K_vs Wert Comment'])))
-    data.g.add((nominal_flow_iri, QUDT.hasQuantityKind, QUANTITYKIND.VolumeFlowRate))
-    data.g.add((nominal_flow_iri, QUDT.symbol, Literal('K_vs')))
-    data.g.add((nominal_flow_iri, QUDT.value, K_vs_value))
-    data.g.add((nominal_flow_iri, QUDT.unit, K_vs_unit))
-    data.g.add((nominal_flow_iri, SSN.isPropertyOf, actuator_capability_iri))
+    data.g.add((valve.iri, SSN.hasProperty, k_vs_iri ))
+    data.g.add((k_vs_iri , RDF.type, SSN.Property))
+    data.g.add((k_vs_iri , RDF.type, QUDT.Quantity))
+    data.g.add((k_vs_iri , RDFS.label, Literal('K_vs value')))
+    data.g.add((k_vs_iri , RDFS.comment, Literal(df_row['K_vs Wert Comment'])))
+    data.g.add((k_vs_iri , QUDT.hasQuantityKind, QUANTITYKIND.VolumeFlowRate))
+    data.g.add((k_vs_iri , QUDT.symbol, Literal('K_vs')))
+    data.g.add((k_vs_iri , QUDT.value, K_vs_value))
+    data.g.add((k_vs_iri , QUDT.unit, K_vs_unit))
+    data.g.add((k_vs_iri , SSN.isPropertyOf, valve.iri))
     # Gibt für die Genaugikeit eine angabe, die ist aber in Prozent und nicht fest
-    # data.g.add((nominal_flow_iri, SSN_SYSTEM.Accuracy, Literal()))
+    # data.g.add((k_vs_iri , SSN_SYSTEM.Accuracy, Literal()))
 
     p_max_iri = rdflib.URIRef(f"{valve.iri}/P_max")
-    data.g.add((actuator_capability_iri, SSN.hasProperty, p_max_iri))
+    data.g.add((valve.iri, SSN.hasProperty, p_max_iri))
     data.g.add((p_max_iri, RDF.type, SSN.Property))
     data.g.add((p_max_iri, RDF.type, QUDT.Quantity))
     data.g.add((p_max_iri, RDFS.label, Literal('maximum pressure')))
@@ -248,7 +248,7 @@ def generate_valve_files(valve_files_dir, df_row):
     data.g.add((p_max_iri, QUDT.symbol, Literal('P_max')))
     data.g.add((p_max_iri, QUDT.value, Literal(float(df_row['Kennlinie Offset _ Bias']), datatype=XSD.double)))
     data.g.add((p_max_iri, QUDT.unit, unit_dict[df_row['maximaler Druck Einheit']]))
-    data.g.add((p_max_iri, SSN.isPropertyOf, actuator_capability_iri))
+    data.g.add((p_max_iri, SSN.isPropertyOf, valve.iri))
 
     actuator_actuation_range_iri = rdflib.URIRef(f'{valve.iri}/ActuationRange')
     data.g.add((actuator_capability_iri, SSN.hasProperty, actuator_actuation_range_iri))
@@ -257,8 +257,8 @@ def generate_valve_files(valve_files_dir, df_row):
     data.g.add((actuator_actuation_range_iri, RDF.type, QUDT.Quantity))
     data.g.add((actuator_actuation_range_iri, RDFS.label, Literal('actuation range')))
     data.g.add((actuator_actuation_range_iri, RDFS.comment, Literal('The possible actuation range of the valve in percent')))
-    data.g.add((actuator_actuation_range_iri, QUDT.hasQuantityKind, QUANTITYKIND.VolumeFlowRate))
-    data.g.add((actuator_actuation_range_iri, QUDT.symbol, Literal('Q')))
+    data.g.add((actuator_actuation_range_iri, QUDT.hasQuantityKind, QUANTITYKIND.OpeningRatio))
+    data.g.add((actuator_actuation_range_iri, QUDT.symbol, Literal('(K_v)/(K_vs)')))
     data.g.add((actuator_actuation_range_iri, SCHEMA.minValue, Literal(float(df_row['Actuator Actuation Range from']), datatype=XSD.double)))
     data.g.add((actuator_actuation_range_iri, SCHEMA.maxValue, Literal(float(df_row['Actuator Actuation Range to']), datatype=XSD.double)))
     data.g.add((actuator_actuation_range_iri, QUDT.unit, unit_dict[df_row['Actuator Actuation Range unit']])) # UNIT.PERCENT))
@@ -287,18 +287,17 @@ def generate_valve_files(valve_files_dir, df_row):
         nominal_diameter_unit = URIRef(unit_dict[df_row['Nenndurchmesser Einheit']])
 
     nominal_diameter_iri = rdflib.URIRef(f'{valve.iri}/NominalDiameter')
-    data.g.add((actuator_capability_iri, SSN.hasProperty, nominal_diameter_iri))
+    data.g.add((valve.iri, SSN.hasProperty, nominal_diameter_iri))
     data.g.add((nominal_diameter_iri, RDF.type, SSN.Property))
     data.g.add((nominal_diameter_iri, RDF.type, QUDT.Quantity))
     data.g.add((nominal_diameter_iri, RDFS.label, Literal('nominal diameter')))
     # data.g.add((nominal_diameter_iri, RDFS.comment,
     #             Literal('The possible actuator input range of the valve that causes the actuation.')))
     data.g.add((nominal_diameter_iri, QUDT.hasQuantityKind, QUANTITYKIND.Diameter))
-    data.g.add((nominal_diameter_iri, QUDT.symbol, Literal('Ø')))
+    data.g.add((nominal_diameter_iri, QUDT.symbol, Literal('DN')))
     data.g.add((nominal_diameter_iri, QUDT.value, nominal_diameter_value))
     data.g.add((nominal_diameter_iri, QUDT.unit, nominal_diameter_unit))
-    data.g.add((nominal_diameter_iri, SSN.isPropertyOf, nominal_diameter_iri))
-
+    data.g.add((nominal_diameter_iri, SSN.isPropertyOf, valve.iri))
 
     ############
     # Documentation
