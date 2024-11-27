@@ -89,16 +89,29 @@ def generate_valve_files(valve_files_dir, df_row):
 
     sensor_meas_range = Quantity(data, isPropertyOf=sensor_sys_capa.iri, hasQuantityKind=QUANTITYKIND.OpeningRatio,
                           minValue=Literal(float(df_row['Sensor Messbereich von']), datatype=XSD.double), maxValue=Literal(float(df_row['Sensor Messbereich bis']), datatype=XSD.double), unit=unit_dict[df_row['Sensor Messbereich Unit']],
-                          iri=FST_NAMESPACE[valve_id + "/MeasurementRange"], identifier=None, name="measurement range",
+                          iri=FST_NAMESPACE[valve_id + "/SensorCapability/MeasurementRange"], identifier=None, name="measurement range",
                           rdftype=SSN_SYSTEM.MeasurementRange)
 
     # if val_ref is not None:
     #     data.g.add((sensor_meas_range.iri, SDO.valueReference, Literal(val_ref)))
 
-    sensor_actuation_range = Quantity(data, isPropertyOf=sensor_sys_capa.iri, hasQuantityKind=QUANTITYKIND.Voltage,
+    # TODO: FIXME: If there should be a unit that also contains 'A' or 'V' for example 'V/m' this delivers the wrong
+    #  quantitykind. This would be solveable through code that lookups the quantitkind through a ontology.
+    #  Since the qudt unit ontology doesn't contain all possible units it needs to be extended but might be a good
+    #  starting point. -> the same to-do exists in the pump files.
+    if (isinstance( df_row['Sensor Ausgabebereich Unit'],str)
+                and 'V' in df_row['Sensor Ausgabebereich Unit']):
+        sensor_actuation_range_quantitikind = QUANTITYKIND.Voltage
+    elif (isinstance(df_row['Sensor Ausgabebereich Unit'] ,str)
+                and 'A' in df_row['Sensor Ausgabebereich Unit']):
+        sensor_actuation_range_quantitikind = QUANTITYKIND.ElectricCurrent
+    else:
+        raise Exception(f"Unit {df_row['Sensor Ausgabebereich Unit']} Quantitykind is not supported yet! Please contact the maintainers.")
+
+    sensor_actuation_range = Quantity(data, isPropertyOf=sensor_sys_capa.iri, hasQuantityKind=sensor_actuation_range_quantitikind,
                                       minValue=Literal(float(df_row['Sensor Ausgabebereich von']), datatype=XSD.double), maxValue=Literal(float(df_row['Sensor Ausgabebereich bis']), datatype=XSD.double),
                                       unit=unit_dict[df_row['Sensor Ausgabebereich Unit']],
-                                      iri=FST_NAMESPACE[valve_id + "/SensorCapability" + "/ActuationRange"], identifier=None, name="sensor output voltage range",
+                                      iri=FST_NAMESPACE[valve_id + "/SensorCapability" + "/ActuationRange"], identifier=None, name="sensor output range",
                                       rdftype=SSN_SYSTEM.ActuationRange)
 
     sensor_sensitivity = Property(data, isPropertyOf=sensor_sys_capa.iri, iri=FST_NAMESPACE[valve_id + "/SensorCapability" + "/Sensitivity"],
