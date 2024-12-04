@@ -116,7 +116,7 @@ def generate_valve_files(valve_files_dir, df_row):
 
     sensor_sensitivity = Property(data, isPropertyOf=sensor_sys_capa.iri, iri=FST_NAMESPACE[valve_id + "/SensorCapability" + "/Sensitivity"],
                            comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensor sensitivity", value=Literal(df_row['Kennlinie Steigung _ Sensitivity']))
-    data.g.add((FST_NAMESPACE[valve_id + "/SensorSensitivity"], QUDT.unit, Literal(f"({df_row['Sensor Ausgabebereich Unit']})/({df_row['Sensor Messbereich Unit']})")))
+    data.g.add((FST_NAMESPACE[valve_id + "/SensorCapability" + "/Sensitivity"], QUDT.unit, Literal(f"({df_row['Sensor Ausgabebereich Unit']})/({df_row['Sensor Messbereich Unit']})")))
 
 
     sensor_bias = Property(data, isPropertyOf=sensor_sys_capa.iri, iri=FST_NAMESPACE[valve_id + "/SensorCapability" + "/Bias"],
