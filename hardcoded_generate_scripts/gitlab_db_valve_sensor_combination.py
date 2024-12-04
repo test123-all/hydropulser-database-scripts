@@ -325,14 +325,30 @@ def generate_valve_files(valve_files_dir, df_row):
     data.g.add((actuator_actuation_range_iri, QUDT.unit, unit_dict[df_row['Actuator Actuation Range unit']])) # UNIT.PERCENT))
     data.g.add((actuator_actuation_range_iri, SSN.isPropertyOf, actuator_capability_iri))
 
+
     actuator_input_iri = rdflib.URIRef(f'{valve.iri}/ActuatorCapability/InputRange')
     data.g.add((actuator_capability_iri, SSN.hasProperty, actuator_input_iri))
     data.g.add((actuator_input_iri, RDF.type, SSN.Property))
     data.g.add((actuator_input_iri, RDF.type, QUDT.Quantity))
     data.g.add((actuator_input_iri, RDFS.label, Literal('actuator input range')))
+
+    # TODO: FIXME: If there should be a unit that also contains 'A' or 'V' for example 'V/m' this delivers the wrong
+    #  quantitykind. This would be solveable through code that lookups the quantitkind through a ontology.
+    #  Since the qudt unit ontology doesn't contain all possible units it needs to be extended but might be a good
+    #  starting point. -> the same to-do exists in the valve files.
+    if (isinstance(df_row['Actuator Input Range unit'], str)
+            and 'V' in df_row['Actuator Input Range unit']):
+        data.g.add((actuator_input_iri, QUDT.symbol, Literal('U_E')))
+        actuator_input_range_quantitiykind = QUANTITYKIND.Voltage
+    elif (isinstance(df_row['Actuator Input Range unit'], str)
+          and 'A' in df_row['Actuator Input Range unit']):
+        actuator_input_range_quantitiykind = QUANTITYKIND.ElectricCurrent
+    else:
+        raise Exception(
+            f"Unit {df_row['Actuator Input Range unit']} Quantitykind is not supported yet! Please contact the maintainers.")
+
     data.g.add((actuator_input_iri, RDFS.comment, Literal('The possible actuator input range of the valve that causes the actuation.')))
-    data.g.add((actuator_input_iri, QUDT.hasQuantityKind, unit_dict[df_row['Actuator Input Range unit']]))
-    data.g.add((actuator_input_iri, QUDT.symbol, Literal('U_E'))) # TODO: Nur bei Spannungen so
+    data.g.add((actuator_input_iri, QUDT.hasQuantityKind, actuator_input_range_quantitiykind))
     data.g.add((actuator_input_iri, SCHEMA.minValue, Literal(float(df_row['Actuator Input Range from']), datatype=XSD.double)))
     data.g.add((actuator_input_iri, SCHEMA.maxValue, Literal(float(df_row['Actuator Input Range to']), datatype=XSD.double)))
     data.g.add((actuator_input_iri, QUDT.unit, unit_dict[df_row['Actuator Input Range unit']]))
