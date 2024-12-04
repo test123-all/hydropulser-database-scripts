@@ -108,7 +108,7 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
 
     meas_range = Quantity(data, isPropertyOf=sys_capa.iri, hasQuantityKind=quantitykind_dict[sheet_name],
                           minValue=Literal(str(df_row["Sensor Messbereich von"]), datatype=XSD.double), maxValue=Literal(str(df_row["Sensor Messbereich bis"]), datatype=XSD.double), unit=unit_dict[df_row["Sensor Messbereich Einheit"]],
-                          iri=SENSOR[sensor_id + "/SensorCapability/MeasurementRange"], identifier=None, name="measurement range",
+                          iri=SENSOR[sensor_id + "/SensorCapability/MeasurementRange"], identifier=None, name="sensor measurement range",
                           rdftype=SSN_SYSTEM.MeasurementRange)
 
     if val_ref is not None:
@@ -117,7 +117,7 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
     sensor_actuation_range = Quantity(data, isPropertyOf=sys_capa.iri, hasQuantityKind=QUANTITYKIND.Voltage,
                                       minValue=Literal(str(df_row["Sensor Ausgabebereich von"]), datatype=XSD.double), maxValue=Literal(str(df_row["Sensor Ausgabebereich bis"]), datatype=XSD.double),
                                       unit=unit_dict[df_row["Sensor Ausgabebereich Einheit"]],
-                                      iri=SENSOR[sensor_id + "/SensorCapability/ActuationRange"], identifier=None, name="sensor output voltage range",
+                                      iri=SENSOR[sensor_id + "/SensorCapability/ActuationRange"], identifier=None, name="sensor output range",
                                       rdftype=SSN_SYSTEM.ActuationRange)
     sensitivity = Property(data, isPropertyOf=sys_capa.iri, iri=SENSOR[sensor_id + "/SensorCapability/Sensitivity"],
                            comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensitivity",
@@ -164,7 +164,7 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
         del temp_string
 
     absolute_bias_uncertainty = Property(data, isPropertyOf=bias.iri, iri=SENSOR[sensor_id + "/SensorCapability/Bias/AbsoluteBiasUncertainty"],
-                    name="absolute bias uncertainty",
+                    name="bias uncertainty",
                     description="The absolute bias uncertainty of the sensor of the linear transfer function of a sensor.",
                     seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
                              URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
@@ -210,7 +210,7 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
         del temp_string
 
     relative_bias_uncertainty = Property(data, isPropertyOf=bias.iri, iri=SENSOR[sensor_id + "/SensorCapability/Bias/RelativeBiasUncertainty"],
-                    name="relative bias uncertainty",
+                    name="bias uncertainty",
                     description="The relative bias uncertainty of the sensor of the linear transfer function of a sensor.",
                     seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
                              URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],

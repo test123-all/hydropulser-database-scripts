@@ -89,7 +89,7 @@ def generate_valve_files(valve_files_dir, df_row):
 
     sensor_meas_range = Quantity(data, isPropertyOf=sensor_sys_capa.iri, hasQuantityKind=QUANTITYKIND.OpeningRatio,
                           minValue=Literal(float(df_row['Sensor Messbereich von']), datatype=XSD.double), maxValue=Literal(float(df_row['Sensor Messbereich bis']), datatype=XSD.double), unit=unit_dict[df_row['Sensor Messbereich Unit']],
-                          iri=FST_NAMESPACE[valve_id + "/SensorCapability/MeasurementRange"], identifier=None, name="measurement range",
+                          iri=FST_NAMESPACE[valve_id + "/SensorCapability/MeasurementRange"], identifier=None, name="sensor measurement range",
                           rdftype=SSN_SYSTEM.MeasurementRange)
 
     # if val_ref is not None:
@@ -160,7 +160,7 @@ def generate_valve_files(valve_files_dir, df_row):
         del temp_string
 
     absolute_bias_uncertainty = Property(data, isPropertyOf=sensor_bias.iri, iri=URIRef(f"{FST_NAMESPACE}{valve_id}/SensorCapability/Bias/AbsoluteBiasUncertainty"),
-                                name="absolute bias uncertainty",
+                                name="bias uncertainty",
                                 description="The bias uncertainty of the sensor of the linear transfer function of a sensor.",
                                 seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
                                          URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],
@@ -207,7 +207,7 @@ def generate_valve_files(valve_files_dir, df_row):
         del temp_string
 
     relative_bias_uncertainty = Property(data, isPropertyOf=sensor_bias.iri, iri=URIRef(f"{FST_NAMESPACE}{valve_id}/SensorCapability/Bias/RelativeBiasUncertainty"),
-                                name="relative bias uncertainty",
+                                name="bias uncertainty",
                                 description="The bias uncertainty of the sensor of the linear transfer function of a sensor.",
                                 seeAlso=[URIRef("https://doi.org/10.1007/978-3-030-78354-9"),
                                          URIRef("https://dx.doi.org/10.2139/ssrn.4452038")],

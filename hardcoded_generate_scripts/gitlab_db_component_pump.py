@@ -178,13 +178,13 @@ def generate_pump_files(pump_files_dir, df_row):
 
 
     sensitivity = Property(data, isPropertyOf=actuator_capability_iri, iri=URIRef(f"{FST_NAMESPACE}{pump_id}/ActuatorCapability/Sensitivity"),
-                           comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="sensitivity",
+                           comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="actuator sensitivity",
                            value=Literal(float(df_row['Actuator Kennlinie _ Sensitivity']), datatype=XSD.double))
     data.g.add((URIRef(f"{FST_NAMESPACE}{pump_id}/ActuatorCapability/Sensitivity"), QUDT.unit, Literal(f"({df_row['Actuator Input Range unit']})/({df_row['Actuator Actuation Range unit']})")))
 
 
     bias = Property(data, isPropertyOf=actuator_capability_iri, iri=URIRef(f"{FST_NAMESPACE}{pump_id}/ActuatorCapability/Bias"),
-                    comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="bias",
+                    comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="actuator bias",
                     value=Literal(float(df_row['Actuator Kennlinie _ Bias']), datatype=XSD.double))
 
     data.g.add((URIRef(f"{FST_NAMESPACE}{pump_id}/ActuatorCapability/Bias"), QUDT.unit, unit_dict[df_row['Actuator Input Range unit']]))
