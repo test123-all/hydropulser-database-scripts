@@ -361,7 +361,7 @@ def generate_valve_files(valve_files_dir, df_row):
                                   iri=FST_NAMESPACE[valve_id + "/ActuatorCapability" + "/Sensitivity"],
                                   comment="gain", rdftype=SSN_SYSTEM.Sensitivity, name="actuator sensitivity",
                                   value=Literal(df_row['Actuator Kennlinie _ Sensitivity']))
-    data.g.add((FST_NAMESPACE[valve_id + "/SensorSensitivity"], QUDT.unit,
+    data.g.add((FST_NAMESPACE[valve_id + "/ActuatorCapability" + "/Sensitivity"], QUDT.unit,
                 Literal(f"({df_row['Actuator Input Range unit']})/({df_row['Actuator Actuation Range unit']})")))
 
     actuator_bias = Property(data, isPropertyOf=actuator_capability_iri,
@@ -369,7 +369,7 @@ def generate_valve_files(valve_files_dir, df_row):
                            comment="offset", rdftype=SSN_SYSTEM.SystemProperty, name="actuator bias",
                            value=Literal(float(df_row['Actuator Kennlinie _ Bias']), datatype=XSD.double))
 
-    data.g.add((FST_NAMESPACE[valve_id + "/SensorCapability" + "/Bias"], QUDT.unit, unit_dict[df_row['Actuator Input Range unit']]))
+    data.g.add((FST_NAMESPACE[valve_id + "/ActuatorCapability" + "/Bias"], QUDT.unit, unit_dict[df_row['Actuator Input Range unit']]))
 
     if (df_row['Nenndurchmesser'] is None
             or (isinstance(df_row['Nenndurchmesser'], str)
