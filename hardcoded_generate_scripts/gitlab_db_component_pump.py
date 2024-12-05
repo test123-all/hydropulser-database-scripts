@@ -105,7 +105,8 @@ def generate_pump_files(pump_files_dir, df_row):
     data.g.add((actuator_capability_iri, SSN.hasProperty, actuator_input_range_iri))
     data.g.add((actuator_input_range_iri, RDF.type, SSN.Property))
     data.g.add((actuator_input_range_iri, RDF.type, QUDT.Quantity))
-    data.g.add((actuator_input_range_iri, RDFS.label, Literal('actuator input range')))
+    data.g.add((actuator_input_range_iri, SCHEMA.name, Literal('actuator input range')))
+    # data.g.add((actuator_input_range_iri, RDFS.label, Literal('actuator input range')))
     data.g.add((actuator_input_range_iri, RDFS.comment,
                 Literal('The possible actuator input range of the pump that causes the actuation.')))
 
@@ -135,7 +136,8 @@ def generate_pump_files(pump_files_dir, df_row):
     data.g.add((pump_iri, SSN.hasProperty, rated_power))
     data.g.add((rated_power, RDF.type, SSN.Property))
     data.g.add((rated_power, RDF.type, QUDT.Quantity))
-    data.g.add((rated_power, RDFS.label, Literal("nominal/rated power"))) # TODO: add it in german Nennleistung
+    data.g.add((rated_power, SCHEMA.name, Literal("nominal/rated power")))  # TODO: add it in german Nennleistung
+    # data.g.add((rated_power, RDFS.label, Literal("nominal/rated power"))) # TODO: add it in german Nennleistung
     data.g.add((rated_power, QUDT.symbol, Literal("P_N")))
     data.g.add((rated_power, QUDT.hasQuantityKind, QUANTITYKIND.Power))
     data.g.add((rated_power, QUDT.unit, unit_dict[f"{df_row['Motornennleistung Einheit']}"])) #TODO
@@ -149,7 +151,8 @@ def generate_pump_files(pump_files_dir, df_row):
     data.g.add((pump_iri, SSN.hasProperty, input_power))
     data.g.add((input_power, RDF.type, SSN.Property))
     data.g.add((input_power, RDF.type, QUDT.Quantity))
-    data.g.add((input_power, RDFS.label, Literal("input power"))) # Motoraufnahmeleistung
+    data.g.add((input_power, SCHEMA.name, Literal("input power")))  # Motoraufnahmeleistung
+    # data.g.add((input_power, RDFS.label, Literal("input power"))) # Motoraufnahmeleistung
     data.g.add((input_power, QUDT.symbol, Literal("P_in")))
     data.g.add((input_power, QUDT.hasQuantityKind, QUANTITYKIND.Power))
     data.g.add((input_power, QUDT.unit, unit_dict[f"{df_row['Leistungsaufnahme Einheit']}"])) #TODO
@@ -165,7 +168,8 @@ def generate_pump_files(pump_files_dir, df_row):
     data.g.add((pump_iri, SSN.hasProperty, current_demand))
     data.g.add((current_demand, RDF.type, SSN.Property))
     data.g.add((current_demand, RDF.type, QUDT.Quantity))
-    data.g.add((current_demand, RDFS.label, Literal("Current demand")))  # Motoraufnahmeleistung
+    data.g.add((current_demand, SCHEMA.name, Literal("Current demand")))  # Motoraufnahmeleistung
+    # data.g.add((current_demand, RDFS.label, Literal("Current demand")))  # Motoraufnahmeleistung
     data.g.add((current_demand, QUDT.symbol, Literal("I_demand")))
     data.g.add((current_demand, QUDT.hasQuantityKind, QUANTITYKIND.ElectricCurrent))
     data.g.add((current_demand, QUDT.unit, unit_dict[f"{df_row['Stromaufnahmebereich Einheit']}"]))  # TODO
@@ -193,7 +197,8 @@ def generate_pump_files(pump_files_dir, df_row):
     data.g.add((pump_iri, SSN.hasProperty, power_connection))
     data.g.add((power_connection, RDF.type, SSN.Property))
     data.g.add((power_connection, RDF.type, QUDT.Quantity))
-    data.g.add((power_connection, RDFS.label, Literal("power connection")))  # Motoraufnahmeleistung
+    data.g.add((power_connection, SCHEMA.name, Literal("power connection")))  # Motoraufnahmeleistung
+    # data.g.add((power_connection, RDFS.label, Literal("power connection")))  # Motoraufnahmeleistung
     # data.g.add((power_connection, QUDT.symbol, Literal("I_demand")))
     # data.g.add((power_connection, QUDT.hasQuantityKind, QUANTITYKIND.))
     # data.g.add((power_connection, QUDT.unit, UNIT.))  # TODO
@@ -208,7 +213,8 @@ def generate_pump_files(pump_files_dir, df_row):
     data.g.add((pump_iri, SSN.hasProperty, p_max_iri))
     data.g.add((p_max_iri, RDF.type, SSN.Property))
     data.g.add((p_max_iri, RDF.type, QUDT.Quantity))
-    data.g.add((p_max_iri, RDFS.label, Literal('maximum pressure')))
+    data.g.add((p_max_iri, SCHEMA.name, Literal('maximum pressure')))
+    # data.g.add((p_max_iri, RDFS.label Literal('maximum pressure')))
     # data.g.add((p_max_iri, RDFS.comment, Literal('')))
     data.g.add((p_max_iri, QUDT.hasQuantityKind, QUANTITYKIND.Pressure))
     data.g.add((p_max_iri, QUDT.symbol, Literal('P_max')))

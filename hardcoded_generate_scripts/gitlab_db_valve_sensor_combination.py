@@ -288,7 +288,8 @@ def generate_valve_files(valve_files_dir, df_row):
     data.g.add((valve.iri, SSN.hasProperty, k_vs_iri ))
     data.g.add((k_vs_iri , RDF.type, SSN.Property))
     data.g.add((k_vs_iri , RDF.type, QUDT.Quantity))
-    data.g.add((k_vs_iri , RDFS.label, Literal('K_vs value')))
+    data.g.add((k_vs_iri, SCHEMA.name, Literal('K_vs value')))
+    # data.g.add((k_vs_iri , RDFS.label, Literal('K_vs value')))
     data.g.add((k_vs_iri , RDFS.comment, Literal(df_row['K_vs Wert Comment'])))
     data.g.add((k_vs_iri , QUDT.hasQuantityKind, QUANTITYKIND.VolumeFlowRate))
     data.g.add((k_vs_iri , QUDT.symbol, Literal('K_vs')))
@@ -302,7 +303,8 @@ def generate_valve_files(valve_files_dir, df_row):
     data.g.add((valve.iri, SSN.hasProperty, p_max_iri))
     data.g.add((p_max_iri, RDF.type, SSN.Property))
     data.g.add((p_max_iri, RDF.type, QUDT.Quantity))
-    data.g.add((p_max_iri, RDFS.label, Literal('maximum pressure')))
+    data.g.add((p_max_iri, SCHEMA.name, Literal('maximum pressure')))
+    # data.g.add((p_max_iri, RDFS.label, Literal('maximum pressure')))
     data.g.add((p_max_iri, RDFS.comment, Literal('')))
     data.g.add((p_max_iri, QUDT.hasQuantityKind, QUANTITYKIND.Pressure))
     data.g.add((p_max_iri, QUDT.symbol, Literal('P_max')))
@@ -330,7 +332,8 @@ def generate_valve_files(valve_files_dir, df_row):
     data.g.add((actuator_capability_iri, SSN.hasProperty, actuator_input_iri))
     data.g.add((actuator_input_iri, RDF.type, SSN.Property))
     data.g.add((actuator_input_iri, RDF.type, QUDT.Quantity))
-    data.g.add((actuator_input_iri, RDFS.label, Literal('actuator input range')))
+    data.g.add((actuator_input_iri, SCHEMA.name, Literal('actuator input range')))
+    # data.g.add((actuator_input_iri, RDFS.label, Literal('actuator input range')))
 
     # TODO: FIXME: If there should be a unit that also contains 'A' or 'V' for example 'V/m' this delivers the wrong
     #  quantitykind. This would be solveable through code that lookups the quantitkind through a ontology.
@@ -381,7 +384,8 @@ def generate_valve_files(valve_files_dir, df_row):
     data.g.add((valve.iri, SSN.hasProperty, nominal_diameter_iri))
     data.g.add((nominal_diameter_iri, RDF.type, SSN.Property))
     data.g.add((nominal_diameter_iri, RDF.type, QUDT.Quantity))
-    data.g.add((nominal_diameter_iri, RDFS.label, Literal('nominal diameter')))
+    data.g.add((nominal_diameter_iri, SCHEMA.name, Literal('nominal diameter')))
+    # data.g.add((nominal_diameter_iri, RDFS.label, Literal('nominal diameter')))
     # data.g.add((nominal_diameter_iri, RDFS.comment,
     #             Literal('The possible actuator input range of the valve that causes the actuation.')))
     data.g.add((nominal_diameter_iri, QUDT.hasQuantityKind, QUANTITYKIND.Diameter))
