@@ -28,11 +28,14 @@ SENSOR = Namespace("https://w3id.org/fst/resource/")
 quantitykind_dict = {"Druck": QUANTITYKIND.Pressure,
                      "Kraft": QUANTITYKIND.Force,
                      "Temperatur": QUANTITYKIND.Temperature,
-                     "Weg": QUANTITYKIND.Displacement}
+                     "Weg": QUANTITYKIND.Displacement,
+                     "Leistung": QUANTITYKIND.Power,
+                     "Volumenstrom": QUANTITYKIND.VolumeFlowRate}
 
 unit_dict = {"bar": UNIT.BAR,
              "mbar": UNIT.MilliBAR,
              "psi": UNIT.PSI,
+             "Pa": UNIT.PA,
              "kPa": UNIT.KiloPA,
              "MPa": UNIT.MegaPA,
              "°C": UNIT.DEG_C,
@@ -43,7 +46,10 @@ unit_dict = {"bar": UNIT.BAR,
              "cm": UNIT.CentiM,
              "V": UNIT.V,
              "mV": UNIT.MilliV,
-             "µV": UNIT.MicroV}
+             "µV": UNIT.MicroV,
+             "A": UNIT.A,
+             "W": UNIT.W,
+             "m^3/s": UNIT.M3_PER_SEC}
 
 
 def generate_sensor_files(sensor_dir, sheet_name, df_row):
@@ -354,6 +360,7 @@ def generate_sensor_files(sensor_dir, sheet_name, df_row):
     data.g.add((docjson, SDO.encodingFormat, Literal('application/json')))
     data.g.add((docjson, SDO.encodingFormat, Literal('application/ld+json')))
 
+    print(f'#### Sensor {sensor.identifier}')
     print(data.g.serialize(destination=rdfpath + "rdf.json", format="json-ld", auto_compact=True))
     print(data.g.serialize(destination=rdfpath + "rdf.ttl", base=SENSOR, format="longturtle"))
     print(data.g.serialize(destination=rdfpath + "rdf.xml", base=SENSOR, format="xml"))
@@ -364,7 +371,10 @@ def run_script(sensor_table_path: [Path, str], generated_files_directory_path: [
     SUPPORTED_SENSOR_TABLE_SHEET_NAMES = ["Druck",
                                           "Kraft",
                                           "Temperatur",
-                                          "Weg"]
+                                          "Weg",
+                                          "Leistung",
+                                          "Volumenstrom"]
+
 
     # Get the path of the direcotry of this file
     directory_path = Path(__file__).parent.resolve()
