@@ -209,7 +209,7 @@ def generate_pump_files(pump_files_dir, df_row):
     # data.g.add((power_connection, RDFS.comment, Literal("negative direction")))
     data.g.add((power_connection, SSN.isPropertyOf, pump_iri))
 
-    p_max_iri = rdflib.URIRef(f"{pump_iri}/P_max")
+    p_max_iri = rdflib.URIRef(f"{pump_iri}/p_max")
     data.g.add((pump_iri, SSN.hasProperty, p_max_iri))
     data.g.add((p_max_iri, RDF.type, SSN.Property))
     data.g.add((p_max_iri, RDF.type, QUDT.Quantity))
@@ -217,7 +217,7 @@ def generate_pump_files(pump_files_dir, df_row):
     # data.g.add((p_max_iri, RDFS.label Literal('maximum pressure')))
     # data.g.add((p_max_iri, RDFS.comment, Literal('')))
     data.g.add((p_max_iri, QUDT.hasQuantityKind, QUANTITYKIND.Pressure))
-    data.g.add((p_max_iri, QUDT.symbol, Literal('P_max')))
+    data.g.add((p_max_iri, QUDT.symbol, Literal('p_max')))
     data.g.add((p_max_iri, QUDT.value, Literal(float(df_row['maximaler Druck Wert']), datatype=XSD.double)))
     data.g.add((p_max_iri, QUDT.unit, unit_dict[f"{df_row['maximaler Druck Einheit']}"]))
     data.g.add((p_max_iri, SSN.isPropertyOf, pump_iri))
