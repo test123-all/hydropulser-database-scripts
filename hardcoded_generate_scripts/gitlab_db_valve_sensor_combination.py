@@ -299,7 +299,7 @@ def generate_valve_files(valve_files_dir, df_row):
     # Gibt für die Genaugikeit eine angabe, die ist aber in Prozent und nicht fest
     # data.g.add((k_vs_iri , SSN_SYSTEM.Accuracy, Literal()))
 
-    p_max_iri = rdflib.URIRef(f"{valve.iri}/P_max")
+    p_max_iri = rdflib.URIRef(f"{valve.iri}/p_max")
     data.g.add((valve.iri, SSN.hasProperty, p_max_iri))
     data.g.add((p_max_iri, RDF.type, SSN.Property))
     data.g.add((p_max_iri, RDF.type, QUDT.Quantity))
@@ -307,7 +307,7 @@ def generate_valve_files(valve_files_dir, df_row):
     # data.g.add((p_max_iri, RDFS.label, Literal('maximum pressure')))
     data.g.add((p_max_iri, RDFS.comment, Literal('')))
     data.g.add((p_max_iri, QUDT.hasQuantityKind, QUANTITYKIND.Pressure))
-    data.g.add((p_max_iri, QUDT.symbol, Literal('P_max')))
+    data.g.add((p_max_iri, QUDT.symbol, Literal('p_max')))
     data.g.add((p_max_iri, QUDT.value, Literal(float(df_row['maximaler Druck Wert']), datatype=XSD.double)))
     data.g.add((p_max_iri, QUDT.unit, unit_dict[df_row['maximaler Druck Einheit']]))
     data.g.add((p_max_iri, SSN.isPropertyOf, valve.iri))
