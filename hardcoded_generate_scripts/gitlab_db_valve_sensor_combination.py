@@ -48,7 +48,7 @@ unit_dict = {"bar": UNIT.BAR,
              "µV": UNIT.MicroV,
              "A": UNIT.A,
              "%": UNIT.PERCENT,
-             "m^3/s": UNIT.M3_PER_SEC,
+             "m^3/s": UNIT['M3-PER-SEC'],
              "m": UNIT.M,
              "Pa": UNIT.PA}
 

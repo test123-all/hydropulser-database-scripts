@@ -43,7 +43,7 @@ unit_dict = {"bar": UNIT.BAR,
              "V": UNIT.V,
              "mV": UNIT.MilliV,
              "µV": UNIT.MicroV,
-             "1/s": UNIT.REV_PER_SEC,
+             "1/s": UNIT['REV-PER-SEC'], # necessary< because the namespace object doesn't support all possible symbols like the '-'
              "W": UNIT.W,
              "A": UNIT.A}
 
