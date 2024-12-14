@@ -9,6 +9,9 @@ from pyKRAKEN.kraken import (
     QUANTITYKIND,
     Kraken
 )
+
+SCHEMA = Namespace("https://schema.org/")
+
 def main ():
     # Comment from the AIMS Project:
     # this should ideally be something like e.g.:
@@ -50,7 +53,7 @@ def main ():
     data.g.add((spec_gas_const, QUDT.symbol, Literal("R")))
     data.g.add((spec_gas_const, QUDT.hasQuantityKind, QUANTITYKIND.SpecificHeatCapacity))
     data.g.add((spec_gas_const, QUDT.unit, UNIT["J-PER-KiloGM-K"]))
-    data.g.add((spec_gas_const, QUDT.value, Literal("287", datatype=XSD.double)))
+    data.g.add((spec_gas_const, SCHEMA.value, Literal("287", datatype=XSD.double)))
 
     therm_conduct = SUBSTANCE[air_id + "/lambda"]
     data.g.add((air, SSN.hasProperty, therm_conduct))
@@ -60,7 +63,7 @@ def main ():
     data.g.add((therm_conduct, QUDT.symbol, Literal("lambda")))
     data.g.add((therm_conduct, QUDT.hasQuantityKind, QUANTITYKIND.ThermalConductivity))
     data.g.add((therm_conduct, QUDT.unit, UNIT["W-PER-M-K"]))
-    data.g.add((therm_conduct, QUDT.value, Literal("0.027", datatype=XSD.double)))
+    data.g.add((therm_conduct, SCHEMA.value, Literal("0.027", datatype=XSD.double)))
     # @ 1 bar abs, 303 K
 
     isentropic_exp = SUBSTANCE[air_id + "/gamma"]
@@ -71,7 +74,7 @@ def main ():
     data.g.add((isentropic_exp, QUDT.symbol, Literal("gamma")))
     data.g.add((isentropic_exp, QUDT.hasQuantityKind, QUANTITYKIND.IsentropicExponent))
     data.g.add((isentropic_exp, QUDT.unit, UNIT.UNITLESS))
-    data.g.add((isentropic_exp, QUDT.value, Literal("1.4", datatype=XSD.double)))
+    data.g.add((isentropic_exp, SCHEMA.value, Literal("1.4", datatype=XSD.double)))
     # @ 1 bar abs, 303 K
 
     spec_heat_cap_const_p = SUBSTANCE[air_id + "/cp"]
@@ -82,7 +85,7 @@ def main ():
     data.g.add((spec_heat_cap_const_p, QUDT.symbol, Literal("cp")))
     data.g.add((spec_heat_cap_const_p, QUDT.hasQuantityKind, QUANTITYKIND.SpecificHeatCapacityAtConstantPressure))
     data.g.add((spec_heat_cap_const_p, QUDT.unit, UNIT["J-PER-KiloGM-K"]))
-    data.g.add((spec_heat_cap_const_p, QUDT.value, Literal("1060", datatype=XSD.double)))
+    data.g.add((spec_heat_cap_const_p, SCHEMA.value, Literal("1060", datatype=XSD.double)))
     # @ 1 bar abs, 303 K
 
     spec_heat_cap_const_v = SUBSTANCE[air_id + "/cv"]
@@ -93,7 +96,7 @@ def main ():
     data.g.add((spec_heat_cap_const_v, QUDT.symbol, Literal("cv")))
     data.g.add((spec_heat_cap_const_v, QUDT.hasQuantityKind, QUANTITYKIND.SpecificHeatCapacityAtConstantVolume))
     data.g.add((spec_heat_cap_const_v, QUDT.unit, UNIT["J-PER-KiloGM-K"]))
-    data.g.add((spec_heat_cap_const_v, QUDT.value, Literal("740", datatype=XSD.double)))
+    data.g.add((spec_heat_cap_const_v, SCHEMA.value, Literal("740", datatype=XSD.double)))
     # @ 1 bar abs, 303 K
 
     # rdf doc references

@@ -24,6 +24,7 @@ import gitlab_db_mdgen
 # COMPONENT = Namespace(FST["component/"])
 # SUBSTANCE = Namespace(FST["substance/"])
 
+SCHEMA = Namespace("https://schema.org/")
 SSN_SYSTEM = Namespace("https://www.w3.org/ns/ssn/systems/")
 
 COMPONENT = Namespace("https://w3id.org/fst/resource/")
@@ -59,7 +60,7 @@ def main():
     data.g.add((displacement_area, QUDT.symbol, Literal("A_d")))
     data.g.add((displacement_area, QUDT.hasQuantityKind, QUANTITYKIND.Area))
     data.g.add((displacement_area, QUDT.unit, UNIT.M2))
-    data.g.add((displacement_area, QUDT.value, Literal("-0.000804200000000000", datatype=XSD.double)))
+    data.g.add((displacement_area, SCHEMA.value, Literal("-0.000804200000000000", datatype=XSD.double)))
     data.g.add((displacement_area, RDFS.comment, Literal("negative direction")))
     # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
     data.g.add((displacement_area, SSN_SYSTEM.Accuracy, Literal("1.00562380841419e-06", datatype=XSD.double)))
@@ -74,7 +75,7 @@ def main():
     data.g.add((volume_design_point, QUDT.symbol, Literal("V1")))
     data.g.add((volume_design_point, QUDT.hasQuantityKind, QUANTITYKIND.Volume))
     data.g.add((volume_design_point, QUDT.unit, UNIT.M3))
-    data.g.add((volume_design_point, QUDT.value, Literal("0.000043", datatype=XSD.double)))
+    data.g.add((volume_design_point, SCHEMA.value, Literal("0.000043", datatype=XSD.double)))
     # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
     data.g.add((volume_design_point, SSN_SYSTEM.Accuracy, Literal("337e-9", datatype=XSD.double)))
     #source: Bachelorthesis Louis Hill
@@ -87,7 +88,7 @@ def main():
     data.g.add((volume_design_point0, QUDT.symbol, Literal("V0")))
     data.g.add((volume_design_point0, QUDT.hasQuantityKind, QUANTITYKIND.Volume))
     data.g.add((volume_design_point0, QUDT.unit, UNIT.M3))
-    data.g.add((volume_design_point0, QUDT.value, Literal("0.000043", datatype=XSD.double)))
+    data.g.add((volume_design_point0, SCHEMA.value, Literal("0.000043", datatype=XSD.double)))
     # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
     data.g.add((volume_design_point0, SSN_SYSTEM.Accuracy, Literal("337e-9", datatype=XSD.double)))
     #source: Bachelorthesis Louis Hill
@@ -100,7 +101,7 @@ def main():
     data.g.add((wall_area, QUDT.symbol, Literal("A_w")))
     data.g.add((wall_area, QUDT.hasQuantityKind, QUANTITYKIND.Area))
     data.g.add((wall_area, QUDT.unit, UNIT.M2))
-    data.g.add((wall_area, QUDT.value, Literal("0.00686", datatype=XSD.double)))
+    data.g.add((wall_area, SCHEMA.value, Literal("0.00686", datatype=XSD.double)))
     # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
     data.g.add((wall_area, SSN_SYSTEM.Accuracy, Literal("38e-6", datatype=XSD.double)))
     #source: Bachelorthesis Louis Hill
@@ -113,7 +114,7 @@ def main():
     data.g.add((specific_surface_area, QUDT.symbol, Literal("s")))
     data.g.add((specific_surface_area, QUDT.hasQuantityKind, QUANTITYKIND.InverseLength))
     data.g.add((specific_surface_area, QUDT.unit, UNIT["NUM-PER-M"]))
-    data.g.add((specific_surface_area, QUDT.value, Literal("159.534883720930", datatype=XSD.double)))
+    data.g.add((specific_surface_area, SCHEMA.value, Literal("159.534883720930", datatype=XSD.double)))
     # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
     data.g.add((specific_surface_area, SSN_SYSTEM.Accuracy, Literal("1.531088979916640", datatype=XSD.double)))
     #source: Propagation of uncertainty according to Gauß

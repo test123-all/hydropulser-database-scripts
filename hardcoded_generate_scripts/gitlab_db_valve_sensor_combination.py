@@ -293,7 +293,7 @@ def generate_valve_files(valve_files_dir, df_row):
     data.g.add((k_vs_iri , RDFS.comment, Literal(df_row['K_vs Wert Comment'])))
     data.g.add((k_vs_iri , QUDT.hasQuantityKind, QUANTITYKIND.VolumeFlowRate))
     data.g.add((k_vs_iri , QUDT.symbol, Literal('K_vs')))
-    data.g.add((k_vs_iri , QUDT.value, K_vs_value))
+    data.g.add((k_vs_iri , SCHEMA.value, K_vs_value))
     data.g.add((k_vs_iri , QUDT.unit, K_vs_unit))
     data.g.add((k_vs_iri , SSN.isPropertyOf, valve.iri))
     # Gibt für die Genaugikeit eine angabe, die ist aber in Prozent und nicht fest
@@ -308,7 +308,7 @@ def generate_valve_files(valve_files_dir, df_row):
     data.g.add((p_max_iri, RDFS.comment, Literal('')))
     data.g.add((p_max_iri, QUDT.hasQuantityKind, QUANTITYKIND.Pressure))
     data.g.add((p_max_iri, QUDT.symbol, Literal('p_max')))
-    data.g.add((p_max_iri, QUDT.value, Literal(float(df_row['maximaler Druck Wert']), datatype=XSD.double)))
+    data.g.add((p_max_iri, SCHEMA.value, Literal(float(df_row['maximaler Druck Wert']), datatype=XSD.double)))
     data.g.add((p_max_iri, QUDT.unit, unit_dict[df_row['maximaler Druck Einheit']]))
     data.g.add((p_max_iri, SSN.isPropertyOf, valve.iri))
 
@@ -390,7 +390,7 @@ def generate_valve_files(valve_files_dir, df_row):
     #             Literal('The possible actuator input range of the valve that causes the actuation.')))
     data.g.add((nominal_diameter_iri, QUDT.hasQuantityKind, QUANTITYKIND.Diameter))
     data.g.add((nominal_diameter_iri, QUDT.symbol, Literal('DN')))
-    data.g.add((nominal_diameter_iri, QUDT.value, nominal_diameter_value))
+    data.g.add((nominal_diameter_iri, SCHEMA.value, nominal_diameter_value))
     data.g.add((nominal_diameter_iri, QUDT.unit, nominal_diameter_unit))
     data.g.add((nominal_diameter_iri, SSN.isPropertyOf, valve.iri))
 

@@ -24,6 +24,7 @@ import gitlab_db_mdgen
 # COMPONENT = Namespace(FST["component/"])
 # SUBSTANCE = Namespace(FST["substance/"])
 
+SCHEMA = Namespace("https://schema.org/")
 SSN_SYSTEM = Namespace("https://www.w3.org/ns/ssn/systems/")
 
 COMPONENT = Namespace("https://w3id.org/fst/resource/")
@@ -58,7 +59,7 @@ def main():
     data.g.add((displacement_area, QUDT.symbol, Literal("A_d")))
     data.g.add((displacement_area, QUDT.hasQuantityKind, QUANTITYKIND.Area))
     data.g.add((displacement_area, QUDT.unit, UNIT.M2))
-    data.g.add((displacement_area, QUDT.value, Literal("-0.001963495408494", datatype=XSD.double)))
+    data.g.add((displacement_area, SCHEMA.value, Literal("-0.001963495408494", datatype=XSD.double)))
     data.g.add((displacement_area, RDFS.comment, Literal("negative direction")))
     # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
     data.g.add((displacement_area, SSN_SYSTEM.Accuracy, Literal("1.57111048605989e-06", datatype=XSD.double)))

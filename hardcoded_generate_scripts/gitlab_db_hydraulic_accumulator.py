@@ -93,7 +93,7 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
     data.g.add((operating_pressure, QUDT.symbol, Literal("p_operating")))
     data.g.add((operating_pressure, QUDT.hasQuantityKind, QUANTITYKIND.Pressure))
     data.g.add((operating_pressure, QUDT.unit, unit_dict[operating_pressure_unit]))
-    data.g.add((operating_pressure, QUDT.value, Literal(operating_pressure_value)))
+    data.g.add((operating_pressure, SCHEMA.value, Literal(operating_pressure_value)))
 
     maximum_pressure = COMPONENT[hydraulic_accumulator_id + "/p_max"]
     data.g.add((hydraulic_accumulator, SSN.hasProperty, maximum_pressure))
@@ -103,7 +103,7 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
     data.g.add((maximum_pressure, QUDT.symbol, Literal("p_max")))
     data.g.add((maximum_pressure, QUDT.hasQuantityKind, QUANTITYKIND.Pressure))
     data.g.add((maximum_pressure, QUDT.unit, unit_dict[maximum_pressure_unit]))
-    data.g.add((maximum_pressure, QUDT.value, Literal(maximum_pressure_value)))
+    data.g.add((maximum_pressure, SCHEMA.value, Literal(maximum_pressure_value)))
 
     volume = COMPONENT[hydraulic_accumulator_id + "/V0"]
     data.g.add((hydraulic_accumulator, SSN.hasProperty, volume))
@@ -113,7 +113,7 @@ def generate_gitlab_hydraulic_accumulator_files(save_to_dir: [str, Path],
     data.g.add((volume, QUDT.symbol, Literal("V0")))
     data.g.add((volume, QUDT.hasQuantityKind, QUANTITYKIND.Volume))
     data.g.add((volume, QUDT.unit, unit_dict[volume_unit]))
-    data.g.add((volume, QUDT.value, Literal(volume_value)))
+    data.g.add((volume, SCHEMA.value, Literal(volume_value)))
     # TODO: There might be sophisticated special data types for uncertainties in the future 12.2023
     data.g.add((volume, SSN_SYSTEM.Accuracy, Literal(volume_accuracy)))
     data.g.add((volume, RDFS.comment, Literal("Accuracy of the nominal volume estimated as 1% of the nominal volume by Mr. Rexer 12.2023")))

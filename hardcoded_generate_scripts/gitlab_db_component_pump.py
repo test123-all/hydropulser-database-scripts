@@ -141,7 +141,7 @@ def generate_pump_files(pump_files_dir, df_row):
     data.g.add((rated_power, QUDT.symbol, Literal("P_N")))
     data.g.add((rated_power, QUDT.hasQuantityKind, QUANTITYKIND.Power))
     data.g.add((rated_power, QUDT.unit, unit_dict[f"{df_row['Motornennleistung Einheit']}"])) #TODO
-    data.g.add((rated_power, QUDT.value, Literal(float(df_row['Motornennleistung']), datatype=XSD.double))) # TODO:
+    data.g.add((rated_power, SCHEMA.value, Literal(float(df_row['Motornennleistung']), datatype=XSD.double))) # TODO:
     data.g.add((rated_power, DCTERMS.description, Literal("The nominal/rated power of the pump.")))
     # data.g.add((rated_power, SSN_SYSTEM.Accuracy, Literal("2.352441913686447e-04", datatype=XSD.double)))
     # source: datasheet, Area derived from Force and pressure, uncertainty assumptions: F+-8N, p+-0.1bar
@@ -202,7 +202,7 @@ def generate_pump_files(pump_files_dir, df_row):
     # data.g.add((power_connection, QUDT.symbol, Literal("I_demand")))
     # data.g.add((power_connection, QUDT.hasQuantityKind, QUANTITYKIND.))
     # data.g.add((power_connection, QUDT.unit, UNIT.))  # TODO
-    data.g.add((power_connection, QUDT.value, Literal(f"{df_row['Netzanschluss']}")))  # TODO:
+    data.g.add((power_connection, SCHEMA.value, Literal(f"{df_row['Netzanschluss']}")))  # TODO:
     data.g.add((power_connection, DCTERMS.description, Literal("The power connection of the pump.")))  # TODO:
     # data.g.add((power_connection, SSN_SYSTEM.Accuracy, Literal("2.352441913686447e-04", datatype=XSD.double)))
     # source: datasheet, Area derived from Force and pressure, uncertainty assumptions: F+-8N, p+-0.1bar
@@ -218,7 +218,7 @@ def generate_pump_files(pump_files_dir, df_row):
     # data.g.add((p_max_iri, RDFS.comment, Literal('')))
     data.g.add((p_max_iri, QUDT.hasQuantityKind, QUANTITYKIND.Pressure))
     data.g.add((p_max_iri, QUDT.symbol, Literal('p_max')))
-    data.g.add((p_max_iri, QUDT.value, Literal(float(df_row['maximaler Druck Wert']), datatype=XSD.double)))
+    data.g.add((p_max_iri, SCHEMA.value, Literal(float(df_row['maximaler Druck Wert']), datatype=XSD.double)))
     data.g.add((p_max_iri, QUDT.unit, unit_dict[f"{df_row['maximaler Druck Einheit']}"]))
     data.g.add((p_max_iri, SSN.isPropertyOf, pump_iri))
 

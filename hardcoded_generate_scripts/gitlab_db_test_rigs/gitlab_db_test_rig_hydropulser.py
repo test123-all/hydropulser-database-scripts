@@ -13,6 +13,7 @@ from pyKRAKEN.kraken import (
 from hardcoded_generate_scripts.gitlab_db_mdgen import generate_sensor_md
 
 
+SCHEMA = Namespace("https://schema.org/")
 SSN_SYSTEM = Namespace("https://www.w3.org/ns/ssn/systems/")
 
 # this should ideally be something like e.g.:
@@ -104,7 +105,7 @@ def main():
     data.g.add((cylinder_stroke_range, QUDT.symbol, Literal("∆z")))
     data.g.add((cylinder_stroke_range, QUDT.hasQuantityKind, QUANTITYKIND.Displacement))
     data.g.add((cylinder_stroke_range, QUDT.unit, UNIT["MilliM"]))
-    data.g.add((cylinder_stroke_range, QUDT.value, Literal("300", datatype=XSD.double)))
+    data.g.add((cylinder_stroke_range, SCHEMA.value, Literal("300", datatype=XSD.double)))
 
 
     dynamic_force_range = TEST_RIG[test_rig_id + "/dynamic_force_range"]
