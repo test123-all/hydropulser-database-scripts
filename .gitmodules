@@ -1,0 +1,3 @@
+[submodule "fst-label-creator"]
+	path = fst-label-creator
+	url = ./../fst-label-creator.git
