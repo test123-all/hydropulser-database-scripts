@@ -11,7 +11,7 @@ from fstlabelcreator import script_functions
 
 def main():
     file_directory = Path(__file__).parent.resolve()
-    path_for_generated_files = Path(f"{file_directory}/_generated")
+    path_for_generated_files = Path(f"{file_directory}/../_generated")
     path_for_generated_labels = Path(f"{path_for_generated_files}/pID_label_files")
     path_for_generated_PID_files = Path(f"{path_for_generated_files}/pID_directories")
 
@@ -40,7 +40,7 @@ def main():
 
 
 
-    path_to_excel_table = Path(f"{file_directory}/{sensor_excel_sheet_name}")
+    path_to_excel_table = Path(f"{file_directory}/../excel_tables/{sensor_excel_sheet_name}")
 
     print('Start of the generation of the sensor files.')
     dfs = pd.read_excel(path_to_excel_table, sheet_name=None,) #skiprows=[1])
