@@ -2,13 +2,12 @@
 name = "hydropulser_database_scripts"
 version = "0.1.0"
 description = ""
-license = ""
+license = "EUROPEAN UNION PUBLIC LICENCE v. 1.2"
 authors = ["Sebastian Neumeier <sebastian.neumeier@stud.tu-darmstadt.de>"]
 readme = "README.md"
 classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.10",
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering :: Visualization",
