@@ -152,17 +152,17 @@ is able to generate the redirect files.
   
 ## Possible Improvements:
 The following list includes possible improvements that have been identified up to this version:
-- The scripts of the AIMS project are mainly hardcoded especially 
-  - for the components (`gitlab_db_component.py`) and the substances (`gitlab_db_substance.py`).
-  - the `gitlab_db_mdgen.py` to the sensors and doesn't work with components and substances.
-- Enhance the rdf sensor files by different uncertainties and the possibility of declaring these uncertainties inside
-the `sensor_table.xlsx`.
-
+1. TODO: Reevaluation of the approach to generate the data files. Should be replaced by a more efficient one in
+the future, because it is still really cumbersome to use and especially to set up and maintain.
+2. If the approach should be kept TODO: Overall refactoring of the existing code (add docstrings to the refactored functions, 
+test case clean up and documentation).
+3. If the approach should be kept TODO: The scripts of the AIMS project are mainly hardcoded and should be made modular,
+especially:
+   1. for the components (`gitlab_db_component.py`) and the substances (`gitlab_db_substance.py`). 
+   2. the `gitlab_db_mdgen.py` to the sensors and doesn't work with components and substances.
 
 ## Current To Do List:
 - How to automatically add images to the sensor README.md files?
-- Since there is a README.md file present for the one example component of the FST. Is there a script for it or is it created 
-by hand? 
 
 
 ## Dependencies:
